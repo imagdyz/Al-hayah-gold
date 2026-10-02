@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>سبلاش — داكن</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;600;700&amp;family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#C8A04B}a:hover{color:#E0C27A}
+@keyframes hgDraw{0%{stroke-dashoffset:120}35%{stroke-dashoffset:0}100%{stroke-dashoffset:0}}
+@keyframes hgFade{0%,30%{opacity:0;transform:translateY(10px)}50%,100%{opacity:1;transform:none}}
+@keyframes hgLoad{0%,40%{width:0}90%,100%{width:100%}}
+@keyframes hgSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.hg-draw{stroke-dasharray:120;animation:hgDraw 4s ease-out infinite}
+.hg-fade{animation:hgFade 4s ease-out infinite}
+.hg-load{animation:hgLoad 4s ease-in-out infinite}
+.hg-spin{animation:hgSpin 60s linear infinite;transform-origin:50% 50%}
+@media (prefers-reduced-motion: reduce){.hg-draw,.hg-fade,.hg-load,.hg-spin{animation:none;stroke-dashoffset:0;opacity:1;width:100%}}
+</style>
+</helmet>
+<a href="AppHome.dc.html" aria-label="الحياة جولد — ادخل على التطبيق" dir="rtl" style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #12100C; color: #F4F2EE; font-family: 'IBM Plex Sans Arabic', sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; box-sizing: border-box">
+
+<svg class="hg-spin" width="720" height="720" viewBox="0 0 48 48" fill="none" stroke="#2A251D" stroke-width="0.25" aria-hidden="true" style="position: absolute; top: 62px; left: -165px"><rect x="11" y="11" width="26" height="26"></rect><rect x="11" y="11" width="26" height="26" transform="rotate(45 24 24)"></rect><circle cx="24" cy="24" r="5.5"></circle><circle cx="24" cy="24" r="20"></circle></svg>
+
+<div style="position: relative; display: flex; flex-direction: column; align-items: center; gap: 22px">
+<svg width="128" height="128" viewBox="0 0 48 48" fill="none" stroke="#C8A04B" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><rect class="hg-draw" x="11" y="11" width="26" height="26"></rect><rect class="hg-draw" x="11" y="11" width="26" height="26" transform="rotate(45 24 24)"></rect><circle class="hg-draw" cx="24" cy="24" r="5.5"></circle></svg>
+<div class="hg-fade" style="display: flex; flex-direction: column; align-items: center; gap: 10px">
+<span style="font-family: 'El Messiri', serif; font-size: 48px; font-weight: 700; line-height: 1.1">الحياة جولد</span>
+<span style="font-size: 13px; letter-spacing: 7px; color: #C8A04B" dir="ltr">AL HAYAH GOLD</span>
+</div>
+</div>
+
+<div style="position: absolute; bottom: 72px; left: 0; right: 0; display: flex; flex-direction: column; align-items: center; gap: 16px">
+<span class="hg-fade" style="font-size: 16px; color: #CFC6B4">ذهبك من أول جرام</span>
+<span style="width: 120px; height: 3px; border-radius: 999px; background: #2A251D; overflow: hidden; display: flex"><span class="hg-load" style="height: 100%; background: #C8A04B; border-radius: 999px; display: block"></span></span>
+</div>
+</a>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

@@ -1,24 +1,166 @@
 {
   "v": 3,
-  "createdOnFiles": {"v": 1, "at": "2026-10-02T12:00:00Z"},
-  "title": "الحياة جولد — تصور UI",
-  "launch": {"view": "canvas"},
-  "pages": [],
+  "attachments": {},
   "boards": {
-    "Brand.dc.html": {"x": 0, "y": 0, "w": 880, "h": 844, "title": "الهوية المبدئية"},
-    "AppHome.dc.html": {"x": 960, "y": 0, "w": 390, "h": 844, "title": "التطبيق — الرئيسية", "is_interactive": true, "radius": 36},
-    "AppBuy.dc.html": {"x": 1430, "y": 0, "w": 390, "h": 844, "title": "التطبيق — شراء ذهب", "is_interactive": true, "radius": 36},
-    "AppShop.dc.html": {"x": 1900, "y": 0, "w": 390, "h": 844, "title": "التطبيق — المجوهرات", "is_interactive": true, "radius": 36},
-    "AppProduct.dc.html": {"x": 2370, "y": 0, "w": 390, "h": 844, "title": "التطبيق — تفاصيل قطعة", "is_interactive": true, "radius": 36},
-    "AppWallet.dc.html": {"x": 2840, "y": 0, "w": 390, "h": 844, "title": "التطبيق — محفظتي", "is_interactive": true, "radius": 36},
-    "AppBranches.dc.html": {"x": 3310, "y": 0, "w": 390, "h": 844, "title": "التطبيق — الفروع", "is_interactive": true, "radius": 36},
-    "Main.dc.html": {"x": 0, "y": 1260, "w": 1440, "h": 4400, "title": "الموقع — الصفحة الرئيسية", "expand": "fill", "is_interactive": true}
+    "AppBranches.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "التطبيق — الفروع",
+      "w": 390,
+      "x": 3310,
+      "y": 0
+    },
+    "AppBuy.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "التطبيق — شراء ذهب",
+      "w": 390,
+      "x": 1430,
+      "y": 0
+    },
+    "AppHome.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "التطبيق — الرئيسية",
+      "w": 390,
+      "x": 960,
+      "y": 0
+    },
+    "AppProduct.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "التطبيق — تفاصيل قطعة",
+      "w": 390,
+      "x": 2370,
+      "y": 0
+    },
+    "AppShop.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "التطبيق — المجوهرات",
+      "w": 390,
+      "x": 1900,
+      "y": 0
+    },
+    "AppWallet.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "التطبيق — محفظتي",
+      "w": 390,
+      "x": 2840,
+      "y": 0
+    },
+    "Brand.dc.html": {
+      "h": 844,
+      "title": "الهوية المبدئية",
+      "w": 880,
+      "x": 0,
+      "y": 1
+    },
+    "Main.dc.html": {
+      "expand": "fill",
+      "h": 4400,
+      "is_interactive": true,
+      "title": "الموقع — الصفحة الرئيسية",
+      "w": 1440,
+      "x": 0,
+      "y": 1260
+    },
+    "SplashDark.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "سبلاش — داكن (الأساسي)",
+      "w": 390,
+      "x": 0,
+      "y": 0,
+      "page": "splash"
+    },
+    "SplashGold.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "سبلاش — ذهبي (بديل)",
+      "w": 390,
+      "x": 470,
+      "y": 0,
+      "page": "splash"
+    }
   },
-  "order": ["Brand.dc.html", "AppHome.dc.html", "AppBuy.dc.html", "AppShop.dc.html", "AppProduct.dc.html", "AppWallet.dc.html", "AppBranches.dc.html", "Main.dc.html"],
+  "createdOnFiles": {
+    "at": "2026-10-02T12:00:00Z",
+    "v": 1
+  },
+  "designSystems": [],
+  "launch": {
+    "view": "canvas"
+  },
   "notes": {
-    "rowApp": {"x": 0, "y": -280, "text": "الهوية + تطبيق الموبايل", "kind": "title1", "maxW": 3700},
-    "rowWeb": {"x": 0, "y": 1000, "text": "الموقع الإلكتروني", "kind": "title1", "maxW": 1440},
-    "idea": {"x": 1540, "y": 1260, "w": 520, "maxH": 700, "size": "l", "fill": "orange", "text": "الفكرة الأساسية اللي بتميّزنا عن تطبيقات الادخار:\n\nالذهب اللي العميل بيدّخره في التطبيق مش مجرد رصيد — يقدر يستلمه سبيكة من أي فرع، أو يبدّله بقطعة مجوهرات حقيقية من المعروض في محلاتنا ويدفع المصنعية بس.\n\nكل الأسعار والأوزان وأسماء الفروع في التصور ده أرقام توضيحية، والأماكن اللي بين [ ] محتاجة بيانات حقيقية منك."}
+    "idea": {
+      "fill": "orange",
+      "maxH": 700,
+      "size": 40,
+      "text": "الفكرة الأساسية اللي بتميّزنا عن تطبيقات الادخار:\n\nالذهب اللي العميل بيدّخره في التطبيق مش مجرد رصيد — يقدر يستلمه سبيكة من أي فرع، أو يبدّله بقطعة مجوهرات حقيقية من المعروض في محلاتنا ويدفع المصنعية بس.\n\nكل الأسعار والأوزان وأسماء الفروع في التصور ده أرقام توضيحية، والأماكن اللي بين [ ] محتاجة بيانات حقيقية منك.",
+      "w": 520,
+      "x": 1540,
+      "y": 1260
+    },
+    "rowApp": {
+      "kind": "title1",
+      "maxW": 3700,
+      "text": "الهوية + تطبيق الموبايل",
+      "w": 240,
+      "x": 0,
+      "y": -280
+    },
+    "rowWeb": {
+      "kind": "title1",
+      "maxW": 1440,
+      "text": "الموقع الإلكتروني",
+      "w": 240,
+      "x": 93,
+      "y": 997
+    },
+    "splashTitle": {
+      "kind": "title1",
+      "maxW": 860,
+      "text": "شاشة البداية (سبلاش)",
+      "x": 0,
+      "y": -280,
+      "page": "splash"
+    },
+    "splashNote": {
+      "fill": "orange",
+      "size": "m",
+      "w": 360,
+      "maxH": 480,
+      "text": "الحركة: العلامة بتترسم خط خط، بعدها الاسم يظهر، وشريط تحميل ذهبي تحت. المدة حوالي 2.5 ثانية وبعدها يدخل على الرئيسية.\n\nفي وضع Play: اضغط على الشاشة يدخلك على الرئيسية.",
+      "x": 940,
+      "y": 0,
+      "page": "splash"
+    }
   },
-  "designSystems": []
+  "order": [
+    "Brand.dc.html",
+    "AppHome.dc.html",
+    "AppBuy.dc.html",
+    "AppShop.dc.html",
+    "AppProduct.dc.html",
+    "AppWallet.dc.html",
+    "AppBranches.dc.html",
+    "Main.dc.html",
+    "SplashDark.dc.html",
+    "SplashGold.dc.html"
+  ],
+  "pages": [
+    {"id": "main", "name": "التصور الرئيسي"},
+    {"id": "splash", "name": "شاشة البداية"}
+  ],
+  "title": "الحياة جولد — تصور UI"
 }
