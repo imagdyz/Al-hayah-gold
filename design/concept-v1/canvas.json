@@ -2,20 +2,34 @@
   "v": 3,
   "attachments": {},
   "boards": {
-    "AppBranches.dc.html": {
+    "Brand.dc.html": {
+      "h": 844,
+      "title": "الهوية المبدئية",
+      "w": 880,
+      "x": 0,
+      "y": 1
+    },
+    "Logo.dc.html": {
+      "h": 48,
+      "title": "اللوجو الموحّد (مكوّن مشترك)",
+      "w": 200,
+      "x": 0,
+      "y": 900
+    },
+    "SplashDark.dc.html": {
       "h": 844,
       "is_interactive": true,
       "radius": 36,
-      "title": "التطبيق — الفروع",
+      "title": "سبلاش — داكن (الأساسي)",
       "w": 390,
-      "x": 3310,
+      "x": 960,
       "y": 0
     },
-    "AppBuy.dc.html": {
+    "SplashGold.dc.html": {
       "h": 844,
       "is_interactive": true,
       "radius": 36,
-      "title": "التطبيق — شراء ذهب",
+      "title": "سبلاش — ذهبي (بديل)",
       "w": 390,
       "x": 1430,
       "y": 0
@@ -26,14 +40,14 @@
       "radius": 36,
       "title": "التطبيق — الرئيسية",
       "w": 390,
-      "x": 960,
+      "x": 1900,
       "y": 0
     },
-    "AppProduct.dc.html": {
+    "AppBuy.dc.html": {
       "h": 844,
       "is_interactive": true,
       "radius": 36,
-      "title": "التطبيق — تفاصيل قطعة",
+      "title": "التطبيق — شراء ذهب",
       "w": 390,
       "x": 2370,
       "y": 0
@@ -44,7 +58,16 @@
       "radius": 36,
       "title": "التطبيق — المجوهرات",
       "w": 390,
-      "x": 1900,
+      "x": 2840,
+      "y": 0
+    },
+    "AppProduct.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "التطبيق — تفاصيل قطعة",
+      "w": 390,
+      "x": 3310,
       "y": 0
     },
     "AppWallet.dc.html": {
@@ -53,15 +76,17 @@
       "radius": 36,
       "title": "التطبيق — محفظتي",
       "w": 390,
-      "x": 2840,
+      "x": 3780,
       "y": 0
     },
-    "Brand.dc.html": {
+    "AppBranches.dc.html": {
       "h": 844,
-      "title": "الهوية المبدئية",
-      "w": 880,
-      "x": 0,
-      "y": 1
+      "is_interactive": true,
+      "radius": 36,
+      "title": "التطبيق — الفروع",
+      "w": 390,
+      "x": 4250,
+      "y": 0
     },
     "Main.dc.html": {
       "expand": "fill",
@@ -71,26 +96,6 @@
       "w": 1440,
       "x": 0,
       "y": 1260
-    },
-    "SplashDark.dc.html": {
-      "h": 844,
-      "is_interactive": true,
-      "radius": 36,
-      "title": "سبلاش — داكن (الأساسي)",
-      "w": 390,
-      "x": 0,
-      "y": 0,
-      "page": "splash"
-    },
-    "SplashGold.dc.html": {
-      "h": 844,
-      "is_interactive": true,
-      "radius": 36,
-      "title": "سبلاش — ذهبي (بديل)",
-      "w": 390,
-      "x": 470,
-      "y": 0,
-      "page": "splash"
     }
   },
   "createdOnFiles": {
@@ -113,7 +118,7 @@
     },
     "rowApp": {
       "kind": "title1",
-      "maxW": 3700,
+      "maxW": 4640,
       "text": "الهوية + تطبيق الموبايل",
       "w": 240,
       "x": 0,
@@ -127,40 +132,29 @@
       "x": 93,
       "y": 997
     },
-    "splashTitle": {
-      "kind": "title1",
-      "maxW": 860,
-      "text": "شاشة البداية (سبلاش)",
-      "x": 0,
-      "y": -280,
-      "page": "splash"
-    },
     "splashNote": {
       "fill": "orange",
-      "size": "m",
-      "w": 360,
-      "maxH": 480,
-      "text": "الحركة: العلامة بتترسم خط خط، بعدها الاسم يظهر، وشريط تحميل ذهبي تحت. المدة حوالي 2.5 ثانية وبعدها يدخل على الرئيسية.\n\nفي وضع Play: اضغط على الشاشة يدخلك على الرئيسية.",
-      "x": 940,
-      "y": 0,
-      "page": "splash"
+      "maxH": 200,
+      "size": 24,
+      "text": "السبلاش: اللوجو بيظهر بهدوء مع تكبير بسيط، بعده الجملة وشريط التحميل (حوالي 2.5 ثانية) وبعدها الرئيسية. في Play اضغط على الشاشة تدخل على الرئيسية.",
+      "w": 640,
+      "x": 1600,
+      "y": 900
     }
   },
   "order": [
     "Brand.dc.html",
+    "Logo.dc.html",
+    "SplashDark.dc.html",
+    "SplashGold.dc.html",
     "AppHome.dc.html",
     "AppBuy.dc.html",
     "AppShop.dc.html",
     "AppProduct.dc.html",
     "AppWallet.dc.html",
     "AppBranches.dc.html",
-    "Main.dc.html",
-    "SplashDark.dc.html",
-    "SplashGold.dc.html"
+    "Main.dc.html"
   ],
-  "pages": [
-    {"id": "main", "name": "التصور الرئيسي"},
-    {"id": "splash", "name": "شاشة البداية"}
-  ],
+  "pages": [],
   "title": "الحياة جولد — تصور UI"
 }
