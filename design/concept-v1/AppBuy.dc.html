@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>التطبيق — شراء ذهب</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;600;700&amp;family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#8A6A1F}a:hover{color:#5E4712}
+</style>
+</helmet>
+<div dir="rtl" style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F4F2EE; font-family: 'IBM Plex Sans Arabic', sans-serif; color: #1A1712; font-variant-numeric: tabular-nums">
+<div style="position: absolute; top: 0; left: 0; right: 0; bottom: 96px; overflow-y: auto; padding: 16px 20px 24px; box-sizing: border-box; display: flex; flex-direction: column; gap: 18px">
+
+<div style="display: flex; align-items: center; justify-content: space-between">
+<a href="AppHome.dc.html" aria-label="رجوع" style="width: 44px; height: 44px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A1712" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></a>
+<b style="font-size: 18px">شراء ذهب</b>
+<span style="width: 44px"></span>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span style="font-size: 14px; font-weight: 600">اختار العيار</span>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<sc-for list="{{karats}}" as="k" hint-placeholder-count="2">
+<button type="button" onClick="{{k.pick}}" style="{{k.style}}"><b style="font-size: 17px">عيار {{k.id}}</b><span style="font-size: 12px; opacity: 0.8">{{k.hint}}</span><span style="font-size: 15px; font-weight: 700">{{k.price}} ج.م/جم</span></button>
+</sc-for>
+</div>
+</div>
+
+<div style="display: flex; gap: 6px; background: #E9E5DD; border-radius: 999px; padding: 4px">
+<button type="button" onClick="{{byGrams}}" style="{{gStyle}}">بالجرام</button>
+<button type="button" onClick="{{byMoney}}" style="{{mStyle}}">بالمبلغ</button>
+</div>
+
+<div style="background: #FFFFFF; border-radius: 24px; padding: 24px 20px; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center">
+<span style="font-size: 13px; color: #5E584E">{{mainLabel}}</span>
+<b style="font-size: 48px; line-height: 1.1; letter-spacing: -1px">{{mainValue}}</b>
+<span style="font-size: 15px; color: #8A6A1F; font-weight: 600">{{subValue}}</span>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px">
+<sc-for list="{{chips}}" as="c" hint-placeholder-count="4">
+<button type="button" onClick="{{c.pick}}" style="{{c.style}}">{{c.label}}</button>
+</sc-for>
+</div>
+
+<div style="display: flex; align-items: center; gap: 10px; background: #F1E6CC; border-radius: 14px; padding: 12px 14px; font-size: 14px">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8A6A1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
+<span>السعر مثبت لك لمدة <b>00:45</b> ثانية</span>
+</div>
+
+<div style="background: #FFFFFF; border-radius: 20px; padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; font-size: 14px">
+<div style="display: flex; justify-content: space-between"><span style="color: #5E584E">سعر الجرام</span><b>{{priceTxt}} ج.م</b></div>
+<div style="display: flex; justify-content: space-between"><span style="color: #5E584E">الكمية</span><b>{{gramsTxt}} جم</b></div>
+<div style="display: flex; justify-content: space-between"><span style="color: #5E584E">رسوم الخدمة</span><b>[حسب السياسة]</b></div>
+<div style="height: 1px; background: #E4DFD6"></div>
+<div style="display: flex; justify-content: space-between; font-size: 16px"><b>الإجمالي</b><b style="color: #8A6A1F">{{totalTxt}} ج.م</b></div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span style="font-size: 14px; font-weight: 600">طريقة الدفع</span>
+<div style="display: flex; gap: 8px; flex-wrap: wrap; font-size: 13px; font-weight: 600">
+<span style="border: 2px solid #12100C; background: #FFFFFF; border-radius: 12px; padding: 10px 14px">بطاقة بنكية</span>
+<span style="border: 1px solid #D6CFC2; background: #FFFFFF; border-radius: 12px; padding: 10px 14px">إنستاباي</span>
+<span style="border: 1px solid #D6CFC2; background: #FFFFFF; border-radius: 12px; padding: 10px 14px">محفظة موبايل</span>
+<span style="border: 1px solid #D6CFC2; background: #FFFFFF; border-radius: 12px; padding: 10px 14px">كاش في الفرع</span>
+</div>
+</div>
+</div>
+
+<div style="position: absolute; left: 0; right: 0; bottom: 0; height: 96px; background: #FFFFFF; border-top: 1px solid #E4DFD6; padding: 16px 20px; box-sizing: border-box">
+<a href="AppWallet.dc.html" style="display: flex; align-items: center; justify-content: center; height: 56px; border-radius: 999px; background: #12100C; color: #FFFFFF; text-decoration: none; font-weight: 700; font-size: 17px">تأكيد شراء {{gramsTxt}} جم</a>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { karat: '24', mode: 'grams', grams: 5, money: 5000 };
+  }
+  renderVals() {
+    const s = this.state;
+    const prices = { '24': 6240, '21': 5460 };
+    const price = prices[s.karat];
+    const fmt = (n) => Math.round(n).toLocaleString('en-US');
+    const grams = s.mode === 'grams' ? s.grams : s.money / price;
+    const total = s.mode === 'grams' ? s.grams * price : s.money;
+    const karatBase = 'display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding: 14px; border-radius: 18px; font: inherit; text-align: start; cursor: pointer; min-height: 44px;';
+    const karats = [
+      { id: '24', hint: 'رصيد وسبائك' },
+      { id: '21', hint: 'للتبديل بمشغولات' }
+    ].map((k) => ({
+      ...k,
+      price: fmt(prices[k.id]),
+      pick: () => this.setState({ karat: k.id }),
+      style: karatBase + (s.karat === k.id ? ' background: #12100C; color: #F4F2EE; border: 2px solid #12100C;' : ' background: #FFFFFF; color: #1A1712; border: 2px solid #E4DFD6;')
+    }));
+    const segBase = 'flex: 1; min-height: 44px; border: none; border-radius: 999px; font: inherit; font-size: 15px; font-weight: 600; cursor: pointer;';
+    const on = ' background: #FFFFFF; color: #1A1712;';
+    const off = ' background: transparent; color: #5E584E;';
+    const chipBase = 'min-height: 44px; border-radius: 12px; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer;';
+    const chipOn = ' background: #C8A04B; color: #12100C; border: 1px solid #C8A04B;';
+    const chipOff = ' background: #FFFFFF; color: #1A1712; border: 1px solid #E4DFD6;';
+    const chips = s.mode === 'grams'
+      ? [0.5, 1, 5, 10].map((g) => ({ label: g + ' جم', pick: () => this.setState({ grams: g }), style: chipBase + (s.grams === g ? chipOn : chipOff) }))
+      : [1000, 2500, 5000, 10000].map((m) => ({ label: fmt(m), pick: () => this.setState({ money: m }), style: chipBase + (s.money === m ? chipOn : chipOff) }));
+    return {
+      karats,
+      chips,
+      byGrams: () => this.setState({ mode: 'grams' }),
+      byMoney: () => this.setState({ mode: 'money' }),
+      gStyle: segBase + (s.mode === 'grams' ? on : off),
+      mStyle: segBase + (s.mode === 'money' ? on : off),
+      mainLabel: s.mode === 'grams' ? 'الكمية بالجرام' : 'المبلغ بالجنيه',
+      mainValue: s.mode === 'grams' ? grams + ' جم' : fmt(total) + ' ج.م',
+      subValue: s.mode === 'grams' ? '≈ ' + fmt(total) + ' ج.م' : '≈ ' + grams.toFixed(3) + ' جم عيار ' + s.karat,
+      priceTxt: fmt(price),
+      gramsTxt: s.mode === 'grams' ? String(grams) : grams.toFixed(3),
+      totalTxt: fmt(total)
+    };
+  }
+}
+</script>
+</body>
+</html>

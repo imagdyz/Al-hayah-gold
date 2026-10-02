@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>التطبيق — الرئيسية</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;600;700&amp;family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#8A6A1F}a:hover{color:#5E4712}
+</style>
+</helmet>
+<div dir="rtl" style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F4F2EE; font-family: 'IBM Plex Sans Arabic', sans-serif; color: #1A1712; font-variant-numeric: tabular-nums">
+<div style="position: absolute; top: 0; left: 0; right: 0; bottom: 84px; overflow-y: auto; padding: 20px 20px 24px; box-sizing: border-box; display: flex; flex-direction: column; gap: 18px">
+
+<div style="display: flex; justify-content: space-between; align-items: center">
+<div style="display: flex; align-items: center; gap: 10px">
+<svg width="36" height="36" viewBox="0 0 48 48" fill="none" stroke="#8A6A1F" stroke-width="2.2" aria-hidden="true"><rect x="11" y="11" width="26" height="26"></rect><rect x="11" y="11" width="26" height="26" transform="rotate(45 24 24)"></rect><circle cx="24" cy="24" r="5.5"></circle></svg>
+<span style="display: flex; flex-direction: column"><span style="font-size: 13px; color: #5E584E">صباح الخير</span><b style="font-size: 17px">[اسم العميل]</b></span>
+</div>
+<button type="button" aria-label="الإشعارات" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid #E4DFD6; background: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A1712" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"></path><path d="M10 21h4"></path></svg></button>
+</div>
+
+<div style="background: #12100C; color: #F4F2EE; border-radius: 24px; padding: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; justify-content: space-between; align-items: center">
+<span style="font-size: 14px; color: #CFC6B4">سعر جرام الذهب الآن</span>
+<span style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #7FD3A6"><span style="width: 7px; height: 7px; border-radius: 50%; background: #5BC88F; display: inline-block"></span>مباشر</span>
+</div>
+<div style="display: flex; gap: 6px; background: #1E1A14; border-radius: 999px; padding: 4px">
+<sc-for list="{{karats}}" as="k" hint-placeholder-count="3">
+<button type="button" onClick="{{k.pick}}" style="{{k.style}}">عيار {{k.label}}</button>
+</sc-for>
+</div>
+<div style="display: flex; align-items: baseline; gap: 8px"><b style="font-size: 40px; letter-spacing: -0.5px">{{buy}}</b><span style="font-size: 14px; color: #C8A04B">ج.م / جرام</span><span style="margin-inline-start: auto; font-size: 14px; color: #7FD3A6; font-weight: 600">▲ 1.2% اليوم</span></div>
+<svg width="310" height="60" viewBox="0 0 310 60" fill="none" aria-hidden="true"><polyline points="0,48 30,44 60,46 90,36 120,38 150,28 180,32 210,22 240,24 270,14 310,10" stroke="#C8A04B" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"></polyline></svg>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<div style="background: #1E1A14; border-radius: 14px; padding: 10px 12px; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; color: #A39A88">نبيع لك</span><b style="font-size: 17px">{{buy}}</b></div>
+<div style="background: #1E1A14; border-radius: 14px; padding: 10px 12px; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; color: #A39A88">نشتري منك</span><b style="font-size: 17px">{{sell}}</b></div>
+</div>
+<span style="font-size: 11px; color: #A39A88">أسعار توضيحية للتصميم</span>
+</div>
+
+<a href="AppWallet.dc.html" style="background: #FFFFFF; border-radius: 20px; padding: 16px 18px; display: flex; align-items: center; justify-content: space-between; text-decoration: none; color: #1A1712">
+<span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 13px; color: #5E584E">رصيد ذهبك</span><b style="font-size: 22px">12.450 جم <span style="font-size: 13px; color: #8A6A1F">عيار 24</span></b><span style="font-size: 13px; color: #1F7A4D; font-weight: 600">≈ 77,688 ج.م · +3,120</span></span>
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5E584E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+</a>
+
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; text-align: center">
+<a href="AppBuy.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 6px; text-decoration: none; color: #1A1712; font-size: 13px; font-weight: 600"><span style="width: 56px; height: 56px; border-radius: 18px; background: #C8A04B; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#12100C" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span>شراء</a>
+<a href="AppWallet.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 6px; text-decoration: none; color: #1A1712; font-size: 13px; font-weight: 600"><span style="width: 56px; height: 56px; border-radius: 18px; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1A1712" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"></path></svg></span>بيع</a>
+<a href="AppWallet.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 6px; text-decoration: none; color: #1A1712; font-size: 13px; font-weight: 600"><span style="width: 56px; height: 56px; border-radius: 18px; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1A1712" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg></span>ادخار شهري</a>
+<a href="AppBranches.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 6px; text-decoration: none; color: #1A1712; font-size: 13px; font-weight: 600"><span style="width: 56px; height: 56px; border-radius: 18px; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1A1712" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8l9-5 9 5v8l-9 5-9-5z"></path><path d="M3 8l9 5 9-5M12 13v8"></path></svg></span>استلام</a>
+</div>
+
+<a href="AppShop.dc.html" style="background: #F1E6CC; border-radius: 20px; padding: 18px; display: flex; gap: 14px; align-items: center; text-decoration: none; color: #1A1712">
+<span style="display: flex; flex-direction: column; gap: 6px; flex: 1"><b style="font-size: 16px">بدّل رصيدك بقطعة مجوهرات</b><span style="font-size: 13px; line-height: 1.6; color: #3F3A31">استخدم الجرامات اللي ادّخرتها في أي قطعة من فروعنا، وادفع المصنعية بس.</span><span style="font-size: 13px; font-weight: 700; color: #8A6A1F">تصفّح المجوهرات ←</span></span>
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="#8A6A1F" stroke-width="1.6" aria-hidden="true"><circle cx="32" cy="38" r="15"></circle><path d="M27 23l5-8 5 8-5 4z"></path></svg>
+</a>
+
+<div style="display: flex; justify-content: space-between; align-items: center"><b style="font-size: 17px">وصل حديثاً في فروعنا</b><a href="AppShop.dc.html" style="font-size: 14px; font-weight: 600; padding: 10px 0">الكل</a></div>
+<div style="display: flex; gap: 12px; overflow-x: auto; margin: 0 -20px; padding: 0 20px 4px">
+<a href="AppProduct.dc.html" style="flex: none; width: 150px; text-decoration: none; color: #1A1712; display: flex; flex-direction: column; gap: 8px"><span style="height: 150px; border-radius: 18px; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="#B8913E" stroke-width="1.4" aria-hidden="true"><path d="M12 14c2 18 10 28 20 28s18-10 20-28"></path><path d="M32 42v4"></path><path d="M32 46l-5 6 5 6 5-6z"></path></svg></span><b style="font-size: 14px">سلسلة مبرومة بدلاية</b><span style="font-size: 12px; color: #5E584E">عيار 21 · 7.2 جم</span></a>
+<a href="AppProduct.dc.html" style="flex: none; width: 150px; text-decoration: none; color: #1A1712; display: flex; flex-direction: column; gap: 8px"><span style="height: 150px; border-radius: 18px; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="#B8913E" stroke-width="1.4" aria-hidden="true"><circle cx="32" cy="38" r="15"></circle><path d="M27 23l5-8 5 8-5 4z"></path></svg></span><b style="font-size: 14px">خاتم سوليتير</b><span style="font-size: 12px; color: #5E584E">عيار 18 · 2.8 جم</span></a>
+<a href="AppProduct.dc.html" style="flex: none; width: 150px; text-decoration: none; color: #1A1712; display: flex; flex-direction: column; gap: 8px"><span style="height: 150px; border-radius: 18px; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="#B8913E" stroke-width="1.4" aria-hidden="true"><ellipse cx="32" cy="32" rx="22" ry="12"></ellipse><ellipse cx="32" cy="32" rx="17" ry="8"></ellipse></svg></span><b style="font-size: 14px">إسورة مضفّرة</b><span style="font-size: 12px; color: #5E584E">عيار 21 · 10.5 جم</span></a>
+</div>
+</div>
+
+<nav aria-label="التنقل الرئيسي" style="position: absolute; left: 0; right: 0; bottom: 0; height: 84px; background: #FFFFFF; border-top: 1px solid #E4DFD6; display: flex; justify-content: space-around; align-items: flex-start; padding-top: 10px; box-sizing: border-box">
+<a href="AppHome.dc.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 60px; min-height: 44px; text-decoration: none; color: #8A6A1F; font-size: 11px; font-weight: 700"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"></path><path d="M5 10v10h14V10"></path></svg>الرئيسية</a>
+<a href="AppShop.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 60px; min-height: 44px; text-decoration: none; color: #6B6458; font-size: 11px; font-weight: 500"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"></path><path d="M3 9h18"></path></svg>المجوهرات</a>
+<a href="AppBuy.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 60px; text-decoration: none; color: #1A1712; font-size: 11px; font-weight: 700; margin-top: -26px"><span style="width: 56px; height: 56px; border-radius: 50%; background: #C8A04B; border: 4px solid #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#12100C" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span>اشترِ ذهب</a>
+<a href="AppWallet.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 60px; min-height: 44px; text-decoration: none; color: #6B6458; font-size: 11px; font-weight: 500"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="14" rx="2"></rect><path d="M3 10h18M16 15h2"></path></svg>محفظتي</a>
+<a href="AppBranches.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 60px; min-height: 44px; text-decoration: none; color: #6B6458; font-size: 11px; font-weight: 500"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6 7-12a7 7 0 0 0-14 0c0 6 7 12 7 12z"></path><circle cx="12" cy="9" r="2.5"></circle></svg>الفروع</a>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { karat: '24' };
+  }
+  renderVals() {
+    const prices = { '24': [6240, 6190], '21': [5460, 5415], '18': [4680, 4640] };
+    const fmt = (n) => n.toLocaleString('en-US');
+    const base = 'flex: 1; min-height: 40px; border: none; border-radius: 999px; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer;';
+    const karats = ['24', '21', '18'].map((k) => ({
+      label: k,
+      pick: () => this.setState({ karat: k }),
+      style: base + (this.state.karat === k ? ' background: #C8A04B; color: #12100C;' : ' background: transparent; color: #CFC6B4;')
+    }));
+    const p = prices[this.state.karat];
+    return { karats, buy: fmt(p[0]), sell: fmt(p[1]) };
+  }
+}
+</script>
+</body>
+</html>
