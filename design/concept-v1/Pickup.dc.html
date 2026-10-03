@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>التطبيق — استلام الذهب</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;600;700&amp;family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#8A6A1F}a:hover{color:#5E4712}
+</style>
+</helmet>
+<div dir="rtl" style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F4F2EE; font-family: 'IBM Plex Sans Arabic', sans-serif; color: #1A1712; font-variant-numeric: tabular-nums">
+<div style="position: absolute; top: 0; left: 0; right: 0; bottom: 96px; overflow-y: auto; padding: 16px 20px 24px; box-sizing: border-box; display: flex; flex-direction: column; gap: 18px">
+
+<div style="display: flex; align-items: center; justify-content: space-between">
+<a href="AppWallet.dc.html" aria-label="رجوع" style="width: 44px; height: 44px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A1712" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></a>
+<b style="font-size: 18px">استلم ذهبك</b>
+<span style="width: 44px"></span>
+</div>
+
+<div style="display: flex; justify-content: space-between; align-items: center; background: #FFFFFF; border-radius: 16px; padding: 12px 16px; font-size: 14px"><span style="color: #5E584E">رصيدك</span><b>12.450 جم عيار 24</b></div>
+
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span style="font-size: 14px; font-weight: 600">عايز تستلم إيه؟</span>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+<sc-for list="{{items}}" as="it" hint-placeholder-count="5">
+<button type="button" onClick="{{it.pick}}" style="{{it.style}}">
+<sc-if value="{{it.isCoin}}" hint-placeholder-val="{{ false }}"><svg width="34" height="34" viewBox="0 0 64 64" fill="none" stroke="#8A6A1F" stroke-width="2" aria-hidden="true"><circle cx="32" cy="32" r="18"></circle><circle cx="32" cy="32" r="13"></circle></svg></sc-if>
+<sc-if value="{{it.isBar}}" hint-placeholder-val="{{ true }}"><svg width="34" height="34" viewBox="0 0 64 64" fill="none" stroke="#8A6A1F" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 42l7-18h26l7 18z"></path><path d="M24 33h16"></path></svg></sc-if>
+<b style="font-size: 13px">{{it.label}}</b></button>
+</sc-for>
+</div>
+</div>
+
+<fieldset style="border: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px">
+<legend style="font-size: 14px; font-weight: 600; padding: 0 0 8px">من أنهي فرع؟</legend>
+<sc-for list="{{branches}}" as="b" hint-placeholder-count="3">
+<button type="button" onClick="{{b.pick}}" aria-pressed="{{b.on}}" style="{{b.style}}"><span style="display: flex; flex-direction: column; gap: 2px; text-align: start"><b style="font-size: 15px">{{b.label}}</b><span style="font-size: 12px; color: #5E584E">{{b.hint}}</span></span><span style="{{b.dot}}"></span></button>
+</sc-for>
+</fieldset>
+
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span style="font-size: 14px; font-weight: 600">المعاد</span>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+<sc-for list="{{slots}}" as="t" hint-placeholder-count="3">
+<button type="button" onClick="{{t.pick}}" style="{{t.style}}">{{t.label}}</button>
+</sc-for>
+</div>
+</div>
+
+<div style="background: #FFFFFF; border-radius: 20px; padding: 14px 18px; display: flex; flex-direction: column; gap: 10px; font-size: 14px">
+<div style="display: flex; justify-content: space-between"><span style="color: #5E584E">يتخصم من رصيدك</span><b>{{deduct}} جم</b></div>
+<div style="display: flex; justify-content: space-between"><span style="color: #5E584E">مصنعية {{kind}}</span><b>[حسب الوزن]</b></div>
+<div style="height: 1px; background: #E4DFD6"></div>
+<div style="display: flex; justify-content: space-between"><b>الباقي في رصيدك</b><b style="color: #8A6A1F">{{left}} جم</b></div>
+</div>
+<span style="font-size: 12px; color: #5E584E">هات بطاقتك الشخصية معاك وقت الاستلام.</span>
+</div>
+
+<div style="position: absolute; left: 0; right: 0; bottom: 0; height: 96px; background: #FFFFFF; border-top: 1px solid #E4DFD6; padding: 16px 20px; box-sizing: border-box">
+<a href="AppWallet.dc.html" style="display: flex; align-items: center; justify-content: center; height: 56px; border-radius: 999px; background: #12100C; color: #FFFFFF; text-decoration: none; font-weight: 700; font-size: 17px">تأكيد معاد الاستلام</a>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { item: 'b5', branch: 1, slot: 0 };
+  }
+  renderVals() {
+    const s = this.state;
+    const list = [
+      { id: 'b1', label: 'سبيكة 1 جم', g: 1, bar: true },
+      { id: 'b2', label: 'سبيكة 2.5 جم', g: 2.5, bar: true },
+      { id: 'b5', label: 'سبيكة 5 جم', g: 5, bar: true },
+      { id: 'b10', label: 'سبيكة 10 جم', g: 10, bar: true },
+      { id: 'coin', label: 'جنيه ذهب', g: 7, bar: false }
+    ];
+    const cur = list.find((x) => x.id === s.item);
+    const radio = (on) => 'display: flex; justify-content: space-between; align-items: center; min-height: 60px; padding: 10px 16px; border-radius: 16px; font: inherit; color: #1A1712; cursor: pointer; background: #FFFFFF; border: 2px solid ' + (on ? '#12100C' : '#E4DFD6') + ';';
+    const dot = (on) => 'width: 20px; height: 20px; border-radius: 50%; box-sizing: border-box; flex: none; border: ' + (on ? '6px solid #12100C' : '2px solid #D6CFC2') + ';';
+    const chip = 'min-height: 48px; border-radius: 12px; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer;';
+    return {
+      items: list.map((x) => ({
+        label: x.label, isBar: x.bar, isCoin: !x.bar,
+        pick: () => this.setState({ item: x.id }),
+        style: 'min-height: 92px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; border-radius: 16px; font: inherit; color: #1A1712; cursor: pointer; background: ' + (s.item === x.id ? '#F1E6CC' : '#FFFFFF') + '; border: 2px solid ' + (s.item === x.id ? '#C8A04B' : '#E4DFD6') + ';'
+      })),
+      branches: ['فرع [١] — [المنطقة]', 'فرع [٢] — [المنطقة]', 'فرع [٣] — [المنطقة]'].map((l, i) => ({
+        label: l, hint: i === 2 ? 'محتاج [يوم] تجهيز' : 'جاهز للاستلام', on: s.branch === i + 1 ? 'true' : 'false',
+        pick: () => this.setState({ branch: i + 1 }), style: radio(s.branch === i + 1), dot: dot(s.branch === i + 1)
+      })),
+      slots: ['بكرة · 12 ظ', 'بكرة · 6 م', 'بعد بكرة · 1 ظ'].map((l, i) => ({
+        label: l, pick: () => this.setState({ slot: i }),
+        style: chip + (s.slot === i ? ' background: #C8A04B; color: #12100C; border: 1px solid #C8A04B;' : ' background: #FFFFFF; color: #1A1712; border: 1px solid #E4DFD6;')
+      })),
+      kind: cur.bar ? 'السبيكة' : 'الجنيه',
+      deduct: cur.g.toFixed(3),
+      left: (12.45 - cur.g).toFixed(3)
+    };
+  }
+}
+</script>
+</body>
+</html>

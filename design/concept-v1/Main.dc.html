@@ -166,7 +166,7 @@ a{color:#8A6A1F}a:hover{color:#5E4712}
 <h2 style="margin: 0; font-family: 'El Messiri', serif; font-size: 40px; font-weight: 700">متوفر الآن في فروعنا</h2>
 <p style="margin: 0; color: #5E584E; font-size: 16px">كل قطعة معروضة موجودة فعلاً في المحل — شوف هي في أنهي فرع واحجزها قبل ما تنزل.</p>
 </div>
-<a href="#all" style="font-weight: 700; font-size: 16px; padding: 10px 0">شوف كل المجوهرات ←</a>
+<a href="WebShop.dc.html" style="font-weight: 700; font-size: 16px; padding: 10px 0">شوف كل المجوهرات ←</a>
 </div>
 <div style="display: flex; flex-wrap: wrap; gap: 10px">
 <a href="#c" style="min-height: 44px; display: inline-flex; align-items: center; padding: 0 18px; border-radius: 999px; background: #12100C; color: #FFFFFF; text-decoration: none; font-weight: 600">الكل</a>
@@ -180,7 +180,7 @@ a{color:#8A6A1F}a:hover{color:#5E4712}
 </div>
 <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px">
 <sc-for list="{{products}}" as="p" hint-placeholder-count="8">
-<a href="#product" style="text-decoration: none; color: #1A1712; display: flex; flex-direction: column; gap: 12px">
+<a href="WebProduct.dc.html" style="text-decoration: none; color: #1A1712; display: flex; flex-direction: column; gap: 12px">
 <div style="background: #F4F2EE; border-radius: 20px; aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center; position: relative">
 <sc-if value="{{p.ring}}" hint-placeholder-val="{{ false }}"><svg width="96" height="96" viewBox="0 0 64 64" fill="none" stroke="#B8913E" stroke-width="1.4" aria-hidden="true"><circle cx="32" cy="38" r="15"></circle><path d="M27 23l5-8 5 8-5 4z"></path></svg></sc-if>
 <sc-if value="{{p.band}}" hint-placeholder-val="{{ false }}"><svg width="96" height="96" viewBox="0 0 64 64" fill="none" stroke="#B8913E" stroke-width="1.4" aria-hidden="true"><circle cx="26" cy="34" r="13"></circle><circle cx="38" cy="34" r="13"></circle></svg></sc-if>

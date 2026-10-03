@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>التطبيق — التعريف</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;600;700&amp;family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#C8A04B}a:hover{color:#E0C27A}
+</style>
+</helmet>
+<div dir="rtl" style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #12100C; color: #F4F2EE; font-family: 'IBM Plex Sans Arabic', sans-serif; display: flex; flex-direction: column; box-sizing: border-box; padding: 20px 24px 32px">
+
+<div style="display: flex; justify-content: space-between; align-items: center">
+<dc-import name="Logo" size="32" tone="onDark" layout="mark" hint-size="32px,32px"></dc-import>
+<a href="Login.dc.html" style="min-height: 44px; display: inline-flex; align-items: center; padding: 0 8px; color: #CFC6B4; text-decoration: none; font-size: 15px">تخطّي</a>
+</div>
+
+<div style="flex: 1; display: flex; align-items: center; justify-content: center">
+<div style="width: 260px; height: 260px; border-radius: 50%; background: #1E1A14; border: 1px solid #2A251D; display: flex; align-items: center; justify-content: center">
+<sc-if value="{{s0}}" hint-placeholder-val="{{ true }}">
+<svg width="150" height="150" viewBox="0 0 64 64" fill="none" stroke="#C8A04B" stroke-width="1.3" stroke-linejoin="round" aria-hidden="true"><path d="M8 46l8-20h32l8 20z"></path><path d="M20 36h24"></path><path d="M14 20l6-8 8 6 8-10 6 6 8-6" stroke-linecap="round"></path></svg>
+</sc-if>
+<sc-if value="{{s1}}" hint-placeholder-val="{{ false }}">
+<svg width="150" height="150" viewBox="0 0 64 64" fill="none" stroke="#C8A04B" stroke-width="1.3" aria-hidden="true"><path d="M12 14c2 18 10 28 20 28s18-10 20-28"></path><path d="M32 42v4"></path><path d="M32 46l-5 6 5 6 5-6z"></path></svg>
+</sc-if>
+<sc-if value="{{s2}}" hint-placeholder-val="{{ false }}">
+<svg width="150" height="150" viewBox="0 0 64 64" fill="none" stroke="#C8A04B" stroke-width="1.3" stroke-linejoin="round" aria-hidden="true"><path d="M32 58s18-15 18-30a18 18 0 0 0-36 0c0 15 18 30 18 30z"></path><path d="M24 30l4-10h8l4 10z"></path></svg>
+</sc-if>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 14px; min-height: 170px">
+<h1 style="margin: 0; font-family: 'El Messiri', serif; font-size: 32px; font-weight: 700; line-height: 1.3">{{title}}</h1>
+<p style="margin: 0; font-size: 17px; line-height: 1.8; color: #CFC6B4">{{body}}</p>
+</div>
+
+<div style="display: flex; justify-content: space-between; align-items: center; padding-top: 24px">
+<div style="display: flex; gap: 8px" aria-label="{{stepLabel}}">
+<sc-for list="{{dots}}" as="d" hint-placeholder-count="3"><span style="{{d.style}}"></span></sc-for>
+</div>
+<sc-if value="{{notLast}}" hint-placeholder-val="{{ true }}">
+<button type="button" onClick="{{next}}" style="min-height: 56px; padding: 0 32px; border-radius: 999px; border: none; background: #C8A04B; color: #12100C; font: inherit; font-size: 17px; font-weight: 700; cursor: pointer">التالي</button>
+</sc-if>
+<sc-if value="{{isLast}}" hint-placeholder-val="{{ false }}">
+<a href="Login.dc.html" style="min-height: 56px; display: inline-flex; align-items: center; padding: 0 32px; border-radius: 999px; background: #C8A04B; color: #12100C; text-decoration: none; font-size: 17px; font-weight: 700">ابدأ دلوقتي</a>
+</sc-if>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { step: 0 };
+  }
+  renderVals() {
+    const slides = [
+      { title: 'ذهب حقيقي من أول جرام', body: 'اشترِ ذهب عيار 24 و21 بأسعار لحظية، من غير ما تنزل من بيتك.' },
+      { title: 'بدّل رصيدك بقطعة تلبسها', body: 'الجرامات اللي بتدّخرها تقدر تبدّلها بأي قطعة من فروعنا، وتدفع المصنعية بس.' },
+      { title: 'استلم من أقرب فرع', body: 'سبيكة أو جنيه ذهب جاهزين للاستلام من فروع الحياة جولد، بمعاد تحجزه من التطبيق.' }
+    ];
+    const s = this.state.step;
+    return {
+      title: slides[s].title,
+      body: slides[s].body,
+      s0: s === 0, s1: s === 1, s2: s === 2,
+      isLast: s === 2, notLast: s !== 2,
+      stepLabel: 'خطوة ' + (s + 1) + ' من 3',
+      next: () => this.setState({ step: Math.min(s + 1, 2) }),
+      dots: slides.map((x, i) => ({ style: 'display: block; height: 8px; border-radius: 999px; ' + (i === s ? 'width: 28px; background: #C8A04B;' : 'width: 8px; background: #4A3F2A;') }))
+    };
+  }
+}
+</script>
+</body>
+</html>

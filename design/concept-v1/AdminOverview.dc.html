@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>لوحة التحكم — نظرة عامة</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;600;700&amp;family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4F2EE}
+a{color:#8A6A1F}a:hover{color:#5E4712}
+.hg-nav{display:flex;align-items:center;gap:12px;min-height:44px;padding:0 12px;border-radius:12px;color:#CFC6B4;text-decoration:none;font-size:15px}
+.hg-nav:hover{background:#1E1A14;color:#F4F2EE}
+.hg-bar{flex:1;min-width:0;border:none;padding:0;background:transparent;height:100%;display:flex;align-items:flex-end;cursor:pointer}
+</style>
+</helmet>
+<div dir="rtl" style="font-family: 'IBM Plex Sans Arabic', sans-serif; color: #1A1712; background: #F4F2EE; display: flex; flex-wrap: wrap; font-variant-numeric: tabular-nums">
+
+<aside style="flex: 1 1 240px; max-width: 100%; background: #12100C; color: #F4F2EE; padding: 24px 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 28px">
+<div style="padding: 0 8px; display: flex; flex-direction: column; gap: 6px"><dc-import name="Logo" size="36" tone="onDark" layout="horizontal" hint-size="180px,44px"></dc-import><span style="font-size: 12px; color: #A39A88">لوحة تحكم الفروع</span></div>
+<nav aria-label="قائمة لوحة التحكم" style="display: flex; flex-direction: column; gap: 4px">
+<a href="AdminOverview.dc.html" aria-current="page" class="hg-nav" style="background: #1E1A14; color: #C8A04B; font-weight: 700"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1.5"></rect><rect x="14" y="3" width="7" height="5" rx="1.5"></rect><rect x="14" y="12" width="7" height="9" rx="1.5"></rect><rect x="3" y="16" width="7" height="5" rx="1.5"></rect></svg>نظرة عامة</a>
+<a href="AdminPrices.dc.html" class="hg-nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M9 7h8v8"></path></svg>الأسعار والرسوم</a>
+<a href="AdminInventory.dc.html" class="hg-nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"></path><path d="M3 9h18"></path></svg>المنتجات والمخزون</a>
+<a href="AdminOrders.dc.html" class="hg-nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8l9-5 9 5v8l-9 5-9-5z"></path><path d="M3 8l9 5 9-5"></path></svg>الحجوزات والطلبات</a>
+<a href="#customers" class="hg-nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="4"></circle><path d="M2 21c1-4 3.5-6 7-6s6 2 7 6"></path><path d="M16 4a4 4 0 0 1 0 8"></path></svg>العملاء والتوثيق</a>
+<a href="#branches" class="hg-nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6 7-12a7 7 0 0 0-14 0c0 6 7 12 7 12z"></path><circle cx="12" cy="9" r="2.5"></circle></svg>الفروع</a>
+<a href="#reports" class="hg-nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"></path></svg>التقارير</a>
+<a href="#settings" class="hg-nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"></path></svg>الإعدادات</a>
+</nav>
+<div style="margin-top: auto; padding: 12px; border-radius: 14px; background: #1E1A14; display: flex; flex-direction: column; gap: 2px; font-size: 13px"><b>[اسم المستخدم]</b><span style="color: #A39A88">مدير · كل الفروع</span></div>
+</aside>
+
+<main style="flex: 999 1 560px; min-width: 0; padding: 28px 32px 48px; box-sizing: border-box; display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 4px"><h1 style="margin: 0; font-family: 'El Messiri', serif; font-size: 32px">نظرة عامة</h1><span style="font-size: 14px; color: #5E584E">النهارده · كل الفروع · بيانات تجريبية للتصميم</span></div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center">
+<span style="display: flex; align-items: center; gap: 8px; background: #FFFFFF; border: 1px solid #E4DFD6; border-radius: 999px; padding: 8px 14px; font-size: 14px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #1F7A4D; display: inline-block"></span>عيار 24: <b>6,240</b> · عيار 21: <b>5,460</b></span>
+<label for="branch-f" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">الفرع</label>
+<select id="branch-f" style="min-height: 44px; border-radius: 12px; border: 1px solid #D6CFC2; background: #FFFFFF; font: inherit; padding: 0 12px; color: #1A1712"><option>كل الفروع</option><option>فرع [١]</option><option>فرع [٢]</option><option>فرع [٣]</option></select>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px">
+<div style="background: #FFFFFF; border: 1px solid #E4DFD6; border-radius: 18px; padding: 18px; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 14px; color: #5E584E">ذهب اتباع أونلاين</span><b style="font-size: 30px">184.5 <span style="font-size: 15px; color: #5E584E">جم</span></b><span style="font-size: 13px; color: #1F7A4D; font-weight: 600">▲ 12% عن امبارح</span></div>
+<div style="background: #FFFFFF; border: 1px solid #E4DFD6; border-radius: 18px; padding: 18px; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 14px; color: #5E584E">ذهب اشتريناه من العملاء</span><b style="font-size: 30px">62.0 <span style="font-size: 15px; color: #5E584E">جم</span></b><span style="font-size: 13px; color: #5E584E; font-weight: 600">نفس امبارح تقريباً</span></div>
+<div style="background: #FFFFFF; border: 1px solid #E4DFD6; border-radius: 18px; padding: 18px; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 14px; color: #5E584E">حجوزات في الفروع</span><b style="font-size: 30px">23</b><span style="font-size: 13px; color: #1F7A4D; font-weight: 600">▲ 5 عن امبارح</span></div>
+<div style="background: #FFF1D6; border: 1px solid #F0D9A8; border-radius: 18px; padding: 18px; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 14px; color: #5C3D00">طلبات توثيق مستنية</span><b style="font-size: 30px; color: #5C3D00">7</b><a href="AdminOrders.dc.html" style="font-size: 13px; font-weight: 700; color: #5C3D00">راجعها دلوقتي ←</a></div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 16px">
+<section style="flex: 999 1 480px; min-width: 0; background: #FFFFFF; border: 1px solid #E4DFD6; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; align-items: baseline"><h2 style="margin: 0; font-size: 18px">الذهب المباع أونلاين يومياً (جم)</h2><span style="font-size: 13px; color: #5E584E">آخر 14 يوم</span></div>
+<div style="font-size: 14px; min-height: 22px"><b>{{selVal}} جم</b> <span style="color: #5E584E">· {{selDay}}</span></div>
+<div style="position: relative; height: 220px">
+<span style="position: absolute; left: 0; right: 0; top: 0; border-top: 1px solid #F0ECE5"></span>
+<span style="position: absolute; left: 0; right: 0; top: 50%; border-top: 1px solid #F0ECE5"></span>
+<span style="position: absolute; left: 0; right: 0; bottom: 0; border-top: 1px solid #D6CFC2"></span>
+<span style="position: absolute; top: -2px; inset-inline-end: 0; font-size: 11px; color: #5E584E; background: #FFFFFF; padding-inline-start: 4px">{{maxLabel}}</span>
+<div dir="ltr" style="position: absolute; inset: 0; display: flex; gap: 6px; align-items: flex-end">
+<sc-for list="{{bars}}" as="b" hint-placeholder-count="14">
+<button type="button" class="hg-bar" aria-label="{{b.label}}" onMouseEnter="{{b.pick}}" onFocus="{{b.pick}}" onClick="{{b.pick}}"><span style="{{b.style}}"></span></button>
+</sc-for>
+</div>
+</div>
+<div dir="ltr" style="display: flex; justify-content: space-between; font-size: 12px; color: #5E584E"><span>من 13 يوم</span><span>النهارده</span></div>
+</section>
+
+<section style="flex: 1 1 300px; min-width: 0; background: #FFFFFF; border: 1px solid #E4DFD6; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 16px">
+<h2 style="margin: 0; font-size: 18px">المبيعات حسب الفرع (جم)</h2>
+<div style="display: flex; flex-direction: column; gap: 6px"><div style="display: flex; justify-content: space-between; font-size: 14px"><span>فرع [١]</span><b>86.0</b></div><div style="height: 12px; background: #F4F2EE; border-radius: 4px"><div style="width: 100%; height: 100%; background: #A8853A; border-radius: 4px"></div></div></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><div style="display: flex; justify-content: space-between; font-size: 14px"><span>فرع [٢]</span><b>61.5</b></div><div style="height: 12px; background: #F4F2EE; border-radius: 4px"><div style="width: 71%; height: 100%; background: #A8853A; border-radius: 4px"></div></div></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><div style="display: flex; justify-content: space-between; font-size: 14px"><span>فرع [٣]</span><b>37.0</b></div><div style="height: 12px; background: #F4F2EE; border-radius: 4px"><div style="width: 43%; height: 100%; background: #A8853A; border-radius: 4px"></div></div></div>
+<div style="height: 1px; background: #E4DFD6"></div>
+<h2 style="margin: 0; font-size: 16px">تنبيهات المخزون</h2>
+<div style="display: flex; flex-direction: column; gap: 8px; font-size: 14px">
+<div style="display: flex; justify-content: space-between; gap: 8px"><span>سبيكة 10 جم · فرع [٣]</span><span style="color: #B3261E; font-weight: 600">● نفدت</span></div>
+<div style="display: flex; justify-content: space-between; gap: 8px"><span>دبلة كلاسيك · فرع [٢]</span><span style="color: #8A5A00; font-weight: 600">▲ قطعة واحدة</span></div>
+<div style="display: flex; justify-content: space-between; gap: 8px"><span>جنيه ذهب · فرع [١]</span><span style="color: #8A5A00; font-weight: 600">▲ 2 قطعة</span></div>
+</div>
+</section>
+</div>
+
+<section style="background: #FFFFFF; border: 1px solid #E4DFD6; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; justify-content: space-between; align-items: center"><h2 style="margin: 0; font-size: 18px">آخر العمليات</h2><a href="AdminOrders.dc.html" style="font-weight: 600; font-size: 14px">عرض الكل</a></div>
+<div style="overflow-x: auto">
+<table style="width: 100%; min-width: 720px; border-collapse: collapse; font-size: 14px">
+<thead><tr style="color: #5E584E; font-size: 13px; text-align: start"><th scope="col" style="text-align: start; font-weight: 500; padding: 10px 8px">الوقت</th><th scope="col" style="text-align: start; font-weight: 500">العميل</th><th scope="col" style="text-align: start; font-weight: 500">العملية</th><th scope="col" style="text-align: start; font-weight: 500">الكمية</th><th scope="col" style="text-align: start; font-weight: 500">القيمة</th><th scope="col" style="text-align: start; font-weight: 500">القناة</th><th scope="col" style="text-align: start; font-weight: 500">الحالة</th></tr></thead>
+<tbody>
+<tr style="border-top: 1px solid #F0ECE5"><td style="padding: 12px 8px">12:41</td><td>[عميل] ••• 482</td><td>شراء عيار 24</td><td>5.000 جم</td><td>31,200</td><td>التطبيق</td><td><span style="color: #1F7A4D; font-weight: 600">✓ تمت</span></td></tr>
+<tr style="border-top: 1px solid #F0ECE5"><td style="padding: 12px 8px">12:18</td><td>[عميل] ••• 117</td><td>حجز قطعة</td><td>سلسلة 7.2 جم</td><td>≈ 41,800</td><td>فرع [١]</td><td><span style="color: #1A4FA0; font-weight: 600">● جديد</span></td></tr>
+<tr style="border-top: 1px solid #F0ECE5"><td style="padding: 12px 8px">11:56</td><td>[عميل] ••• 903</td><td>بيع</td><td>1.000 جم</td><td>6,190</td><td>إنستاباي</td><td><span style="color: #8A5A00; font-weight: 600">◐ قيد التحويل</span></td></tr>
+<tr style="border-top: 1px solid #F0ECE5"><td style="padding: 12px 8px">11:30</td><td>[عميل] ••• 260</td><td>استلام سبيكة</td><td>5.000 جم</td><td>—</td><td>فرع [٢]</td><td><span style="color: #1F7A4D; font-weight: 600">✓ اتسلّمت</span></td></tr>
+<tr style="border-top: 1px solid #F0ECE5"><td style="padding: 12px 8px">10:02</td><td>[عميل] ••• 774</td><td>ادخار شهري</td><td>0.320 جم</td><td>2,000</td><td>تلقائي</td><td><span style="color: #1F7A4D; font-weight: 600">✓ تمت</span></td></tr>
+</tbody>
+</table>
+</div>
+</section>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1300}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { idx: 13 };
+  }
+  renderVals() {
+    const vals = [118, 132, 125, 141, 150, 138, 129, 147, 160, 155, 149, 158, 165, 184.5];
+    const max = 200;
+    const day = (i) => i === 13 ? 'النهارده' : 'من ' + (13 - i) + ' يوم';
+    return {
+      maxLabel: max + ' جم',
+      selVal: vals[this.state.idx].toFixed(1),
+      selDay: day(this.state.idx),
+      bars: vals.map((v, i) => ({
+        label: day(i) + ': ' + v + ' جم',
+        pick: () => this.setState({ idx: i }),
+        style: 'display: block; width: 100%; border-radius: 4px 4px 0 0; height: ' + (v / max * 100).toFixed(1) + '%; background: ' + (this.state.idx === i ? '#12100C' : '#A8853A') + ';'
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

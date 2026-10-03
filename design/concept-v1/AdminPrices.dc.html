@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>لوحة التحكم — الأسعار والرسوم</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;600;700&amp;family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4F2EE}
+a{color:#8A6A1F}a:hover{color:#5E4712}
+.hg-nav{display:flex;align-items:center;gap:12px;min-height:44px;padding:0 12px;border-radius:12px;color:#CFC6B4;text-decoration:none;font-size:15px}
+.hg-nav:hover{background:#1E1A14;color:#F4F2EE}
+.hg-in{width:88px;min-height:40px;border-radius:10px;border:1px solid #D6CFC2;background:#FFFFFF;font:inherit;padding:0 10px;color:#1A1712;box-sizing:border-box}
+</style>
+</helmet>
+<div dir="rtl" style="font-family: 'IBM Plex Sans Arabic', sans-serif; color: #1A1712; background: #F4F2EE; display: flex; flex-wrap: wrap; font-variant-numeric: tabular-nums">
+
+<aside style="flex: 1 1 240px; max-width: 100%; background: #12100C; color: #F4F2EE; padding: 24px 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 28px">
+<div style="padding: 0 8px; display: flex; flex-direction: column; gap: 6px"><dc-import name="Logo" size="36" tone="onDark" layout="horizontal" hint-size="180px,44px"></dc-import><span style="font-size: 12px; color: #A39A88">لوحة تحكم الفروع</span></div>
+<nav aria-label="قائمة لوحة التحكم" style="display: flex; flex-direction: column; gap: 4px">
+<a href="AdminOverview.dc.html" class="hg-nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1.5"></rect><rect x="14" y="3" width="7" height="5" rx="1.5"></rect><rect x="14" y="12" width="7" height="9" rx="1.5"></rect><rect x="3" y="16" width="7" height="5" rx="1.5"></rect></svg>نظرة عامة</a>
+<a href="AdminPrices.dc.html" aria-current="page" class="hg-nav" style="background: #1E1A14; color: #C8A04B; font-weight: 700"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M9 7h8v8"></path></svg>الأسعار والرسوم</a>
+<a href="AdminInventory.dc.html" class="hg-nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"></path><path d="M3 9h18"></path></svg>المنتجات والمخزون</a>
+<a href="AdminOrders.dc.html" class="hg-nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8l9-5 9 5v8l-9 5-9-5z"></path><path d="M3 8l9 5 9-5"></path></svg>الحجوزات والطلبات</a>
+<a href="#customers" class="hg-nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="4"></circle><path d="M2 21c1-4 3.5-6 7-6s6 2 7 6"></path><path d="M16 4a4 4 0 0 1 0 8"></path></svg>العملاء والتوثيق</a>
+<a href="#branches" class="hg-nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6 7-12a7 7 0 0 0-14 0c0 6 7 12 7 12z"></path><circle cx="12" cy="9" r="2.5"></circle></svg>الفروع</a>
+<a href="#reports" class="hg-nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"></path></svg>التقارير</a>
+<a href="#settings" class="hg-nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"></path></svg>الإعدادات</a>
+</nav>
+<div style="margin-top: auto; padding: 12px; border-radius: 14px; background: #1E1A14; display: flex; flex-direction: column; gap: 2px; font-size: 13px"><b>[اسم المستخدم]</b><span style="color: #A39A88">مدير · كل الفروع</span></div>
+</aside>
+
+<main style="flex: 999 1 560px; min-width: 0; padding: 28px 32px 48px; box-sizing: border-box; display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 4px"><h1 style="margin: 0; font-family: 'El Messiri', serif; font-size: 32px">الأسعار والرسوم</h1><span style="font-size: 14px; color: #5E584E">السعر بيتحسب أوتوماتيك من السعر العالمي وسعر الصرف، وإنت بتحدد الهامش</span></div>
+<button type="button" onClick="{{toggleHalt}}" style="{{haltStyle}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"></rect><rect x="14" y="5" width="4" height="14" rx="1"></rect></svg>{{haltLabel}}</button>
+</div>
+
+<sc-if value="{{halted}}" hint-placeholder-val="{{ false }}">
+<div role="status" style="background: #FBE9E7; border: 1px solid #E8C4BF; color: #8C1D18; border-radius: 16px; padding: 14px 18px; font-weight: 600">● البيع والشراء متوقفين مؤقتاً في التطبيق والموقع. العملاء شايفين رسالة "التداول متوقف مؤقتاً".</div>
+</sc-if>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px">
+<div style="background: #FFFFFF; border: 1px solid #E4DFD6; border-radius: 18px; padding: 18px; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 14px; color: #5E584E">سعر الأوقية العالمي</span><b style="font-size: 26px" dir="ltr">$ [—]</b><span style="font-size: 12px; color: #5E584E">المصدر: [مزوّد الأسعار] · كل [60] ثانية</span></div>
+<div style="background: #FFFFFF; border: 1px solid #E4DFD6; border-radius: 18px; padding: 18px; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 14px; color: #5E584E">سعر الدولار</span><b style="font-size: 26px">[—] ج.م</b><span style="font-size: 12px; color: #5E584E">المصدر: [مصدر سعر الصرف]</span></div>
+<div style="background: #12100C; color: #F4F2EE; border-radius: 18px; padding: 18px; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 14px; color: #A39A88">سعر السوق عيار 24 (قبل الهامش)</span><b style="font-size: 26px; color: #C8A04B">6,210 ج.م</b><span style="font-size: 12px; color: #A39A88">آخر تحديث من [ثواني]</span></div>
+</div>
+
+<section style="background: #FFFFFF; border: 1px solid #E4DFD6; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; align-items: center"><h2 style="margin: 0; font-size: 18px">هامش الربح وأسعار العملاء</h2><span style="font-size: 13px; color: #5E584E">غيّر الهامش والأسعار بتتحسب فوراً</span></div>
+<div style="overflow-x: auto">
+<table style="width: 100%; min-width: 760px; border-collapse: collapse; font-size: 15px">
+<thead><tr style="color: #5E584E; font-size: 13px"><th scope="col" style="text-align: start; font-weight: 500; padding: 10px 8px">العيار</th><th scope="col" style="text-align: start; font-weight: 500">سعر السوق</th><th scope="col" style="text-align: start; font-weight: 500">هامش البيع %</th><th scope="col" style="text-align: start; font-weight: 500">نبيع للعميل</th><th scope="col" style="text-align: start; font-weight: 500">هامش الشراء %</th><th scope="col" style="text-align: start; font-weight: 500">نشتري من العميل</th></tr></thead>
+<tbody>
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="3">
+<tr style="border-top: 1px solid #F0ECE5"><th scope="row" style="text-align: start; padding: 14px 8px">عيار {{r.k}}</th><td>{{r.market}}</td><td><input class="hg-in" type="number" step="0.1" aria-label="{{r.sellAria}}" value="{{r.sellM}}" onChange="{{r.onSell}}"></td><td><b style="color: #8A6A1F">{{r.sell}}</b></td><td><input class="hg-in" type="number" step="0.1" aria-label="{{r.buyAria}}" value="{{r.buyM}}" onChange="{{r.onBuy}}"></td><td><b>{{r.buy}}</b></td></tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+</section>
+
+<div style="display: flex; flex-wrap: wrap; gap: 16px">
+<section style="flex: 1 1 360px; min-width: 0; background: #FFFFFF; border: 1px solid #E4DFD6; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 14px">
+<h2 style="margin: 0; font-size: 18px">إعدادات التداول</h2>
+<label style="display: flex; justify-content: space-between; align-items: center; gap: 12px"><span>مدة تثبيت السعر للعميل (ثانية)</span><input class="hg-in" type="number" value="45"></label>
+<label style="display: flex; justify-content: space-between; align-items: center; gap: 12px"><span>أقل مبلغ للشراء (ج.م)</span><input class="hg-in" type="number" placeholder="[—]"></label>
+<label style="display: flex; justify-content: space-between; align-items: center; gap: 12px"><span>رسوم خدمة الشراء %</span><input class="hg-in" type="number" placeholder="[—]"></label>
+<label style="display: flex; justify-content: space-between; align-items: center; gap: 12px"><span>أقصى كمية بيع في اليوم للعميل (جم)</span><input class="hg-in" type="number" placeholder="[—]"></label>
+<span style="font-size: 13px; color: #5E584E">أي تعديل يدوي على السعر محتاج موافقة مدير تاني قبل ما يتنفذ.</span>
+</section>
+<section style="flex: 999 1 420px; min-width: 0; background: #FFFFFF; border: 1px solid #E4DFD6; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-size: 18px">سجل التغييرات</h2>
+<div style="display: flex; flex-direction: column; font-size: 14px">
+<div style="display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-top: 1px solid #F0ECE5"><span>هامش البيع عيار 21: 0.4% ← 0.5%</span><span style="color: #5E584E">[مستخدم] · 10:15</span></div>
+<div style="display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-top: 1px solid #F0ECE5"><span>إيقاف مؤقت للتداول (5 دقايق)</span><span style="color: #5E584E">[مستخدم] · امبارح 3:02 م</span></div>
+<div style="display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-top: 1px solid #F0ECE5"><span>مدة تثبيت السعر: 60 ← 45 ثانية</span><span style="color: #5E584E">[مستخدم] · [التاريخ]</span></div>
+</div>
+</section>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1200}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { sellM: '0.5', buyM: '0.3', halted: false };
+  }
+  renderVals() {
+    const s = this.state;
+    const fmt = (n) => Math.round(n).toLocaleString('en-US');
+    const sm = (parseFloat(s.sellM) || 0) / 100;
+    const bm = (parseFloat(s.buyM) || 0) / 100;
+    const base = 6210;
+    const rows = [['24', 1], ['21', 0.875], ['18', 0.75]].map(([k, r]) => ({
+      k, market: fmt(base * r), sell: fmt(base * r * (1 + sm)), buy: fmt(base * r * (1 - bm)),
+      sellAria: 'هامش البيع عيار ' + k, buyAria: 'هامش الشراء عيار ' + k,
+      sellM: s.sellM, buyM: s.buyM,
+      onSell: (e) => this.setState({ sellM: e.target.value }),
+      onBuy: (e) => this.setState({ buyM: e.target.value })
+    }));
+    return {
+      rows, sellM: s.sellM, buyM: s.buyM, halted: s.halted,
+      onSell: (e) => this.setState({ sellM: e.target.value }),
+      onBuy: (e) => this.setState({ buyM: e.target.value }),
+      toggleHalt: () => this.setState({ halted: !s.halted }),
+      haltLabel: s.halted ? 'استئناف التداول' : 'إيقاف التداول مؤقتاً',
+      haltStyle: 'display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border-radius: 999px; font: inherit; font-weight: 700; cursor: pointer; ' + (s.halted ? 'background: #12100C; color: #FFFFFF; border: 1px solid #12100C;' : 'background: #FFFFFF; color: #B3261E; border: 1px solid #E8C4BF;')
+    };
+  }
+}
+</script>
+</body>
+</html>

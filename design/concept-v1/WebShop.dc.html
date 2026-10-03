@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>الموقع — المجوهرات</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;600;700&amp;family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4F2EE}
+a{color:#8A6A1F}a:hover{color:#5E4712}
+</style>
+</helmet>
+<div dir="rtl" style="font-family: 'IBM Plex Sans Arabic', sans-serif; color: #1A1712; background: #F4F2EE; font-variant-numeric: tabular-nums">
+
+<header style="background: #FFFFFF; border-bottom: 1px solid #E4DFD6">
+<div style="max-width: 1200px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 32px">
+<a href="Main.dc.html" aria-label="الحياة جولد — الرئيسية" style="display: flex; align-items: center; text-decoration: none"><dc-import name="Logo" size="40" tone="onLight" layout="horizontal" hint-size="200px,48px"></dc-import></a>
+<nav aria-label="القائمة الرئيسية" style="display: flex; flex-wrap: wrap; gap: 4px 24px; font-size: 15px; font-weight: 500">
+<a href="Main.dc.html#prices" style="color: #1A1712; text-decoration: none; padding: 10px 0">أسعار الذهب</a>
+<a href="WebShop.dc.html" aria-current="page" style="color: #8A6A1F; text-decoration: none; padding: 10px 0; font-weight: 700; border-bottom: 2px solid #C8A04B">المجوهرات</a>
+<a href="Main.dc.html#save" style="color: #1A1712; text-decoration: none; padding: 10px 0">ادّخر ذهب</a>
+<a href="Main.dc.html#branches" style="color: #1A1712; text-decoration: none; padding: 10px 0">الفروع</a>
+</nav>
+<div style="margin-inline-start: auto; display: flex; gap: 10px">
+<a href="#login" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 999px; border: 1px solid #D6CFC2; color: #1A1712; text-decoration: none; font-weight: 600; font-size: 15px">تسجيل الدخول</a>
+<a href="Main.dc.html#app" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border-radius: 999px; background: #C8A04B; color: #12100C; text-decoration: none; font-weight: 700; font-size: 15px">حمّل التطبيق</a>
+</div>
+</div>
+</header>
+
+<main style="max-width: 1200px; margin: 0 auto; padding: 28px 24px 64px; display: flex; flex-direction: column; gap: 24px">
+<nav aria-label="مسار الصفحة" style="font-size: 14px; color: #5E584E"><a href="Main.dc.html">الرئيسية</a> / <span>المجوهرات</span></nav>
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 6px"><h1 style="margin: 0; font-family: 'El Messiri', serif; font-size: 40px; font-weight: 700">المجوهرات</h1><span style="color: #5E584E">{{count}} قطعة متوفرة دلوقتي في فروعنا · المخزون بيتحدث من الفروع مباشرة</span></div>
+<div style="display: flex; align-items: center; gap: 10px"><label for="sort" style="font-size: 14px; color: #5E584E">ترتيب حسب</label><select id="sort" style="min-height: 44px; border-radius: 12px; border: 1px solid #D6CFC2; background: #FFFFFF; font: inherit; padding: 0 12px; color: #1A1712"><option>الأحدث</option><option>السعر: من الأقل</option><option>السعر: من الأعلى</option><option>الوزن</option></select></div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start">
+<aside aria-label="الفلاتر" style="flex: 1 1 240px; max-width: 100%; background: #FFFFFF; border: 1px solid #E4DFD6; border-radius: 20px; padding: 20px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; flex-direction: column; gap: 10px"><b>النوع</b>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{cats}}" as="c" hint-placeholder-count="7"><button type="button" onClick="{{c.pick}}" style="{{c.style}}">{{c.label}}</button></sc-for>
+</div></div>
+<fieldset style="border: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px"><legend style="font-weight: 700; padding-bottom: 8px">العيار</legend>
+<label style="display: flex; gap: 10px; align-items: center; min-height: 36px"><input type="checkbox" checked style="width: 18px; height: 18px; accent-color: #12100C">عيار 24</label>
+<label style="display: flex; gap: 10px; align-items: center; min-height: 36px"><input type="checkbox" checked style="width: 18px; height: 18px; accent-color: #12100C">عيار 21</label>
+<label style="display: flex; gap: 10px; align-items: center; min-height: 36px"><input type="checkbox" checked style="width: 18px; height: 18px; accent-color: #12100C">عيار 18</label>
+</fieldset>
+<fieldset style="border: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px"><legend style="font-weight: 700; padding-bottom: 8px">الفرع</legend>
+<label style="display: flex; gap: 10px; align-items: center; min-height: 36px"><input type="radio" name="br" checked style="width: 18px; height: 18px; accent-color: #12100C">كل الفروع</label>
+<label style="display: flex; gap: 10px; align-items: center; min-height: 36px"><input type="radio" name="br" style="width: 18px; height: 18px; accent-color: #12100C">فرع [١] — [المنطقة]</label>
+<label style="display: flex; gap: 10px; align-items: center; min-height: 36px"><input type="radio" name="br" style="width: 18px; height: 18px; accent-color: #12100C">فرع [٢] — [المنطقة]</label>
+<label style="display: flex; gap: 10px; align-items: center; min-height: 36px"><input type="radio" name="br" style="width: 18px; height: 18px; accent-color: #12100C">فرع [٣] — [المنطقة]</label>
+</fieldset>
+<div style="display: flex; flex-direction: column; gap: 8px"><b>الوزن (جم)</b>
+<div style="display: flex; gap: 8px"><label style="flex: 1; display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: #5E584E">من<input type="number" value="1" style="min-height: 44px; border-radius: 10px; border: 1px solid #D6CFC2; font: inherit; padding: 0 10px; color: #1A1712; width: 100%; box-sizing: border-box"></label><label style="flex: 1; display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: #5E584E">إلى<input type="number" value="20" style="min-height: 44px; border-radius: 10px; border: 1px solid #D6CFC2; font: inherit; padding: 0 10px; color: #1A1712; width: 100%; box-sizing: border-box"></label></div>
+</div>
+</aside>
+
+<div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 28px">
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 24px">
+<sc-for list="{{items}}" as="p" hint-placeholder-count="9">
+<a href="WebProduct.dc.html" style="text-decoration: none; color: #1A1712; display: flex; flex-direction: column; gap: 10px; background: #FFFFFF; border: 1px solid #E4DFD6; border-radius: 20px; padding: 12px">
+<span style="aspect-ratio: 1 / 1; border-radius: 14px; background: #F4F2EE; display: flex; align-items: center; justify-content: center; position: relative">
+<sc-if value="{{p.ring}}" hint-placeholder-val="{{ false }}"><svg width="88" height="88" viewBox="0 0 64 64" fill="none" stroke="#B8913E" stroke-width="1.4" aria-hidden="true"><circle cx="32" cy="38" r="15"></circle><path d="M27 23l5-8 5 8-5 4z"></path></svg></sc-if>
+<sc-if value="{{p.band}}" hint-placeholder-val="{{ false }}"><svg width="88" height="88" viewBox="0 0 64 64" fill="none" stroke="#B8913E" stroke-width="1.4" aria-hidden="true"><circle cx="26" cy="34" r="13"></circle><circle cx="38" cy="34" r="13"></circle></svg></sc-if>
+<sc-if value="{{p.necklace}}" hint-placeholder-val="{{ true }}"><svg width="88" height="88" viewBox="0 0 64 64" fill="none" stroke="#B8913E" stroke-width="1.4" aria-hidden="true"><path d="M12 14c2 18 10 28 20 28s18-10 20-28"></path><path d="M32 42v4"></path><path d="M32 46l-5 6 5 6 5-6z"></path></svg></sc-if>
+<sc-if value="{{p.bracelet}}" hint-placeholder-val="{{ false }}"><svg width="88" height="88" viewBox="0 0 64 64" fill="none" stroke="#B8913E" stroke-width="1.4" aria-hidden="true"><ellipse cx="32" cy="32" rx="22" ry="12"></ellipse><ellipse cx="32" cy="32" rx="17" ry="8"></ellipse></svg></sc-if>
+<sc-if value="{{p.earring}}" hint-placeholder-val="{{ false }}"><svg width="88" height="88" viewBox="0 0 64 64" fill="none" stroke="#B8913E" stroke-width="1.4" aria-hidden="true"><path d="M22 12v8"></path><path d="M22 20c-6 8-6 16 0 20 6-4 6-12 0-20z"></path><path d="M42 12v8"></path><path d="M42 20c-6 8-6 16 0 20 6-4 6-12 0-20z"></path></svg></sc-if>
+<sc-if value="{{p.coin}}" hint-placeholder-val="{{ false }}"><svg width="88" height="88" viewBox="0 0 64 64" fill="none" stroke="#B8913E" stroke-width="1.4" aria-hidden="true"><circle cx="32" cy="32" r="18"></circle><circle cx="32" cy="32" r="13"></circle></svg></sc-if>
+<sc-if value="{{p.bar}}" hint-placeholder-val="{{ false }}"><svg width="88" height="88" viewBox="0 0 64 64" fill="none" stroke="#B8913E" stroke-width="1.4" stroke-linejoin="round" aria-hidden="true"><path d="M12 42l7-18h26l7 18z"></path><path d="M24 33h16"></path></svg></sc-if>
+<span style="position: absolute; top: 10px; inset-inline-start: 10px; background: #FFFFFF; border-radius: 999px; padding: 3px 10px; font-size: 12px; font-weight: 600; color: #1F7A4D">{{p.stock}}</span>
+</span>
+<span style="display: flex; flex-direction: column; gap: 4px; padding: 0 4px 4px"><b style="font-size: 16px">{{p.name}}</b><span style="font-size: 13px; color: #5E584E">{{p.meta}}</span><b style="font-size: 16px; color: #8A6A1F">≈ {{p.price}} ج.م</b></span>
+</a>
+</sc-for>
+</div>
+<nav aria-label="الصفحات" style="display: flex; justify-content: center; gap: 8px">
+<a href="#p1" aria-current="page" style="min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; border-radius: 12px; background: #12100C; color: #FFFFFF; text-decoration: none; font-weight: 700">1</a>
+<a href="#p2" style="min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; border-radius: 12px; background: #FFFFFF; border: 1px solid #E4DFD6; color: #1A1712; text-decoration: none">2</a>
+<a href="#p3" style="min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; border-radius: 12px; background: #FFFFFF; border: 1px solid #E4DFD6; color: #1A1712; text-decoration: none">3</a>
+</nav>
+</div>
+</div>
+</main>
+
+<footer style="background: #0A0907; color: #A39A88; font-size: 14px">
+<div style="max-width: 1200px; margin: 0 auto; padding: 32px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+<dc-import name="Logo" size="40" tone="onDark" layout="horizontal" hint-size="200px,48px"></dc-import>
+<span>© 2026 الحياة جولد · أسعار ومنتجات توضيحية</span>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2200}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { cat: 'all' };
+  }
+  renderVals() {
+    const all = [
+      { name: 'سلسلة مبرومة بدلاية', meta: 'عيار 21 · 7.2 جم', price: '41,800', stock: '3 فروع', t: 'necklace', necklace: true },
+      { name: 'خاتم سوليتير', meta: 'عيار 18 · 2.8 جم', price: '14,900', stock: '2 فرع', t: 'ring', ring: true },
+      { name: 'دبلة كلاسيك', meta: 'عيار 21 · 4.5 جم', price: '26,300', stock: '3 فروع', t: 'band', band: true },
+      { name: 'إسورة مضفّرة', meta: 'عيار 21 · 10.5 جم', price: '60,900', stock: 'فرع واحد', t: 'bracelet', bracelet: true },
+      { name: 'حلق دلّاية', meta: 'عيار 18 · 3.6 جم', price: '19,100', stock: '2 فرع', t: 'earring', earring: true },
+      { name: 'طقم ناعم', meta: 'عيار 21 · 14 جم', price: '81,500', stock: 'فرع واحد', t: 'necklace', necklace: true },
+      { name: 'خاتم فصوص', meta: 'عيار 18 · 3.4 جم', price: '17,600', stock: '2 فرع', t: 'ring', ring: true },
+      { name: 'دبلة محفورة', meta: 'عيار 21 · 5.2 جم', price: '30,100', stock: 'فرع واحد', t: 'band', band: true },
+      { name: 'إسورة سلسلة', meta: 'عيار 21 · 6.8 جم', price: '39,400', stock: '3 فروع', t: 'bracelet', bracelet: true },
+      { name: 'جنيه ذهب', meta: 'عيار 21 · 8 جم', price: '44,300', stock: 'كل الفروع', t: 'coin', coin: true },
+      { name: 'سبيكة 5 جرام', meta: 'عيار 24 · 999.9', price: '31,600', stock: 'كل الفروع', t: 'coin', bar: true },
+      { name: 'سبيكة 10 جرام', meta: 'عيار 24 · 999.9', price: '63,100', stock: 'كل الفروع', t: 'coin', bar: true }
+    ];
+    const cats = [{ id: 'all', label: 'الكل' }, { id: 'ring', label: 'خواتم' }, { id: 'band', label: 'دبل' }, { id: 'necklace', label: 'سلاسل وأطقم' }, { id: 'bracelet', label: 'أساور' }, { id: 'earring', label: 'حلقان' }, { id: 'coin', label: 'سبائك وعملات' }];
+    const base = 'min-height: 40px; padding: 0 14px; border-radius: 999px; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer;';
+    const items = this.state.cat === 'all' ? all : all.filter((p) => p.t === this.state.cat);
+    return {
+      cats: cats.map((c) => ({ label: c.label, pick: () => this.setState({ cat: c.id }), style: base + (this.state.cat === c.id ? ' background: #12100C; color: #FFFFFF; border: 1px solid #12100C;' : ' background: #FFFFFF; color: #1A1712; border: 1px solid #D6CFC2;') })),
+      items,
+      count: items.length
+    };
+  }
+}
+</script>
+</body>
+</html>

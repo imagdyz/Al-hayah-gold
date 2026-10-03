@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>التطبيق — تسجيل الدخول</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;600;700&amp;family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#8A6A1F}a:hover{color:#5E4712}
+</style>
+</helmet>
+<div dir="rtl" style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F4F2EE; font-family: 'IBM Plex Sans Arabic', sans-serif; color: #1A1712; box-sizing: border-box; padding: 32px 24px; display: flex; flex-direction: column; gap: 28px">
+
+<dc-import name="Logo" size="40" tone="onLight" layout="horizontal" hint-size="200px,48px"></dc-import>
+
+<div style="display: flex; flex-direction: column; gap: 10px; padding-top: 24px">
+<h1 style="margin: 0; font-family: 'El Messiri', serif; font-size: 32px; font-weight: 700">أهلاً بيك</h1>
+<p style="margin: 0; font-size: 16px; line-height: 1.7; color: #5E584E">دخّل رقم موبايلك، وهنبعتلك كود تأكيد في رسالة.</p>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="phone" style="font-size: 14px; font-weight: 600">رقم الموبايل</label>
+<div style="display: flex; gap: 8px" dir="ltr">
+<span style="min-height: 56px; padding: 0 14px; border-radius: 14px; background: #FFFFFF; border: 1px solid #E4DFD6; display: flex; align-items: center; font-weight: 600">+20</span>
+<input id="phone" type="tel" inputmode="numeric" placeholder="10 1234 5678" autocomplete="tel" style="flex: 1; min-width: 0; min-height: 56px; border-radius: 14px; background: #FFFFFF; border: 2px solid #12100C; padding: 0 16px; font: inherit; font-size: 18px; letter-spacing: 1px; color: #1A1712; box-sizing: border-box">
+</div>
+</div>
+
+<label style="display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.7; color: #3F3A31; cursor: pointer">
+<input type="checkbox" checked style="width: 22px; height: 22px; margin: 2px 0 0; accent-color: #12100C; flex: none">
+<span>موافق على <a href="#terms">الشروط والأحكام</a> و<a href="#privacy">سياسة الخصوصية</a></span>
+</label>
+
+<a href="Otp.dc.html" style="display: flex; align-items: center; justify-content: center; min-height: 56px; border-radius: 999px; background: #12100C; color: #FFFFFF; text-decoration: none; font-weight: 700; font-size: 17px">ابعت الكود</a>
+
+<div style="display: flex; align-items: center; gap: 12px; color: #5E584E; font-size: 14px"><span style="flex: 1; height: 1px; background: #E4DFD6"></span>أو<span style="flex: 1; height: 1px; background: #E4DFD6"></span></div>
+
+<a href="AppHome.dc.html" style="display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 56px; border-radius: 999px; border: 1px solid #D6CFC2; background: #FFFFFF; color: #1A1712; text-decoration: none; font-weight: 600; font-size: 16px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8A6A1F" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M7 11a5 5 0 0 1 10 0v2"></path><path d="M12 11v6"></path><path d="M4 9a8 8 0 0 1 16 0"></path><path d="M9 21c1-2 1-5 1-8"></path><path d="M15 21c-.5-2-.6-4-.5-6"></path></svg>الدخول بالبصمة</a>
+
+<a href="AppHome.dc.html" style="align-self: center; min-height: 44px; display: inline-flex; align-items: center; font-weight: 600; font-size: 15px">تصفّح الأسعار والمجوهرات كزائر</a>
+
+<p style="margin: auto 0 0; display: flex; gap: 8px; align-items: center; justify-content: center; font-size: 13px; color: #5E584E"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E584E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-4 8-8 9-4-1-8-4-8-9V6z"></path></svg>بياناتك مشفّرة ومحمية</p>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

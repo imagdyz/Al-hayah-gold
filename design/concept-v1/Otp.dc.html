@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>التطبيق — كود التأكيد</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;600;700&amp;family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#8A6A1F}a:hover{color:#5E4712}
+</style>
+</helmet>
+<div dir="rtl" style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F4F2EE; font-family: 'IBM Plex Sans Arabic', sans-serif; color: #1A1712; box-sizing: border-box; padding: 16px 24px 32px; display: flex; flex-direction: column; gap: 28px">
+
+<a href="Login.dc.html" aria-label="رجوع" style="width: 44px; height: 44px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A1712" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></a>
+
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h1 style="margin: 0; font-family: 'El Messiri', serif; font-size: 30px; font-weight: 700">اكتب كود التأكيد</h1>
+<p style="margin: 0; font-size: 16px; line-height: 1.7; color: #5E584E">بعتنا كود من 6 أرقام على <b style="color: #1A1712" dir="ltr">+20 [رقم الموبايل]</b> · <a href="Login.dc.html">تغيير الرقم</a></p>
+</div>
+
+<div dir="ltr" style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px">
+<input aria-label="الرقم 1" inputmode="numeric" maxlength="1" value="4" style="min-height: 60px; width: 100%; box-sizing: border-box; text-align: center; font: inherit; font-size: 24px; font-weight: 700; border-radius: 14px; border: 2px solid #12100C; background: #FFFFFF; color: #1A1712">
+<input aria-label="الرقم 2" inputmode="numeric" maxlength="1" value="8" style="min-height: 60px; width: 100%; box-sizing: border-box; text-align: center; font: inherit; font-size: 24px; font-weight: 700; border-radius: 14px; border: 2px solid #12100C; background: #FFFFFF; color: #1A1712">
+<input aria-label="الرقم 3" inputmode="numeric" maxlength="1" value="1" style="min-height: 60px; width: 100%; box-sizing: border-box; text-align: center; font: inherit; font-size: 24px; font-weight: 700; border-radius: 14px; border: 2px solid #12100C; background: #FFFFFF; color: #1A1712">
+<input aria-label="الرقم 4" inputmode="numeric" maxlength="1" style="min-height: 60px; width: 100%; box-sizing: border-box; text-align: center; font: inherit; font-size: 24px; font-weight: 700; border-radius: 14px; border: 2px solid #C8A04B; background: #FFFFFF; color: #1A1712">
+<input aria-label="الرقم 5" inputmode="numeric" maxlength="1" style="min-height: 60px; width: 100%; box-sizing: border-box; text-align: center; font: inherit; font-size: 24px; font-weight: 700; border-radius: 14px; border: 1px solid #D6CFC2; background: #FFFFFF; color: #1A1712">
+<input aria-label="الرقم 6" inputmode="numeric" maxlength="1" style="min-height: 60px; width: 100%; box-sizing: border-box; text-align: center; font: inherit; font-size: 24px; font-weight: 700; border-radius: 14px; border: 1px solid #D6CFC2; background: #FFFFFF; color: #1A1712">
+</div>
+
+<div style="display: flex; align-items: center; gap: 8px; font-size: 15px; color: #5E584E"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5E584E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>تقدر تطلب كود جديد بعد <b style="color: #1A1712">00:42</b></div>
+
+<a href="Kyc.dc.html" style="margin-top: auto; display: flex; align-items: center; justify-content: center; min-height: 56px; border-radius: 999px; background: #12100C; color: #FFFFFF; text-decoration: none; font-weight: 700; font-size: 17px">تأكيد</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

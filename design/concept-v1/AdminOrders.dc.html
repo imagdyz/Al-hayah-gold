@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>لوحة التحكم — الحجوزات والطلبات</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;600;700&amp;family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4F2EE}
+a{color:#8A6A1F}a:hover{color:#5E4712}
+.hg-nav{display:flex;align-items:center;gap:12px;min-height:44px;padding:0 12px;border-radius:12px;color:#CFC6B4;text-decoration:none;font-size:15px}
+.hg-nav:hover{background:#1E1A14;color:#F4F2EE}
+.hg-rowbtn{all:unset;display:block;width:100%;cursor:pointer}
+.hg-rowbtn:focus-visible{outline:2px solid #8A6A1F;outline-offset:2px}
+</style>
+</helmet>
+<div dir="rtl" style="font-family: 'IBM Plex Sans Arabic', sans-serif; color: #1A1712; background: #F4F2EE; display: flex; flex-wrap: wrap; font-variant-numeric: tabular-nums">
+
+<aside style="flex: 1 1 240px; max-width: 100%; background: #12100C; color: #F4F2EE; padding: 24px 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 28px">
+<div style="padding: 0 8px; display: flex; flex-direction: column; gap: 6px"><dc-import name="Logo" size="36" tone="onDark" layout="horizontal" hint-size="180px,44px"></dc-import><span style="font-size: 12px; color: #A39A88">لوحة تحكم الفروع</span></div>
+<nav aria-label="قائمة لوحة التحكم" style="display: flex; flex-direction: column; gap: 4px">
+<a href="AdminOverview.dc.html" class="hg-nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1.5"></rect><rect x="14" y="3" width="7" height="5" rx="1.5"></rect><rect x="14" y="12" width="7" height="9" rx="1.5"></rect><rect x="3" y="16" width="7" height="5" rx="1.5"></rect></svg>نظرة عامة</a>
+<a href="AdminPrices.dc.html" class="hg-nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M9 7h8v8"></path></svg>الأسعار والرسوم</a>
+<a href="AdminInventory.dc.html" class="hg-nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"></path><path d="M3 9h18"></path></svg>المنتجات والمخزون</a>
+<a href="AdminOrders.dc.html" aria-current="page" class="hg-nav" style="background: #1E1A14; color: #C8A04B; font-weight: 700"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8l9-5 9 5v8l-9 5-9-5z"></path><path d="M3 8l9 5 9-5"></path></svg>الحجوزات والطلبات</a>
+<a href="#customers" class="hg-nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="4"></circle><path d="M2 21c1-4 3.5-6 7-6s6 2 7 6"></path><path d="M16 4a4 4 0 0 1 0 8"></path></svg>العملاء والتوثيق</a>
+<a href="#branches" class="hg-nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6 7-12a7 7 0 0 0-14 0c0 6 7 12 7 12z"></path><circle cx="12" cy="9" r="2.5"></circle></svg>الفروع</a>
+<a href="#reports" class="hg-nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"></path></svg>التقارير</a>
+<a href="#settings" class="hg-nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"></path></svg>الإعدادات</a>
+</nav>
+<div style="margin-top: auto; padding: 12px; border-radius: 14px; background: #1E1A14; display: flex; flex-direction: column; gap: 2px; font-size: 13px"><b>[اسم المستخدم]</b><span style="color: #A39A88">مدير · كل الفروع</span></div>
+</aside>
+
+<main style="flex: 999 1 560px; min-width: 0; padding: 28px 32px 48px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; flex-direction: column; gap: 4px"><h1 style="margin: 0; font-family: 'El Messiri', serif; font-size: 32px">الحجوزات والطلبات</h1><span style="font-size: 14px; color: #5E584E">كل اللي محتاج تصرّف من الفروع في مكان واحد · بيانات تجريبية</span></div>
+
+<div role="tablist" aria-label="نوع الطلبات" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="4">
+<button type="button" role="tab" aria-selected="{{t.on}}" onClick="{{t.pick}}" style="{{t.style}}">{{t.label}} <span style="{{t.countStyle}}">{{t.count}}</span></button>
+</sc-for>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start">
+<div style="flex: 999 1 520px; min-width: 0; background: #FFFFFF; border: 1px solid #E4DFD6; border-radius: 20px; overflow-x: auto">
+<table style="width: 100%; min-width: 680px; border-collapse: collapse; font-size: 14px">
+<thead><tr style="color: #5E584E; font-size: 13px; background: #FAF8F5"><th scope="col" style="text-align: start; font-weight: 500; padding: 12px 16px">الكود</th><th scope="col" style="text-align: start; font-weight: 500">العميل</th><th scope="col" style="text-align: start; font-weight: 500">القطعة</th><th scope="col" style="text-align: start; font-weight: 500">الفرع</th><th scope="col" style="text-align: start; font-weight: 500">المعاد</th><th scope="col" style="text-align: start; font-weight: 500">الحالة</th></tr></thead>
+<tbody>
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="6">
+<tr style="{{r.rowStyle}}">
+<td style="padding: 12px 16px"><button type="button" class="hg-rowbtn" onClick="{{r.pick}}" aria-label="{{r.aria}}" style="font-weight: 700; color: #8A6A1F; min-height: 32px" dir="ltr">{{r.code}}</button></td>
+<td>{{r.cust}}</td><td>{{r.item}}</td><td>{{r.branch}}</td><td>{{r.slot}}</td>
+<td><span style="{{r.stStyle}}">{{r.stIcon}} {{r.st}}</span></td>
+</tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+
+<aside aria-label="تفاصيل الحجز" style="flex: 1 1 320px; min-width: 0; background: #FFFFFF; border: 1px solid #E4DFD6; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; justify-content: space-between; align-items: center"><b style="font-size: 18px" dir="ltr">{{sel.code}}</b><span style="{{sel.stStyle}}">{{sel.stIcon}} {{sel.st}}</span></div>
+<div style="display: flex; gap: 12px; align-items: center"><span style="width: 56px; height: 56px; border-radius: 12px; background: #F4F2EE; flex: none"></span><span style="display: flex; flex-direction: column"><b>{{sel.item}}</b><span style="font-size: 13px; color: #5E584E">{{sel.branch}} · {{sel.slot}}</span></span></div>
+<div style="display: flex; flex-direction: column; font-size: 14px">
+<div style="display: flex; justify-content: space-between; padding: 8px 0; border-top: 1px solid #F0ECE5"><span style="color: #5E584E">العميل</span><b>{{sel.cust}}</b></div>
+<div style="display: flex; justify-content: space-between; padding: 8px 0; border-top: 1px solid #F0ECE5"><span style="color: #5E584E">التوثيق</span><b style="color: #1F7A4D">✓ موثّق</b></div>
+<div style="display: flex; justify-content: space-between; padding: 8px 0; border-top: 1px solid #F0ECE5"><span style="color: #5E584E">الدفع</span><b>{{sel.pay}}</b></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px; color: #5E584E">
+<span>● اتعمل الحجز من التطبيق · [الوقت]</span>
+<span>● اتخصم الرصيد واتثبت السعر · [الوقت]</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px; margin-top: 6px">
+<button type="button" style="min-height: 48px; border-radius: 999px; border: none; background: #12100C; color: #FFFFFF; font: inherit; font-weight: 700; cursor: pointer">القطعة جاهزة — ابعت للعميل</button>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<button type="button" style="min-height: 44px; border-radius: 999px; border: 1px solid #D6CFC2; background: #FFFFFF; font: inherit; font-weight: 600; cursor: pointer">تم التسليم</button>
+<button type="button" style="min-height: 44px; border-radius: 999px; border: 1px solid #E8C4BF; background: #FFFFFF; color: #B3261E; font: inherit; font-weight: 600; cursor: pointer">إلغاء الحجز</button>
+</div>
+</div>
+</aside>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { tab: 'res', sel: 0 };
+  }
+  renderVals() {
+    const s = this.state;
+    const status = {
+      new: { st: 'جديد', icon: '●', style: 'background: #E6EEFB; color: #1A4FA0;' },
+      ok: { st: 'مؤكد', icon: '◐', style: 'background: #FFF1D6; color: #5C3D00;' },
+      ready: { st: 'جاهز للاستلام', icon: '✓', style: 'background: #E3F2E9; color: #1F7A4D;' },
+      done: { st: 'اتسلّم', icon: '✓✓', style: 'background: #F0ECE5; color: #3F3A31;' },
+      cancel: { st: 'ملغي', icon: '✕', style: 'background: #FBE9E7; color: #8C1D18;' }
+    };
+    const data = [
+      ['HG-2041', '[عميل] ••• 117', 'سلسلة مبرومة بدلاية', 'فرع [١]', 'بكرة · 1 ظ', 'new', '6.300 جم + المصنعية'],
+      ['HG-2038', '[عميل] ••• 552', 'خاتم سوليتير', 'فرع [٢]', 'النهارده · 7 م', 'ok', 'عربون [—]'],
+      ['HG-2035', '[عميل] ••• 089', 'دبلة كلاسيك × 2', 'فرع [١]', 'النهارده · 5 م', 'ready', 'في الفرع'],
+      ['HG-2030', '[عميل] ••• 640', 'حلق دلّاية', 'فرع [٣]', 'امبارح · 2 ظ', 'done', 'رصيد ذهب'],
+      ['HG-2027', '[عميل] ••• 318', 'إسورة مضفّرة', 'فرع [٢]', 'امبارح · 6 م', 'cancel', '—'],
+      ['HG-2024', '[عميل] ••• 905', 'طقم ناعم', 'فرع [١]', '[التاريخ]', 'done', 'في الفرع']
+    ];
+    const pill = (x) => 'display: inline-flex; align-items: center; gap: 4px; border-radius: 999px; padding: 4px 10px; font-size: 13px; font-weight: 700; white-space: nowrap; ' + x;
+    const rows = data.map((d, i) => ({
+      code: d[0], cust: d[1], item: d[2], branch: d[3], slot: d[4], pay: d[6],
+      st: status[d[5]].st, stIcon: status[d[5]].icon, stStyle: pill(status[d[5]].style),
+      aria: 'تفاصيل الحجز ' + d[0],
+      pick: () => this.setState({ sel: i }),
+      rowStyle: 'border-top: 1px solid #F0ECE5;' + (s.sel === i ? ' background: #F1E6CC;' : '')
+    }));
+    const tabBase = 'display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 999px; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer;';
+    return {
+      tabs: [['res', 'حجوزات المجوهرات', 12], ['pick', 'استلام سبائك', 5], ['trade', 'بيع وشراء', 38], ['kyc', 'طلبات التوثيق', 7]].map(([id, label, count]) => ({
+        label, count, on: s.tab === id ? 'true' : 'false', pick: () => this.setState({ tab: id }),
+        style: tabBase + (s.tab === id ? ' background: #12100C; color: #FFFFFF; border: 1px solid #12100C;' : ' background: #FFFFFF; color: #1A1712; border: 1px solid #D6CFC2;'),
+        countStyle: 'border-radius: 999px; padding: 0 8px; font-size: 12px; ' + (s.tab === id ? 'background: #C8A04B; color: #12100C;' : 'background: #F4F2EE; color: #3F3A31;')
+      })),
+      rows,
+      sel: rows[s.sel]
+    };
+  }
+}
+</script>
+</body>
+</html>
