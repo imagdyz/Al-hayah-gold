@@ -29,7 +29,11 @@ fi
 echo "PHP: $PHP ($("$PHP" -r 'echo PHP_VERSION;'))"
 
 if [ -z "${DOMAIN:-}" ]; then
-    mapfile -t domains < <(ls -1 "$HOME/domains" 2>/dev/null)
+    # No <(...) here: Hostinger's shell has no /dev/fd.
+    domains=()
+    for d in "$HOME"/domains/*/; do
+        [ -d "$d" ] && domains+=("$(basename "$d")")
+    done
     if [ "${#domains[@]}" -ne 1 ]; then
         echo "Domains on this account:" >&2
         printf '  - %s\n' "${domains[@]}" >&2
