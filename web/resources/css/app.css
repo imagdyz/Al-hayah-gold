@@ -1,0 +1,186 @@
+@import '@fontsource/el-messiri/600.css';
+@import '@fontsource/el-messiri/700.css';
+@import '@fontsource/ibm-plex-sans-arabic/400.css';
+@import '@fontsource/ibm-plex-sans-arabic/500.css';
+@import '@fontsource/ibm-plex-sans-arabic/600.css';
+@import '@fontsource/ibm-plex-sans-arabic/700.css';
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+/* Al Hayah Gold — a jeweller's shop window: ink cases, warm paper, gold used sparingly. */
+@theme {
+    --font-sans: 'IBM Plex Sans Arabic', 'Segoe UI', Tahoma, sans-serif;
+    --font-display: 'El Messiri', 'IBM Plex Sans Arabic', serif;
+
+    --color-ink: #12100C;
+    --color-ink-2: #1E1A14;
+    --color-ink-3: #2A241B;
+    --color-ink-line: #3A3124;
+    --color-gold: #C8A04B;
+    --color-gold-bright: #E6C77A;
+    --color-gold-deep: #A8853A;
+    --color-gold-dark: #8A6A1F;
+    --color-cream: #F1E6CC;
+    --color-paper: #F6F3EE;
+    --color-sand: #EFE7D8;
+    --color-line: #ECE5D8;
+    --color-line-strong: #D6CFC2;
+    --color-text: #1A1712;
+    --color-muted: #5E584E;
+    --color-muted-dark: #A39A88;
+    --color-on-ink: #E9E2D3;
+    --color-up: #1F7A4D;
+    --color-up-bg: #E3F2E9;
+    --color-up-on-ink: #7FD3A6;
+    --color-down: #B3261E;
+    --color-down-bg: #FBE9E7;
+    --color-warn: #5C3D00;
+    --color-warn-bg: #FFF1D6;
+    --color-info: #1A4FA0;
+    --color-info-bg: #E6EEFA;
+
+    --shadow-soft: 0 1px 2px rgb(18 16 12 / 0.04);
+    --shadow-raised: 0 20px 40px -28px rgb(60 44 12 / 0.45);
+    --shadow-float: 0 30px 60px -24px rgb(0 0 0 / 0.6);
+
+    --ease-out-soft: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+    --animate-rise: rise 0.9s var(--ease-out-soft) both;
+    --animate-float: float 7s ease-in-out infinite;
+    --animate-live: live 2.2s infinite;
+
+    @keyframes rise {
+        from { opacity: 0.35; transform: translateY(18px); }
+        to { opacity: 1; transform: none; }
+    }
+    @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+    @keyframes live {
+        0% { box-shadow: 0 0 0 0 rgb(91 200 143 / 0.55); }
+        70% { box-shadow: 0 0 0 9px rgb(91 200 143 / 0); }
+        100% { box-shadow: 0 0 0 0 rgb(91 200 143 / 0); }
+    }
+}
+
+@layer base {
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+        background: var(--color-paper);
+        color: var(--color-text);
+        font-variant-numeric: tabular-nums;
+        -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3 { text-wrap: balance; }
+    :focus-visible { outline: 2px solid var(--color-gold); outline-offset: 3px; }
+    [x-cloak] { display: none !important; }
+}
+
+@layer components {
+    .container-site { width: 100%; max-width: 1240px; margin-inline: auto; padding-inline: 1.5rem; }
+    @media (max-width: 640px) { .container-site { padding-inline: 1rem; } }
+
+    .eyebrow { font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.08em; color: var(--color-gold-dark); }
+    .on-ink .eyebrow, .eyebrow-ink { color: var(--color-gold); }
+
+    .text-gold-grad {
+        background: linear-gradient(100deg, #F7E7B4 0%, #DDB866 34%, #B08A36 62%, #EED48C 100%);
+        -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .text-gold-grad-deep {
+        background: linear-gradient(100deg, #B08A36 0%, #8A6A1F 50%, #B08A36 100%);
+        -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+
+    .btn {
+        display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem;
+        min-height: 3rem; padding-inline: 1.5rem; border-radius: 999px;
+        font-weight: 700; text-decoration: none; cursor: pointer; white-space: nowrap;
+        transition: filter .2s ease, transform .2s ease, background-color .2s ease, border-color .2s ease;
+    }
+    .btn:disabled, .btn[aria-disabled='true'] { opacity: .55; cursor: not-allowed; transform: none; }
+    .btn-lg { min-height: 3.4rem; padding-inline: 1.9rem; font-size: 1.0625rem; }
+    .btn-sm { min-height: 2.75rem; padding-inline: 1.1rem; font-size: 0.9375rem; font-weight: 600; }
+    .btn-gold {
+        color: var(--color-ink);
+        background: linear-gradient(180deg, #EACD80 0%, #C8A04B 55%, #AE8834 100%);
+        box-shadow: inset 0 1px 0 rgb(255 255 255 / .55), 0 10px 24px -10px rgb(168 133 58 / .9);
+    }
+    .btn-gold:hover { filter: brightness(1.06); transform: translateY(-1px); }
+    .btn-ink { color: var(--color-paper); background: var(--color-ink); }
+    .btn-ink:hover { background: var(--color-ink-3); }
+    .btn-outline { color: var(--color-text); background: #fff; border: 1px solid var(--color-line-strong); font-weight: 600; }
+    .btn-outline:hover { border-color: var(--color-gold); background: #FFFDF8; }
+    .btn-ghost-ink { color: #F4F2EE; border: 1px solid #4A3F2A; font-weight: 600; }
+    .btn-ghost-ink:hover { background: rgb(200 160 75 / .12); border-color: var(--color-gold); }
+
+    .card { background: #fff; border: 1px solid var(--color-line); border-radius: 1.5rem; box-shadow: var(--shadow-soft); }
+    .card-ink {
+        color: #F4F2EE; border-radius: 1.5rem;
+        background: linear-gradient(155deg, #2A2318 0%, #12100C 70%);
+        box-shadow: 0 30px 60px -30px rgb(18 16 12 / .7);
+    }
+
+    /* Soft studio backdrop the product renders sit on. */
+    .pedestal { background: radial-gradient(circle at 50% 40%, #FFFFFF 0%, #F2ECE1 62%, #E7DECD 100%); }
+    .pedestal-ink { background: radial-gradient(circle at 50% 45%, #3A2E1A 0%, #1A1610 60%, #12100C 100%); }
+
+    .lift { transition: transform .3s var(--ease-out-soft), box-shadow .3s ease; }
+    .lift:hover { transform: translateY(-4px); box-shadow: 0 28px 56px -28px rgb(60 44 12 / .5); }
+    .zoom { transition: transform .6s var(--ease-out-soft); }
+    .lift:hover .zoom { transform: scale(1.07) rotate(-2deg); }
+
+    .pill { display: inline-flex; align-items: center; gap: .375rem; border-radius: 999px; padding: .25rem .65rem; font-size: .8125rem; font-weight: 600; white-space: nowrap; }
+    .pill-green { background: var(--color-up-bg); color: var(--color-up); }
+    .pill-amber { background: var(--color-warn-bg); color: var(--color-warn); }
+    .pill-blue { background: var(--color-info-bg); color: var(--color-info); }
+    .pill-neutral { background: #F1ECE3; color: var(--color-muted); }
+    .pill-red { background: var(--color-down-bg); color: #8C1D18; }
+    .pill-ink { background: var(--color-ink); color: var(--color-gold-bright); }
+
+    .chip {
+        display: inline-flex; align-items: center; min-height: 2.75rem; padding-inline: 1.15rem; border-radius: 999px;
+        border: 1px solid #DDD5C6; background: #fff; color: var(--color-text); font-size: .9375rem; text-decoration: none; cursor: pointer;
+    }
+    .chip[aria-current='true'], .chip.is-active { background: var(--color-ink); border-color: var(--color-ink); color: var(--color-paper); font-weight: 600; }
+
+    .field {
+        width: 100%; min-height: 3rem; border-radius: .875rem; border: 1px solid var(--color-line-strong);
+        background: #fff; padding-inline: .9rem; color: var(--color-text); font: inherit;
+    }
+    .field:focus { outline: 2px solid var(--color-gold); outline-offset: 1px; border-color: var(--color-gold); }
+    .field-ink { background: var(--color-ink-2); border-color: #4A3F2A; color: #fff; }
+    .label { display: block; font-size: .875rem; font-weight: 600; margin-bottom: .4rem; }
+    .error { color: var(--color-down); font-size: .875rem; margin-top: .35rem; }
+
+    .option {
+        display: flex; align-items: center; justify-content: space-between; gap: .75rem; min-height: 3.5rem;
+        padding: .75rem 1rem; border-radius: 1rem; border: 1px solid var(--color-line); background: #fff; cursor: pointer;
+    }
+    .option:has(input:checked) { border: 2px solid var(--color-ink); padding: calc(.75rem - 1px) calc(1rem - 1px); }
+    .option:has(input:disabled) { opacity: .5; cursor: not-allowed; }
+    .option input[type='radio'] { width: 1.15rem; height: 1.15rem; accent-color: var(--color-ink); flex: none; }
+
+    .live-dot { width: .45rem; height: .45rem; border-radius: 999px; background: #5BC88F; display: inline-block; animation: var(--animate-live); }
+
+    .flash-up { animation: flash-up 1.4s ease-out; }
+    .flash-down { animation: flash-down 1.4s ease-out; }
+    @keyframes flash-up { from { background: rgb(91 200 143 / .28); } to { background: transparent; } }
+    @keyframes flash-down { from { background: rgb(229 115 103 / .28); } to { background: transparent; } }
+
+    .star-pattern {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' fill='none' stroke='%23E6C77A' stroke-width='1'%3E%3Crect x='24' y='24' width='24' height='24'/%3E%3Crect x='24' y='24' width='24' height='24' transform='rotate(45 36 36)'/%3E%3Ccircle cx='36' cy='36' r='4'/%3E%3Cpath d='M0 36h12M60 36h12M36 0v12M36 60v12'/%3E%3C/svg%3E");
+    }
+
+    .prose-ar { line-height: 1.9; color: var(--color-muted); }
+    .prose-ar h2 { font-family: var(--font-display); color: var(--color-text); font-size: 1.5rem; margin: 2rem 0 .5rem; }
+    .prose-ar p { margin: 0 0 1rem; }
+    .prose-ar ul { list-style: disc; padding-inline-start: 1.25rem; margin-bottom: 1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
