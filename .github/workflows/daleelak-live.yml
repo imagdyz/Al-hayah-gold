@@ -1,0 +1,66 @@
+name: Daleelak live price check
+
+# Calls the real getdaleelak.com feed and runs the site on its prices.
+on:
+  workflow_dispatch:
+  push:
+    branches: ['claude/**']
+    paths:
+      - 'web/app/PriceSources/**'
+      - 'web/app/Services/PriceFeed.php'
+      - 'web/tests/Feature/Daleelak*'
+      - '.github/workflows/daleelak-live.yml'
+  schedule:
+    - cron: '17 */6 * * *'
+
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: pdo_sqlite, intl, mbstring
+          coverage: none
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Raw feed (gold)
+        run: |
+          curl -sS -D headers.txt "https://getdaleelak.com/api/v1/feed.json?category=gold" -o gold.json || true
+          cat headers.txt
+          python3 -m json.tool gold.json | head -200 || head -c 3000 gold.json
+          curl -sS "https://getdaleelak.com/api/v1/openapi.json" -o openapi.json || true
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: daleelak-feed
+          path: |
+            web/gold.json
+            web/headers.txt
+            web/openapi.json
+
+      - name: Install
+        run: |
+          composer install --no-interaction --no-progress --prefer-dist
+          cp .env.example .env
+          php artisan key:generate
+          npm ci --no-audit --no-fund
+          npm run build
+
+      - name: Probe
+        run: GOLD_PRICE_SOURCE=daleelak php artisan prices:probe
+
+      - name: Live tests
+        run: DALEELAK_LIVE=1 php artisan test --group=live
+
+      - name: Full suite
+        run: php artisan test
