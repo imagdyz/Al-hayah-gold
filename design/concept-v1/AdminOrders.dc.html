@@ -70,7 +70,7 @@ a{color:#8A6A1F}a:hover{color:#5E4712}
 </div>
 <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px; color: #5E584E">
 <span>● اتعمل الحجز من التطبيق · [الوقت]</span>
-<span>● اتخصم الرصيد واتثبت السعر · [الوقت]</span>
+<span>● اتثبت السعر للعميل · [الوقت]</span>
 </div>
 <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 6px">
 <button type="button" style="min-height: 48px; border-radius: 999px; border: none; background: #12100C; color: #FFFFFF; font: inherit; font-weight: 700; cursor: pointer">القطعة جاهزة — ابعت للعميل</button>
@@ -100,10 +100,10 @@ class Component extends DCLogic {
       cancel: { st: 'ملغي', icon: '✕', style: 'background: #FBE9E7; color: #8C1D18;' }
     };
     const data = [
-      ['HG-2041', '[عميل] ••• 117', 'سلسلة مبرومة بدلاية', 'فرع [١]', 'بكرة · 1 ظ', 'new', '6.300 جم + المصنعية'],
+      ['HG-2041', '[عميل] ••• 117', 'سلسلة مبرومة بدلاية', 'فرع [١]', 'بكرة · 1 ظ', 'new', 'في الفرع'],
       ['HG-2038', '[عميل] ••• 552', 'خاتم سوليتير', 'فرع [٢]', 'النهارده · 7 م', 'ok', 'عربون [—]'],
       ['HG-2035', '[عميل] ••• 089', 'دبلة كلاسيك × 2', 'فرع [١]', 'النهارده · 5 م', 'ready', 'في الفرع'],
-      ['HG-2030', '[عميل] ••• 640', 'حلق دلّاية', 'فرع [٣]', 'امبارح · 2 ظ', 'done', 'رصيد ذهب'],
+      ['HG-2030', '[عميل] ••• 640', 'حلق دلّاية', 'فرع [٣]', 'امبارح · 2 ظ', 'done', 'عربون + الباقي في الفرع'],
       ['HG-2027', '[عميل] ••• 318', 'إسورة مضفّرة', 'فرع [٢]', 'امبارح · 6 م', 'cancel', '—'],
       ['HG-2024', '[عميل] ••• 905', 'طقم ناعم', 'فرع [١]', '[التاريخ]', 'done', 'في الفرع']
     ];

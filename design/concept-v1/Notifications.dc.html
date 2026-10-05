@@ -62,11 +62,11 @@ class Component extends DCLogic {
       { title: 'النهارده', items: [
         mk('price', 'السعر وصل للي طلبته', 'عيار 21 بقى 5,460 ج.م للجرام. تحب تشتري دلوقتي؟', 'من 5 دقايق', true, 'Prices.dc.html'),
         mk('order', 'قطعتك جاهزة في الفرع', 'سلسلة مبرومة بدلاية مستنياك في فرع [١] لحد [التاريخ].', 'من ساعة', true, 'ReserveDone.dc.html'),
-        mk('order', 'تم تنفيذ الادخار الشهري', 'اشترينا لك 0.320 جم عيار 24 بـ 2,000 ج.م.', '9 ص', false, 'AppWallet.dc.html')
+        mk('order', 'طلبك جاهز للاستلام', 'سبيكة 10 جم في فرع [١]. وري كود AH-2481 في الفرع.', '9 ص', false, 'AppOrders.dc.html')
       ] },
       { title: 'امبارح', items: [
         mk('news', 'وصل حديثاً', 'تشكيلة دبل جديدة عيار 21 في فرع [٢].', '7 م', false, 'AppShop.dc.html'),
-        mk('order', 'تم بيع 1.000 جم', '6,190 ج.م في طريقها لحسابك على إنستاباي.', '2 ظ', false, 'AppWallet.dc.html')
+        mk('order', 'معاد البيع اتأكد', 'مستنيينك بكرة 12 ظ في فرع [١] بذهبك القديم.', '2 ظ', false, 'AppOrders.dc.html')
       ] }
     ];
     const filter = (it) => t === 'all' || (t === 'price' && it.kind === 'price') || (t === 'orders' && it.kind === 'order');

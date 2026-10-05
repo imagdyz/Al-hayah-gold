@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
-<title>التطبيق — شراء ذهب</title>
+<title>التطبيق — اطلب سبائك وجنيهات</title>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -14,67 +14,75 @@ body{margin:0}
 a{color:#8A6A1F}a:hover{color:#5E4712}
 </style>
 </helmet>
-<div dir="rtl" style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F4F2EE; font-family: 'IBM Plex Sans Arabic', sans-serif; color: #1A1712; font-variant-numeric: tabular-nums">
-<div style="position: absolute; top: 0; left: 0; right: 0; bottom: 96px; overflow-y: auto; padding: 16px 20px 24px; box-sizing: border-box; display: flex; flex-direction: column; gap: 18px">
+<div dir="rtl" style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F6F3EE; font-family: 'IBM Plex Sans Arabic', sans-serif; color: #1A1712; font-variant-numeric: tabular-nums">
+<div style="position: absolute; top: 0; left: 0; right: 0; bottom: 104px; overflow-y: auto; padding: 16px 20px 24px; box-sizing: border-box; display: flex; flex-direction: column; gap: 18px">
 
 <div style="display: flex; align-items: center; justify-content: space-between">
-<a href="AppHome.dc.html" aria-label="رجوع" style="width: 44px; height: 44px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A1712" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></a>
-<b style="font-size: 18px">شراء ذهب</b>
+<a href="AppHome.dc.html" aria-label="رجوع" style="width: 44px; height: 44px; border-radius: 50%; background: #FFFFFF; border: 1px solid #ECE5D8; display: flex; align-items: center; justify-content: center; box-sizing: border-box"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A1712" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></a>
+<b style="font-family: 'El Messiri', serif; font-size: 20px">اطلب سبائك وجنيهات</b>
 <span style="width: 44px"></span>
 </div>
 
+<!-- selected item hero -->
+<div style="position: relative; height: 210px; border-radius: 26px; background: radial-gradient(circle at 50% 45%, #3A2E1A 0%, #1A1610 60%, #12100C 100%); display: flex; align-items: center; justify-content: center; overflow: hidden">
+<img src="{{sel.img}}" alt="{{sel.alt}}" style="width: 190px; height: 190px; object-fit: contain">
+<span style="position: absolute; top: 14px; inset-inline-start: 14px; font-size: 12px; font-weight: 600; color: #E6C77A; border: 1px solid rgba(230,199,122,.35); border-radius: 999px; padding: 4px 10px">{{sel.spec}}</span>
+<span style="position: absolute; bottom: 12px; inset-inline-end: 14px; font-size: 11px; color: #7D7466">صورة توضيحية</span>
+</div>
+
 <div style="display: flex; flex-direction: column; gap: 10px">
-<span style="font-size: 14px; font-weight: 600">اختار العيار</span>
-<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
-<sc-for list="{{karats}}" as="k" hint-placeholder-count="2">
-<button type="button" onClick="{{k.pick}}" style="{{k.style}}"><b style="font-size: 17px">عيار {{k.id}}</b><span style="font-size: 12px; opacity: 0.8">{{k.hint}}</span><span style="font-size: 15px; font-weight: 700">{{k.price}} ج.م/جم</span></button>
-</sc-for>
-</div>
-</div>
-
-<div style="display: flex; gap: 6px; background: #E9E5DD; border-radius: 999px; padding: 4px">
-<button type="button" onClick="{{byGrams}}" style="{{gStyle}}">بالجرام</button>
-<button type="button" onClick="{{byMoney}}" style="{{mStyle}}">بالمبلغ</button>
-</div>
-
-<div style="background: #FFFFFF; border-radius: 24px; padding: 24px 20px; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center">
-<span style="font-size: 13px; color: #5E584E">{{mainLabel}}</span>
-<b style="font-size: 48px; line-height: 1.1; letter-spacing: -1px">{{mainValue}}</b>
-<span style="font-size: 15px; color: #8A6A1F; font-weight: 600">{{subValue}}</span>
-</div>
-
+<span style="font-size: 14px; font-weight: 600">اختار الوزن</span>
 <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px">
-<sc-for list="{{chips}}" as="c" hint-placeholder-count="4">
-<button type="button" onClick="{{c.pick}}" style="{{c.style}}">{{c.label}}</button>
+<sc-for list="{{items}}" as="i" hint-placeholder-count="7">
+<button type="button" onClick="{{i.pick}}" style="{{i.style}}"><img src="{{i.img}}" alt="" style="width: 44px; height: 44px; object-fit: contain"><span style="font-size: 12px; font-weight: 700">{{i.short}}</span></button>
 </sc-for>
 </div>
-
-<div style="display: flex; align-items: center; gap: 10px; background: #F1E6CC; border-radius: 14px; padding: 12px 14px; font-size: 14px">
-<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8A6A1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
-<span>السعر مثبت لك لمدة <b>00:45</b> ثانية</span>
 </div>
 
-<div style="background: #FFFFFF; border-radius: 20px; padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; font-size: 14px">
-<div style="display: flex; justify-content: space-between"><span style="color: #5E584E">سعر الجرام</span><b>{{priceTxt}} ج.م</b></div>
-<div style="display: flex; justify-content: space-between"><span style="color: #5E584E">الكمية</span><b>{{gramsTxt}} جم</b></div>
-<div style="display: flex; justify-content: space-between"><span style="color: #5E584E">رسوم الخدمة</span><b>[حسب السياسة]</b></div>
-<div style="height: 1px; background: #E4DFD6"></div>
-<div style="display: flex; justify-content: space-between; font-size: 16px"><b>الإجمالي</b><b style="color: #8A6A1F">{{totalTxt}} ج.م</b></div>
+<div style="display: flex; align-items: center; justify-content: space-between; background: #FFFFFF; border: 1px solid #ECE5D8; border-radius: 18px; padding: 10px 12px 10px 16px">
+<span style="display: flex; flex-direction: column"><b style="font-size: 15px">الكمية</b><span style="font-size: 12px; color: #5E584E">{{sel.name}}</span></span>
+<div style="display: flex; align-items: center; gap: 6px">
+<button type="button" aria-label="زوّد" onClick="{{inc}}" style="width: 44px; height: 44px; border-radius: 14px; border: none; background: #12100C; color: #E6C77A; font: inherit; font-size: 22px; cursor: pointer">+</button>
+<b style="min-width: 36px; text-align: center; font-size: 20px">{{qty}}</b>
+<button type="button" aria-label="قلّل" onClick="{{dec}}" style="width: 44px; height: 44px; border-radius: 14px; border: 1px solid #DDD5C6; background: #FFFFFF; color: #1A1712; font: inherit; font-size: 22px; cursor: pointer">−</button>
+</div>
 </div>
 
 <div style="display: flex; flex-direction: column; gap: 10px">
-<span style="font-size: 14px; font-weight: 600">طريقة الدفع</span>
-<div style="display: flex; gap: 8px; flex-wrap: wrap; font-size: 13px; font-weight: 600">
-<span style="border: 2px solid #12100C; background: #FFFFFF; border-radius: 12px; padding: 10px 14px">بطاقة بنكية</span>
-<span style="border: 1px solid #D6CFC2; background: #FFFFFF; border-radius: 12px; padding: 10px 14px">إنستاباي</span>
-<span style="border: 1px solid #D6CFC2; background: #FFFFFF; border-radius: 12px; padding: 10px 14px">محفظة موبايل</span>
-<span style="border: 1px solid #D6CFC2; background: #FFFFFF; border-radius: 12px; padding: 10px 14px">كاش في الفرع</span>
-</div>
+<span style="font-size: 14px; font-weight: 600">فرع الاستلام</span>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<sc-for list="{{branches}}" as="b" hint-placeholder-count="3">
+<button type="button" onClick="{{b.pick}}" style="{{b.style}}"><span style="display: flex; flex-direction: column; align-items: flex-start; gap: 2px"><b style="font-size: 14px">{{b.name}}</b><span style="font-size: 12px; color: #5E584E">{{b.hint}}</span></span><span style="{{b.dot}}"></span></button>
+</sc-for>
 </div>
 </div>
 
-<div style="position: absolute; left: 0; right: 0; bottom: 0; height: 96px; background: #FFFFFF; border-top: 1px solid #E4DFD6; padding: 16px 20px; box-sizing: border-box">
-<a href="BuySuccess.dc.html" style="display: flex; align-items: center; justify-content: center; height: 56px; border-radius: 999px; background: #12100C; color: #FFFFFF; text-decoration: none; font-weight: 700; font-size: 17px">تأكيد شراء {{gramsTxt}} جم</a>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span style="font-size: 14px; font-weight: 600">الدفع</span>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<sc-for list="{{pays}}" as="p" hint-placeholder-count="2">
+<button type="button" onClick="{{p.pick}}" style="{{p.style}}"><b style="font-size: 14px">{{p.label}}</b><span style="font-size: 12px; opacity: .8">{{p.hint}}</span></button>
+</sc-for>
+</div>
+</div>
+
+<div style="display: flex; align-items: center; gap: 10px; background: #FFF1D6; border-radius: 14px; padding: 12px 14px; font-size: 14px; color: #5C3D00">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8A5A00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>
+<span>السعر بيتثبّت لك لحد [مدة تثبيت السعر] من التأكيد</span>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #ECE5D8; border-radius: 22px; padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; font-size: 14px">
+<div style="display: flex; justify-content: space-between"><span style="color: #5E584E">{{sel.name}} × {{qty}}</span><b>{{subTxt}} ج.م</b></div>
+<div style="display: flex; justify-content: space-between"><span style="color: #5E584E">المصنعية والدمغة</span><b>داخلة في السعر</b></div>
+<div style="height: 1px; background: #ECE5D8"></div>
+<div style="display: flex; justify-content: space-between; align-items: baseline"><b style="font-size: 16px">الإجمالي</b><b style="font-family: 'El Messiri', serif; font-size: 26px; color: #8A6A1F">{{subTxt}} ج.م</b></div>
+<span style="font-size: 13px; color: #5E584E">{{payNote}}</span>
+</div>
+</div>
+
+<div style="position: absolute; left: 0; right: 0; bottom: 0; height: 104px; background: rgba(255,255,255,.92); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border-top: 1px solid #ECE5D8; padding: 12px 20px 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 6px">
+<a href="BuySuccess.dc.html" style="display: flex; align-items: center; justify-content: center; height: 56px; border-radius: 999px; background: linear-gradient(180deg, #EACD80 0%, #C8A04B 55%, #AE8834 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,.5), 0 10px 22px -10px rgba(168,133,58,.9); color: #12100C; text-decoration: none; font-weight: 700; font-size: 17px">{{cta}}</a>
+<span style="text-align: center; font-size: 11px; color: #5E584E">أسعار توضيحية · السعر النهائي وقت التأكيد</span>
 </div>
 </div>
 </x-dc>
@@ -82,47 +90,57 @@ a{color:#8A6A1F}a:hover{color:#5E4712}
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = { karat: '24', mode: 'grams', grams: 5, money: 5000 };
+    this.state = { item: 'bar10', qty: 1, branch: 'b1', pay: 'branch' };
   }
   renderVals() {
     const s = this.state;
-    const prices = { '24': 6240, '21': 5460 };
-    const price = prices[s.karat];
+    const B = '/_blob/';
     const fmt = (n) => Math.round(n).toLocaleString('en-US');
-    const grams = s.mode === 'grams' ? s.grams : s.money / price;
-    const total = s.mode === 'grams' ? s.grams * price : s.money;
-    const karatBase = 'display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding: 14px; border-radius: 18px; font: inherit; text-align: start; cursor: pointer; min-height: 44px;';
-    const karats = [
-      { id: '24', hint: 'رصيد وسبائك' },
-      { id: '21', hint: 'للتبديل بمشغولات' }
-    ].map((k) => ({
-      ...k,
-      price: fmt(prices[k.id]),
-      pick: () => this.setState({ karat: k.id }),
-      style: karatBase + (s.karat === k.id ? ' background: #12100C; color: #F4F2EE; border: 2px solid #12100C;' : ' background: #FFFFFF; color: #1A1712; border: 2px solid #E4DFD6;')
+    const list = [
+      { id: 'bar1', short: '1 جم', name: 'سبيكة 1 جم', price: 6310, img: B + 'cc8887e93b43b05f9774d3c1859b9352', spec: 'عيار 24 · 999.9' },
+      { id: 'bar2_5', short: '2.5 جم', name: 'سبيكة 2.5 جم', price: 15775, img: B + '29e380351cc8d8048bf7803bc8f94f61', spec: 'عيار 24 · 999.9' },
+      { id: 'bar5', short: '5 جم', name: 'سبيكة 5 جم', price: 31550, img: B + '827dcd757353b5ea2ac66c05fa14d1d5', spec: 'عيار 24 · 999.9' },
+      { id: 'bar10', short: '10 جم', name: 'سبيكة 10 جم', price: 63100, img: B + 'aa6953e04c8669db91470f39301e624e', spec: 'عيار 24 · 999.9' },
+      { id: 'bar20', short: '20 جم', name: 'سبيكة 20 جم', price: 126200, img: B + '82fb26bdca3ee51d932c6b3c2be1083a', spec: 'عيار 24 · 999.9' },
+      { id: 'bar50', short: '50 جم', name: 'سبيكة 50 جم', price: 315500, img: B + '347eb6e7dbeb9d75ee1c465cc0aaf754', spec: 'عيار 24 · 999.9' },
+      { id: 'coin', short: 'جنيه', name: 'جنيه ذهب', price: 44300, img: B + '401f751c774d701b5cad69baa1026632', spec: '8 جم · عيار 21' }
+    ];
+    const sel = list.find((x) => x.id === s.item);
+    const itemBase = 'display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 8px 4px; border-radius: 16px; font: inherit; color: #1A1712; cursor: pointer; min-height: 76px;';
+    const items = list.map((x) => Object.assign({}, x, {
+      pick: () => this.setState({ item: x.id }),
+      style: itemBase + (x.id === s.item ? ' background: #FFFFFF; border: 2px solid #C8A04B; box-shadow: 0 8px 18px -12px rgba(168,133,58,.9);' : ' background: #FFFFFF; border: 1px solid #ECE5D8;')
     }));
-    const segBase = 'flex: 1; min-height: 44px; border: none; border-radius: 999px; font: inherit; font-size: 15px; font-weight: 600; cursor: pointer;';
-    const on = ' background: #FFFFFF; color: #1A1712;';
-    const off = ' background: transparent; color: #5E584E;';
-    const chipBase = 'min-height: 44px; border-radius: 12px; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer;';
-    const chipOn = ' background: #C8A04B; color: #12100C; border: 1px solid #C8A04B;';
-    const chipOff = ' background: #FFFFFF; color: #1A1712; border: 1px solid #E4DFD6;';
-    const chips = s.mode === 'grams'
-      ? [0.5, 1, 5, 10].map((g) => ({ label: g + ' جم', pick: () => this.setState({ grams: g }), style: chipBase + (s.grams === g ? chipOn : chipOff) }))
-      : [1000, 2500, 5000, 10000].map((m) => ({ label: fmt(m), pick: () => this.setState({ money: m }), style: chipBase + (s.money === m ? chipOn : chipOff) }));
+    const brBase = 'display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; border-radius: 16px; font: inherit; color: #1A1712; cursor: pointer; text-align: start; min-height: 56px;';
+    const branches = [
+      { id: 'b1', name: 'فرع [١] — [المنطقة]', hint: 'متوفر · جاهز خلال ساعة' },
+      { id: 'b2', name: 'فرع [٢] — [المنطقة]', hint: 'متوفر · جاهز بكرة' },
+      { id: 'b3', name: 'فرع [٣] — [المنطقة]', hint: 'تحويل خلال [مدة]' }
+    ].map((b) => Object.assign({}, b, {
+      pick: () => this.setState({ branch: b.id }),
+      style: brBase + (b.id === s.branch ? ' background: #FFFFFF; border: 2px solid #12100C;' : ' background: #FFFFFF; border: 1px solid #ECE5D8;'),
+      dot: 'width: 20px; height: 20px; border-radius: 50%; box-sizing: border-box; ' + (b.id === s.branch ? 'border: 6px solid #12100C;' : 'border: 2px solid #CFC4B1;')
+    }));
+    const payBase = 'display: flex; flex-direction: column; align-items: flex-start; gap: 2px; padding: 12px 14px; border-radius: 16px; font: inherit; cursor: pointer; text-align: start; min-height: 64px;';
+    const pays = [
+      { id: 'branch', label: 'ادفع في الفرع', hint: 'كاش أو كارت عند الاستلام' },
+      { id: 'deposit', label: 'عربون أونلاين', hint: '[النسبة]% والباقي في الفرع' }
+    ].map((p) => Object.assign({}, p, {
+      pick: () => this.setState({ pay: p.id }),
+      style: payBase + (p.id === s.pay ? ' background: #12100C; color: #F6F3EE; border: 2px solid #12100C;' : ' background: #FFFFFF; color: #1A1712; border: 1px solid #ECE5D8;')
+    }));
+    const sub = sel.price * s.qty;
     return {
-      karats,
-      chips,
-      byGrams: () => this.setState({ mode: 'grams' }),
-      byMoney: () => this.setState({ mode: 'money' }),
-      gStyle: segBase + (s.mode === 'grams' ? on : off),
-      mStyle: segBase + (s.mode === 'money' ? on : off),
-      mainLabel: s.mode === 'grams' ? 'الكمية بالجرام' : 'المبلغ بالجنيه',
-      mainValue: s.mode === 'grams' ? grams + ' جم' : fmt(total) + ' ج.م',
-      subValue: s.mode === 'grams' ? '≈ ' + fmt(total) + ' ج.م' : '≈ ' + grams.toFixed(3) + ' جم عيار ' + s.karat,
-      priceTxt: fmt(price),
-      gramsTxt: s.mode === 'grams' ? String(grams) : grams.toFixed(3),
-      totalTxt: fmt(total)
+      sel: Object.assign({}, sel, { alt: sel.name + ' (صورة توضيحية)' }),
+      items,
+      qty: s.qty,
+      inc: () => this.setState({ qty: Math.min(s.qty + 1, 20) }),
+      dec: () => this.setState({ qty: Math.max(s.qty - 1, 1) }),
+      branches,
+      pays,
+      subTxt: fmt(sub),
+      payNote: s.pay === 'branch' ? 'هتدفع الإجمالي في الفرع وقت الاستلام.' : 'هتدفع العربون دلوقتي، والباقي في الفرع.',
+      cta: s.pay === 'branch' ? 'ثبّت السعر واطلب' : 'ادفع العربون واطلب'
     };
   }
 }

@@ -2,82 +2,41 @@
   "v": 3,
   "attachments": {},
   "boards": {
-    "Brand.dc.html": {
-      "h": 844,
-      "title": "الهوية المبدئية",
-      "w": 880,
+    "AdminInventory.dc.html": {
+      "expand": "fill",
+      "h": 1100,
+      "is_interactive": true,
+      "title": "لوحة التحكم — المنتجات والمخزون",
+      "w": 1440,
+      "x": 3040,
+      "y": 9540
+    },
+    "AdminOrders.dc.html": {
+      "expand": "fill",
+      "h": 1000,
+      "is_interactive": true,
+      "title": "لوحة التحكم — الحجوزات والطلبات",
+      "w": 1440,
+      "x": 4560,
+      "y": 9540
+    },
+    "AdminOverview.dc.html": {
+      "expand": "fill",
+      "h": 1300,
+      "is_interactive": true,
+      "title": "لوحة التحكم — نظرة عامة",
+      "w": 1440,
       "x": 0,
-      "y": 0
+      "y": 9540
     },
-    "Logo.dc.html": {
-      "h": 48,
-      "title": "اللوجو الموحّد (مكوّن مشترك)",
-      "w": 200,
-      "x": 0,
-      "y": 900
-    },
-    "SplashDark.dc.html": {
-      "h": 844,
+    "AdminPrices.dc.html": {
+      "expand": "fill",
+      "h": 1200,
       "is_interactive": true,
-      "radius": 36,
-      "title": "سبلاش — داكن (الأساسي)",
-      "w": 390,
-      "x": 960,
-      "y": 0
-    },
-    "SplashGold.dc.html": {
-      "h": 844,
-      "is_interactive": true,
-      "radius": 36,
-      "title": "سبلاش — ذهبي (بديل)",
-      "w": 390,
-      "x": 1430,
-      "y": 0
-    },
-    "AppHome.dc.html": {
-      "h": 844,
-      "is_interactive": true,
-      "radius": 36,
-      "title": "التطبيق — الرئيسية",
-      "w": 390,
-      "x": 0,
-      "y": 1360
-    },
-    "AppBuy.dc.html": {
-      "h": 844,
-      "is_interactive": true,
-      "radius": 36,
-      "title": "التطبيق — شراء ذهب",
-      "w": 390,
-      "x": 940,
-      "y": 1360
-    },
-    "AppShop.dc.html": {
-      "h": 844,
-      "is_interactive": true,
-      "radius": 36,
-      "title": "التطبيق — المجوهرات",
-      "w": 390,
-      "x": 0,
-      "y": 2700
-    },
-    "AppProduct.dc.html": {
-      "h": 844,
-      "is_interactive": true,
-      "radius": 36,
-      "title": "التطبيق — تفاصيل قطعة",
-      "w": 390,
-      "x": 470,
-      "y": 2700
-    },
-    "AppWallet.dc.html": {
-      "h": 844,
-      "is_interactive": true,
-      "radius": 36,
-      "title": "التطبيق — محفظتي",
-      "w": 390,
-      "x": 2350,
-      "y": 1360
+      "title": "لوحة التحكم — الأسعار والرسوم",
+      "w": 1440,
+      "x": 1520,
+      "y": 9540
     },
     "AppBranches.dc.html": {
       "h": 844,
@@ -88,22 +47,65 @@
       "x": 1880,
       "y": 2700
     },
-    "Main.dc.html": {
-      "expand": "fill",
-      "h": 4400,
-      "is_interactive": true,
-      "title": "الموقع — الصفحة الرئيسية",
-      "w": 1440,
-      "x": 0,
-      "y": 4040
-    },
-    "Onboarding.dc.html": {
+    "AppBuy.dc.html": {
       "h": 844,
       "is_interactive": true,
       "radius": 36,
-      "title": "التطبيق — التعريف",
+      "title": "التطبيق — اطلب سبائك وجنيهات",
       "w": 390,
-      "x": 1900,
+      "x": 940,
+      "y": 1360
+    },
+    "AppHome.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "التطبيق — الرئيسية",
+      "w": 390,
+      "x": 0,
+      "y": 1360
+    },
+    "AppProduct.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "التطبيق — تفاصيل قطعة",
+      "w": 390,
+      "x": 470,
+      "y": 2700
+    },
+    "AppShop.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "التطبيق — المجوهرات",
+      "w": 390,
+      "x": 0,
+      "y": 2700
+    },
+    "Brand.dc.html": {
+      "h": 844,
+      "title": "الهوية المبدئية",
+      "w": 880,
+      "x": 0,
+      "y": 0
+    },
+    "BuySuccess.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "التطبيق — تم الطلب",
+      "w": 390,
+      "x": 1410,
+      "y": 1360
+    },
+    "Kyc.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "التطبيق — توثيق الحساب",
+      "w": 390,
+      "x": 3310,
       "y": 0
     },
     "Login.dc.html": {
@@ -115,6 +117,40 @@
       "x": 2370,
       "y": 0
     },
+    "Logo.dc.html": {
+      "h": 48,
+      "title": "اللوجو الموحّد (مكوّن مشترك)",
+      "w": 200,
+      "x": 0,
+      "y": 900
+    },
+    "Main.dc.html": {
+      "expand": "fill",
+      "h": 5200,
+      "is_interactive": true,
+      "title": "الموقع — الصفحة الرئيسية",
+      "w": 1440,
+      "x": 0,
+      "y": 4040
+    },
+    "Notifications.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "التطبيق — الإشعارات",
+      "w": 390,
+      "x": 2820,
+      "y": 1360
+    },
+    "Onboarding.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "التطبيق — التعريف",
+      "w": 390,
+      "x": 1900,
+      "y": 0
+    },
     "Otp.dc.html": {
       "h": 844,
       "is_interactive": true,
@@ -122,15 +158,6 @@
       "title": "التطبيق — كود التأكيد",
       "w": 390,
       "x": 2840,
-      "y": 0
-    },
-    "Kyc.dc.html": {
-      "h": 844,
-      "is_interactive": true,
-      "radius": 36,
-      "title": "التطبيق — توثيق الحساب",
-      "w": 390,
-      "x": 3310,
       "y": 0
     },
     "Prices.dc.html": {
@@ -142,58 +169,13 @@
       "x": 470,
       "y": 1360
     },
-    "BuySuccess.dc.html": {
-      "h": 844,
-      "is_interactive": true,
-      "radius": 36,
-      "title": "التطبيق — تم الشراء",
-      "w": 390,
-      "x": 1410,
-      "y": 1360
-    },
-    "Sell.dc.html": {
-      "h": 844,
-      "is_interactive": true,
-      "radius": 36,
-      "title": "التطبيق — بيع ذهب",
-      "w": 390,
-      "x": 1880,
-      "y": 1360
-    },
-    "SavingsPlan.dc.html": {
-      "h": 844,
-      "is_interactive": true,
-      "radius": 36,
-      "title": "التطبيق — خطة الادخار",
-      "w": 390,
-      "x": 2820,
-      "y": 1360
-    },
-    "Pickup.dc.html": {
-      "h": 844,
-      "is_interactive": true,
-      "radius": 36,
-      "title": "التطبيق — استلام الذهب",
-      "w": 390,
-      "x": 3290,
-      "y": 1360
-    },
-    "Notifications.dc.html": {
-      "h": 844,
-      "is_interactive": true,
-      "radius": 36,
-      "title": "التطبيق — الإشعارات",
-      "w": 390,
-      "x": 3760,
-      "y": 1360
-    },
     "Profile.dc.html": {
       "h": 844,
       "is_interactive": true,
       "radius": 36,
       "title": "التطبيق — حسابي",
       "w": 390,
-      "x": 4230,
+      "x": 3290,
       "y": 1360
     },
     "Reserve.dc.html": {
@@ -214,59 +196,59 @@
       "x": 1410,
       "y": 2700
     },
-    "WebShop.dc.html": {
-      "expand": "fill",
-      "h": 2200,
+    "Sell.dc.html": {
+      "h": 844,
       "is_interactive": true,
-      "title": "الموقع — المجوهرات",
-      "w": 1440,
-      "x": 1520,
-      "y": 4040
+      "radius": 36,
+      "title": "التطبيق — بيع ذهبك في الفرع",
+      "w": 390,
+      "x": 2350,
+      "y": 1360
+    },
+    "SplashDark.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "سبلاش — داكن (الأساسي)",
+      "w": 390,
+      "x": 960,
+      "y": 0
+    },
+    "SplashGold.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "سبلاش — ذهبي (بديل)",
+      "w": 390,
+      "x": 1430,
+      "y": 0
     },
     "WebProduct.dc.html": {
       "expand": "fill",
-      "h": 1700,
+      "h": 1900,
       "is_interactive": true,
       "title": "الموقع — تفاصيل قطعة",
       "w": 1440,
       "x": 3040,
       "y": 4040
     },
-    "AdminOverview.dc.html": {
+    "WebShop.dc.html": {
       "expand": "fill",
-      "h": 1300,
+      "h": 2300,
       "is_interactive": true,
-      "title": "لوحة التحكم — نظرة عامة",
-      "w": 1440,
-      "x": 0,
-      "y": 8940
-    },
-    "AdminPrices.dc.html": {
-      "expand": "fill",
-      "h": 1200,
-      "is_interactive": true,
-      "title": "لوحة التحكم — الأسعار والرسوم",
+      "title": "الموقع — المجوهرات",
       "w": 1440,
       "x": 1520,
-      "y": 8940
+      "y": 4040
     },
-    "AdminInventory.dc.html": {
-      "expand": "fill",
-      "h": 1100,
+    "AppOrders.dc.html": {
+      "h": 844,
       "is_interactive": true,
-      "title": "لوحة التحكم — المنتجات والمخزون",
-      "w": 1440,
-      "x": 3040,
-      "y": 8940
-    },
-    "AdminOrders.dc.html": {
-      "expand": "fill",
-      "h": 1000,
-      "is_interactive": true,
-      "title": "لوحة التحكم — الحجوزات والطلبات",
-      "w": 1440,
-      "x": 4560,
-      "y": 8940
+      "radius": 36,
+      "title": "التطبيق — طلباتي",
+      "w": 390,
+      "x": 1880,
+      "y": 1360
     }
   },
   "createdOnFiles": {
@@ -282,10 +264,18 @@
       "fill": "orange",
       "maxH": 700,
       "size": 40,
-      "text": "الفكرة الأساسية اللي بتميّزنا عن تطبيقات الادخار:\n\nالذهب اللي العميل بيدّخره في التطبيق مش مجرد رصيد — يقدر يستلمه سبيكة من أي فرع، أو يبدّله بقطعة مجوهرات حقيقية من المعروض في محلاتنا ويدفع المصنعية بس.\n\nكل الأسعار والأوزان وأسماء الفروع في التصور ده أرقام توضيحية، والأماكن اللي بين [ ] محتاجة بيانات حقيقية منك.",
+      "text": "الفكرة اللي بتميّزنا عن تطبيقات الادخار:\n\nإحنا محل ذهب حقيقي ليه فروع. السبائك والجنيهات بتتطلب أونلاين بسعر اللحظة وتتستلم مختومة من الفرع، والمجوهرات المعروضة موجودة فعلاً في المحلات وتقدر تحجزها قبل ما تنزل.\n\nمفيش محفظة ولا رصيد ذهب جوه التطبيق.\n\nصور المنتجات معمولة 3D كصور توضيحية لحد تصوير المحل. الأسعار والأوزان وأسماء الفروع توضيحية، والأماكن اللي بين [ ] محتاجة بيانات حقيقية.",
       "w": 520,
       "x": 3780,
       "y": 0
+    },
+    "rowAdmin": {
+      "kind": "title1",
+      "maxW": 6000,
+      "text": "لوحة تحكم الفروع",
+      "w": 240,
+      "x": 0,
+      "y": 9280
     },
     "rowApp": {
       "kind": "title1",
@@ -294,6 +284,22 @@
       "w": 240,
       "x": 0,
       "y": -280
+    },
+    "rowBuy": {
+      "kind": "title1",
+      "maxW": 3680,
+      "text": "التطبيق — الأسعار والطلبات",
+      "w": 240,
+      "x": 0,
+      "y": 1100
+    },
+    "rowShop": {
+      "kind": "title1",
+      "maxW": 2270,
+      "text": "التطبيق — المجوهرات والفروع",
+      "w": 240,
+      "x": 0,
+      "y": 2440
     },
     "rowWeb": {
       "kind": "title1",
@@ -311,27 +317,6 @@
       "w": 860,
       "x": 960,
       "y": 900
-    },
-    "rowBuy": {
-      "kind": "title1",
-      "text": "التطبيق — الشراء والادخار",
-      "x": 0,
-      "y": 1100,
-      "maxW": 4620
-    },
-    "rowShop": {
-      "kind": "title1",
-      "text": "التطبيق — المجوهرات والفروع",
-      "x": 0,
-      "y": 2440,
-      "maxW": 2270
-    },
-    "rowAdmin": {
-      "kind": "title1",
-      "text": "لوحة تحكم الفروع",
-      "x": 0,
-      "y": 8680,
-      "maxW": 6000
     }
   },
   "order": [
@@ -347,10 +332,8 @@
     "Prices.dc.html",
     "AppBuy.dc.html",
     "BuySuccess.dc.html",
+    "AppOrders.dc.html",
     "Sell.dc.html",
-    "AppWallet.dc.html",
-    "SavingsPlan.dc.html",
-    "Pickup.dc.html",
     "Notifications.dc.html",
     "Profile.dc.html",
     "AppShop.dc.html",

@@ -14,7 +14,7 @@ body{margin:0}
 </style>
 </helmet>
 <div dir="rtl" style="{{rootStyle}}">
-<svg width="{{size}}" height="{{size}}" viewBox="0 0 48 48" fill="none" stroke="{{markColor}}" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true" style="flex: none; display: block"><rect x="11" y="11" width="26" height="26"></rect><rect x="11" y="11" width="26" height="26" transform="rotate(45 24 24)"></rect><circle cx="24" cy="24" r="5.5"></circle></svg>
+<svg width="{{size}}" height="{{size}}" viewBox="0 0 48 48" fill="none" stroke="{{markColor}}" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true" style="flex: none; display: block"><defs><linearGradient id="hgLogoGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F3DE9C"></stop><stop offset=".45" stop-color="#C8A04B"></stop><stop offset=".7" stop-color="#9C7A2C"></stop><stop offset="1" stop-color="#E6C77A"></stop></linearGradient></defs><rect x="11" y="11" width="26" height="26"></rect><rect x="11" y="11" width="26" height="26" transform="rotate(45 24 24)"></rect><circle cx="24" cy="24" r="5.5"></circle></svg>
 <sc-if value="{{showText}}" hint-placeholder-val="{{ true }}">
 <span style="{{textStyle}}"><span style="{{nameStyle}}">الحياة جولد</span><span dir="ltr" style="{{latinStyle}}">AL HAYAH GOLD</span></span>
 </sc-if>
@@ -28,7 +28,7 @@ class Component extends DCLogic {
     const layout = this.props.layout ?? 'horizontal';
     const tones = {
       onLight: { mark: '#8A6A1F', name: '#12100C', latin: '#6B6458' },
-      onDark: { mark: '#C8A04B', name: '#F4F2EE', latin: '#C8A04B' },
+      onDark: { mark: 'url(#hgLogoGold)', name: '#F4F2EE', latin: '#C8A04B' },
       onGold: { mark: '#12100C', name: '#12100C', latin: '#12100C' }
     };
     const t = tones[tone] || tones.onLight;

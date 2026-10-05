@@ -10,105 +10,148 @@
 <helmet>
 <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;600;700&amp;family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 <style>
-body{margin:0;background:#F4F2EE}
+body{margin:0;background:#F6F3EE}
 a{color:#8A6A1F}a:hover{color:#5E4712}
+a:focus-visible,button:focus-visible{outline:2px solid #C8A04B;outline-offset:3px}
+.hg-btn{background:linear-gradient(180deg,#EACD80 0%,#C8A04B 55%,#AE8834 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.55),0 10px 24px -10px rgba(168,133,58,.9);color:#12100C}
+.hg-btn:hover{filter:brightness(1.06);color:#12100C}
+.hg-ghost:hover{background:rgba(200,160,75,.12);border-color:#C8A04B}
+.hg-nav a:hover{color:#E6C77A}
+.hg-gold{background:linear-gradient(100deg,#B08A36 0%,#8A6A1F 50%,#B08A36 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hg-lift{transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s ease}
+.hg-lift:hover{transform:translateY(-4px);box-shadow:0 28px 56px -28px rgba(60,44,12,.5)}
+@media (prefers-reduced-motion: reduce){.hg-lift{transition:none}}
 </style>
 </helmet>
-<div dir="rtl" style="font-family: 'IBM Plex Sans Arabic', sans-serif; color: #1A1712; background: #F4F2EE; font-variant-numeric: tabular-nums">
+<div dir="rtl" style="font-family: 'IBM Plex Sans Arabic', 'Segoe UI', Tahoma, sans-serif; color: #1A1712; background: #F6F3EE; font-variant-numeric: tabular-nums; font-size: 16px">
 
-<header style="background: #FFFFFF; border-bottom: 1px solid #E4DFD6">
-<div style="max-width: 1200px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 32px">
-<a href="Main.dc.html" aria-label="الحياة جولد — الرئيسية" style="display: flex; align-items: center; text-decoration: none"><dc-import name="Logo" size="40" tone="onLight" layout="horizontal" hint-size="200px,48px"></dc-import></a>
-<nav aria-label="القائمة الرئيسية" style="display: flex; flex-wrap: wrap; gap: 4px 24px; font-size: 15px; font-weight: 500">
-<a href="Main.dc.html#prices" style="color: #1A1712; text-decoration: none; padding: 10px 0">أسعار الذهب</a>
-<a href="WebShop.dc.html" aria-current="page" style="color: #8A6A1F; text-decoration: none; padding: 10px 0; font-weight: 700; border-bottom: 2px solid #C8A04B">المجوهرات</a>
-<a href="Main.dc.html#save" style="color: #1A1712; text-decoration: none; padding: 10px 0">ادّخر ذهب</a>
-<a href="Main.dc.html#branches" style="color: #1A1712; text-decoration: none; padding: 10px 0">الفروع</a>
+<header style="background: #12100C; color: #E9E2D3">
+<div style="max-width: 1240px; margin: 0 auto; padding: 16px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 14px 36px">
+<a href="Main.dc.html" aria-label="الحياة جولد — الرئيسية" style="display: flex; align-items: center; text-decoration: none"><dc-import name="Logo" size="42" tone="onDark" layout="horizontal" hint-size="210px,50px"></dc-import></a>
+<nav class="hg-nav" aria-label="القائمة الرئيسية" style="display: flex; flex-wrap: wrap; gap: 4px 28px; font-size: 15px; font-weight: 500">
+<a href="Main.dc.html#prices" style="color: #E9E2D3; text-decoration: none; padding: 10px 0">أسعار الذهب</a>
+<a href="Main.dc.html#bullion" style="color: #E9E2D3; text-decoration: none; padding: 10px 0">سبائك وجنيهات</a>
+<a href="WebShop.dc.html" aria-current="page" style="color: #E6C77A; text-decoration: none; padding: 10px 0; font-weight: 700; box-shadow: inset 0 -2px 0 #C8A04B">المجوهرات</a>
+<a href="Main.dc.html#sell" style="color: #E9E2D3; text-decoration: none; padding: 10px 0">بيع ذهبك</a>
+<a href="Main.dc.html#branches" style="color: #E9E2D3; text-decoration: none; padding: 10px 0">الفروع</a>
 </nav>
 <div style="margin-inline-start: auto; display: flex; gap: 10px">
-<a href="#login" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 999px; border: 1px solid #D6CFC2; color: #1A1712; text-decoration: none; font-weight: 600; font-size: 15px">تسجيل الدخول</a>
-<a href="Main.dc.html#app" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border-radius: 999px; background: #C8A04B; color: #12100C; text-decoration: none; font-weight: 700; font-size: 15px">حمّل التطبيق</a>
+<a class="hg-ghost" href="#login" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 999px; border: 1px solid #4A3F2A; color: #F4F2EE; text-decoration: none; font-weight: 600; font-size: 15px">تسجيل الدخول</a>
+<a class="hg-btn" href="Main.dc.html#app" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border-radius: 999px; text-decoration: none; font-weight: 700; font-size: 15px">حمّل التطبيق</a>
 </div>
 </div>
 </header>
 
-<main style="max-width: 1200px; margin: 0 auto; padding: 28px 24px 64px; display: flex; flex-direction: column; gap: 32px">
-<nav aria-label="مسار الصفحة" style="font-size: 14px; color: #5E584E"><a href="Main.dc.html">الرئيسية</a> / <a href="WebShop.dc.html">المجوهرات</a> / <span>سلسلة مبرومة بدلاية</span></nav>
+<main style="max-width: 1240px; margin: 0 auto; padding: 24px 24px 80px; display: flex; flex-direction: column; gap: 40px">
+<nav aria-label="مسار الصفحة" style="font-size: 14px; color: #5E584E; display: flex; flex-wrap: wrap; gap: 8px"><a href="Main.dc.html" style="text-decoration: none">الرئيسية</a><span aria-hidden="true">/</span><a href="WebShop.dc.html" style="text-decoration: none">المجوهرات</a><span aria-hidden="true">/</span><span>سلسلة مبرومة بدلاية</span></nav>
 
-<div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start">
-<div style="flex: 1 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
-<div style="aspect-ratio: 1 / 1; border-radius: 28px; background: #ECE7DE; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px">
-<svg width="260" height="260" viewBox="0 0 64 64" fill="none" stroke="#B8913E" stroke-width="0.9" aria-hidden="true"><path d="M12 14c2 18 10 28 20 28s18-10 20-28"></path><path d="M32 42v4"></path><path d="M32 46l-5 6 5 6 5-6z"></path></svg>
-<span style="font-size: 14px; color: #5E584E">[صورة المنتج الحقيقية — تصوير من المحل]</span>
+<div style="display: flex; flex-wrap: wrap; gap: 48px; align-items: flex-start">
+<!-- Gallery -->
+<div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+<div style="position: relative; aspect-ratio: 1 / 1; border-radius: 32px; background: radial-gradient(circle at 50% 42%, #FFFFFF 0%, #F2ECE1 60%, #E4DACA 100%); display: flex; align-items: center; justify-content: center; overflow: hidden; box-shadow: inset 0 0 0 1px #E6DECF">
+<img src="{{mainImg}}" alt="سلسلة مبرومة بدلاية عيار 21 (صورة توضيحية)" style="width: 84%; height: 84%; object-fit: contain; display: block">
+<span style="position: absolute; bottom: 16px; inset-inline-start: 16px; background: rgba(255,255,255,.9); border-radius: 999px; padding: 6px 12px; font-size: 12px; color: #5E584E">صورة توضيحية · [تصوير القطعة من المحل]</span>
+<button type="button" aria-label="تكبير الصورة" style="position: absolute; top: 16px; inset-inline-end: 16px; width: 44px; height: 44px; border-radius: 50%; border: none; background: rgba(255,255,255,.9); display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1A1712" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4M11 8v6M8 11h6"></path></svg></button>
 </div>
 <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px">
-<button type="button" aria-label="صورة 1" style="aspect-ratio: 1 / 1; border-radius: 16px; background: #ECE7DE; border: 2px solid #12100C; cursor: pointer"></button>
-<button type="button" aria-label="صورة 2" style="aspect-ratio: 1 / 1; border-radius: 16px; background: #ECE7DE; border: 1px solid #E4DFD6; cursor: pointer"></button>
-<button type="button" aria-label="صورة 3" style="aspect-ratio: 1 / 1; border-radius: 16px; background: #ECE7DE; border: 1px solid #E4DFD6; cursor: pointer"></button>
-<button type="button" aria-label="فيديو" style="aspect-ratio: 1 / 1; border-radius: 16px; background: #ECE7DE; border: 1px solid #E4DFD6; cursor: pointer; font: inherit; font-size: 13px; color: #5E584E">فيديو</button>
+<sc-for list="{{thumbs}}" as="t" hint-placeholder-count="4">
+<button type="button" aria-label="{{t.label}}" onClick="{{t.pick}}" style="{{t.style}}"><img src="{{t.img}}" alt="" style="width: 78%; height: 78%; object-fit: contain; display: block"></button>
+</sc-for>
 </div>
 </div>
 
-<div style="flex: 1 1 400px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
-<span style="align-self: flex-start; font-size: 13px; font-weight: 700; color: #1F7A4D; background: #E3F2E9; border-radius: 999px; padding: 4px 12px">متوفر في 2 من فروعنا</span>
-<h1 style="margin: 0; font-family: 'El Messiri', serif; font-size: 40px; font-weight: 700; line-height: 1.2">سلسلة مبرومة بدلاية</h1>
-<div style="display: flex; flex-wrap: wrap; gap: 8px; font-size: 14px">
-<span style="background: #FFFFFF; border: 1px solid #E4DFD6; border-radius: 999px; padding: 6px 14px">عيار 21</span>
-<span style="background: #FFFFFF; border: 1px solid #E4DFD6; border-radius: 999px; padding: 6px 14px">7.2 جم</span>
-<span style="background: #FFFFFF; border: 1px solid #E4DFD6; border-radius: 999px; padding: 6px 14px">طول 45 سم</span>
-<span style="background: #FFFFFF; border: 1px solid #E4DFD6; border-radius: 999px; padding: 6px 14px" dir="ltr">[SKU]</span>
+<!-- Details -->
+<div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 22px">
+<span style="align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; color: #1F7A4D; background: #E3F2E9; border-radius: 999px; padding: 6px 12px"><span style="width: 7px; height: 7px; border-radius: 50%; background: #1F7A4D; display: inline-block"></span>متوفرة في 2 من فروعنا</span>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h1 style="margin: 0; font-family: 'El Messiri', serif; font-size: 46px; font-weight: 700; line-height: 1.2">سلسلة مبرومة بدلاية</h1>
+<p style="margin: 0; color: #5E584E; line-height: 1.8; font-size: 16px">سلسلة مبرومة ناعمة بدلاية نجمة الحياة جولد وفص في النص. [وصف القطعة من الفرع]</p>
 </div>
+<dl style="margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border: 1px solid #ECE5D8; border-radius: 20px; background: #FFFFFF; overflow: hidden">
+<div style="padding: 14px 12px; display: flex; flex-direction: column; gap: 4px; text-align: center"><dt style="font-size: 12px; color: #5E584E">العيار</dt><dd style="margin: 0; font-weight: 700; font-size: 17px">21</dd></div>
+<div style="padding: 14px 12px; display: flex; flex-direction: column; gap: 4px; text-align: center; border-inline-start: 1px solid #ECE5D8"><dt style="font-size: 12px; color: #5E584E">الوزن</dt><dd style="margin: 0; font-weight: 700; font-size: 17px">7.2 جم</dd></div>
+<div style="padding: 14px 12px; display: flex; flex-direction: column; gap: 4px; text-align: center; border-inline-start: 1px solid #ECE5D8"><dt style="font-size: 12px; color: #5E584E">الطول</dt><dd style="margin: 0; font-weight: 700; font-size: 17px">45 سم</dd></div>
+<div style="padding: 14px 12px; display: flex; flex-direction: column; gap: 4px; text-align: center; border-inline-start: 1px solid #ECE5D8"><dt style="font-size: 12px; color: #5E584E">الكود</dt><dd style="margin: 0; font-weight: 700; font-size: 15px" dir="ltr">[SKU]</dd></div>
+</dl>
 
-<div style="background: #FFFFFF; border: 1px solid #E4DFD6; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 12px; font-size: 15px">
-<div style="display: flex; justify-content: space-between"><span style="color: #5E584E">قيمة الذهب (7.2 جم × 5,460)</span><b>39,312 ج.م</b></div>
-<div style="display: flex; justify-content: space-between"><span style="color: #5E584E">المصنعية</span><b>[المصنعية]</b></div>
-<div style="height: 1px; background: #E4DFD6"></div>
-<div style="display: flex; justify-content: space-between; align-items: baseline"><b style="font-size: 17px">السعر التقديري</b><b style="font-size: 30px; color: #8A6A1F">≈ 41,800 ج.م</b></div>
-<span style="font-size: 13px; color: #5E584E">السعر بيتحسب بسعر الذهب وقت الشراء · آخر تحديث [الوقت]</span>
+<div style="background: #FFFFFF; border: 1px solid #ECE5D8; border-radius: 24px; padding: 22px; display: flex; flex-direction: column; gap: 12px; font-size: 15px; box-shadow: 0 20px 40px -30px rgba(60,44,12,.35)">
+<div style="display: flex; justify-content: space-between; gap: 12px"><span style="color: #5E584E">قيمة الذهب (7.2 جم × 5,460)</span><b>39,312 ج.م</b></div>
+<div style="display: flex; justify-content: space-between; gap: 12px"><span style="color: #5E584E">المصنعية</span><b>[المصنعية]</b></div>
+<div style="height: 1px; background: #ECE5D8"></div>
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px"><b style="font-size: 17px">السعر التقديري</b><b class="hg-gold" style="font-family: 'El Messiri', serif; font-size: 36px">≈ 41,800 ج.م</b></div>
+<span style="font-size: 13px; color: #5E584E">بيتحسب بسعر الذهب وقت الحجز · آخر تحديث [الوقت]</span>
 </div>
 
 <div style="display: flex; flex-wrap: wrap; gap: 12px">
-<a href="#reserve" style="flex: 1 1 220px; display: flex; align-items: center; justify-content: center; min-height: 56px; border-radius: 999px; background: #12100C; color: #FFFFFF; text-decoration: none; font-weight: 700; font-size: 17px">احجزها في الفرع</a>
-<a href="tel:" style="flex: 1 1 160px; display: flex; align-items: center; justify-content: center; min-height: 56px; border-radius: 999px; border: 1px solid #D6CFC2; background: #FFFFFF; color: #1A1712; text-decoration: none; font-weight: 600; font-size: 16px">كلّم الفرع</a>
+<a class="hg-btn" href="#reserve" style="flex: 1 1 240px; display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 58px; border-radius: 999px; text-decoration: none; font-weight: 700; font-size: 17px">احجزها في الفرع</a>
+<a class="hg-ghost" href="#call" style="flex: 1 1 160px; display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 58px; border-radius: 999px; border: 1px solid #D6CFC2; background: #FFFFFF; color: #1A1712; text-decoration: none; font-weight: 600; font-size: 16px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"></path></svg>كلّم الفرع</a>
 </div>
+<span style="font-size: 14px; color: #5E584E; display: flex; align-items: center; gap: 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8A6A1F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>الحجز مجاني لمدة [مدة الحجز]، وتدفع في الفرع بعد ما تشوفها.</span>
 
-<div style="background: #F1E6CC; border-radius: 20px; padding: 18px; display: flex; gap: 14px; align-items: center">
-<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#8A6A1F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M7 7h12l-3-3"></path><path d="M17 17H5l3 3"></path></svg>
-<span style="display: flex; flex-direction: column; gap: 4px; line-height: 1.6"><b>عندك ذهب مدّخر في التطبيق؟</b><span style="font-size: 14px; color: #3F3A31">بدّل رصيدك بالقطعة دي وادفع المصنعية بس — من تطبيق الحياة جولد.</span></span>
+<div style="background: linear-gradient(120deg, #F1E6CC 0%, #EADBB6 100%); border-radius: 22px; padding: 18px 20px; display: flex; gap: 14px; align-items: center">
+<span style="flex: none; width: 46px; height: 46px; border-radius: 14px; background: #12100C; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E6C77A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h12l-3-3"></path><path d="M17 17H5l3 3"></path></svg></span>
+<span style="display: flex; flex-direction: column; gap: 4px; line-height: 1.6"><b>عندك ذهب قديم؟</b><span style="font-size: 14px; color: #3F3524">هاته معاك الفرع، يتوزن قدامك ويتخصم من تمن القطعة بسعر اللحظة.</span></span>
 </div>
 
 <div style="display: flex; flex-direction: column; gap: 10px">
 <b style="font-size: 17px">التوفر في الفروع</b>
-<div style="background: #FFFFFF; border: 1px solid #E4DFD6; border-radius: 16px; padding: 14px 18px; display: flex; justify-content: space-between; align-items: center"><span><b>فرع [١]</b> — [المنطقة]</span><span style="font-size: 14px; font-weight: 600; color: #1F7A4D">متوفر · 2 قطعة</span></div>
-<div style="background: #FFFFFF; border: 1px solid #E4DFD6; border-radius: 16px; padding: 14px 18px; display: flex; justify-content: space-between; align-items: center"><span><b>فرع [٢]</b> — [المنطقة]</span><span style="font-size: 14px; font-weight: 600; color: #1F7A4D">متوفر · قطعة واحدة</span></div>
-<div style="background: #FFFFFF; border: 1px solid #E4DFD6; border-radius: 16px; padding: 14px 18px; display: flex; justify-content: space-between; align-items: center"><span><b>فرع [٣]</b> — [المنطقة]</span><span style="font-size: 14px; font-weight: 600; color: #5E584E">نحوّلها لك خلال [مدة]</span></div>
+<div style="background: #FFFFFF; border: 1px solid #ECE5D8; border-radius: 18px; overflow: hidden">
+<div style="padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; gap: 12px"><span><b>فرع [١]</b> — [المنطقة]</span><span style="font-size: 13px; font-weight: 600; color: #1F7A4D; background: #E3F2E9; border-radius: 999px; padding: 4px 10px">متوفر · 2 قطعة</span></div>
+<div style="padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; gap: 12px; border-top: 1px solid #F0EADF"><span><b>فرع [٢]</b> — [المنطقة]</span><span style="font-size: 13px; font-weight: 600; color: #1F7A4D; background: #E3F2E9; border-radius: 999px; padding: 4px 10px">متوفر · قطعة واحدة</span></div>
+<div style="padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; gap: 12px; border-top: 1px solid #F0EADF"><span><b>فرع [٣]</b> — [المنطقة]</span><span style="font-size: 13px; font-weight: 600; color: #5C3D00; background: #FFF1D6; border-radius: 999px; padding: 4px 10px">نحوّلها لك خلال [مدة]</span></div>
+</div>
 </div>
 </div>
 </div>
 
-<section style="display: flex; flex-direction: column; gap: 20px">
-<h2 style="margin: 0; font-family: 'El Messiri', serif; font-size: 30px">قطع ممكن تعجبك</h2>
-<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 24px">
-<a href="WebProduct.dc.html" style="text-decoration: none; color: #1A1712; display: flex; flex-direction: column; gap: 10px"><span style="aspect-ratio: 1 / 1; border-radius: 20px; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="80" height="80" viewBox="0 0 64 64" fill="none" stroke="#B8913E" stroke-width="1.4" aria-hidden="true"><path d="M12 14c2 18 10 28 20 28s18-10 20-28"></path><path d="M32 42v4"></path><path d="M32 46l-5 6 5 6 5-6z"></path></svg></span><b>طقم ناعم</b><span style="font-size: 14px; color: #5E584E">عيار 21 · 14 جم</span></a>
-<a href="WebProduct.dc.html" style="text-decoration: none; color: #1A1712; display: flex; flex-direction: column; gap: 10px"><span style="aspect-ratio: 1 / 1; border-radius: 20px; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="80" height="80" viewBox="0 0 64 64" fill="none" stroke="#B8913E" stroke-width="1.4" aria-hidden="true"><ellipse cx="32" cy="32" rx="22" ry="12"></ellipse><ellipse cx="32" cy="32" rx="17" ry="8"></ellipse></svg></span><b>إسورة سلسلة</b><span style="font-size: 14px; color: #5E584E">عيار 21 · 6.8 جم</span></a>
-<a href="WebProduct.dc.html" style="text-decoration: none; color: #1A1712; display: flex; flex-direction: column; gap: 10px"><span style="aspect-ratio: 1 / 1; border-radius: 20px; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="80" height="80" viewBox="0 0 64 64" fill="none" stroke="#B8913E" stroke-width="1.4" aria-hidden="true"><path d="M22 12v8"></path><path d="M22 20c-6 8-6 16 0 20 6-4 6-12 0-20z"></path><path d="M42 12v8"></path><path d="M42 20c-6 8-6 16 0 20 6-4 6-12 0-20z"></path></svg></span><b>حلق دلّاية</b><span style="font-size: 14px; color: #5E584E">عيار 18 · 3.6 جم</span></a>
-<a href="WebProduct.dc.html" style="text-decoration: none; color: #1A1712; display: flex; flex-direction: column; gap: 10px"><span style="aspect-ratio: 1 / 1; border-radius: 20px; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="80" height="80" viewBox="0 0 64 64" fill="none" stroke="#B8913E" stroke-width="1.4" aria-hidden="true"><circle cx="32" cy="38" r="15"></circle><path d="M27 23l5-8 5 8-5 4z"></path></svg></span><b>خاتم سوليتير</b><span style="font-size: 14px; color: #5E584E">عيار 18 · 2.8 جم</span></a>
+<section style="display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 12px"><h2 style="margin: 0; font-family: 'El Messiri', serif; font-size: 34px">قطع ممكن تعجبك</h2><a href="WebShop.dc.html" style="font-weight: 700; text-decoration: none; padding: 10px 0">كل المجوهرات ←</a></div>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr)); gap: 24px">
+<sc-for list="{{related}}" as="r" hint-placeholder-count="4">
+<a class="hg-lift" href="WebProduct.dc.html" style="text-decoration: none; color: #1A1712; display: flex; flex-direction: column; gap: 12px; border-radius: 24px"><span style="aspect-ratio: 1 / 1; border-radius: 24px; background: radial-gradient(circle at 50% 40%, #FFFFFF 0%, #F2ECE1 62%, #E7DECD 100%); display: flex; align-items: center; justify-content: center; overflow: hidden"><img src="{{r.img}}" alt="{{r.alt}}" style="width: 78%; height: 78%; object-fit: contain; display: block"></span><span style="display: flex; flex-direction: column; gap: 4px; padding: 0 4px"><b style="font-family: 'El Messiri', serif; font-size: 18px; font-weight: 600">{{r.name}}</b><span style="font-size: 14px; color: #5E584E">{{r.meta}}</span><b style="color: #8A6A1F">≈ {{r.price}} ج.م</b></span></a>
+</sc-for>
 </div>
 </section>
 </main>
 
 <footer style="background: #0A0907; color: #A39A88; font-size: 14px">
-<div style="max-width: 1200px; margin: 0 auto; padding: 32px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+<div style="max-width: 1240px; margin: 0 auto; padding: 32px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
 <dc-import name="Logo" size="40" tone="onDark" layout="horizontal" hint-size="200px,48px"></dc-import>
-<span>© 2026 الحياة جولد · أسعار ومنتجات توضيحية</span>
+<span>© 2026 الحياة جولد · أسعار توضيحية · صور المنتجات توضيحية</span>
 </div>
 </footer>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1700}}'>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1900}}'>
 class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { shot: 0 };
+  }
   renderVals() {
-    return {};
+    const B = '/_blob/';
+    const shots = [
+      { img: B + 'dbac027a2563d3d060bfab8971cfc70a', label: 'الصورة الأساسية' },
+      { img: B + '6b2d4362523d3a759e7da3ef4b66ef99', label: 'مع الحلق (طقم)' },
+      { img: B + '335fdd9efadb2a4133ab2f70a26b15ca', label: 'تفصيلة السلسلة' },
+      { img: B + '401f751c774d701b5cad69baa1026632', label: 'مقارنة الحجم' }
+    ];
+    const s = this.state.shot;
+    const base = 'aspect-ratio: 1 / 1; border-radius: 18px; background: radial-gradient(circle at 50% 40%, #FFFFFF 0%, #F2ECE1 70%); display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0;';
+    const related = [
+      { name: 'طقم ناعم', meta: 'عيار 21 · 14 جم', price: '81,500', img: B + '6b2d4362523d3a759e7da3ef4b66ef99' },
+      { name: 'إسورة سلسلة', meta: 'عيار 21 · 6.8 جم', price: '39,400', img: B + '335fdd9efadb2a4133ab2f70a26b15ca' },
+      { name: 'حلق دلّاية', meta: 'عيار 18 · 3.6 جم', price: '19,100', img: B + '4d5dfe9a3395aa599a07fc121050b575' },
+      { name: 'خاتم سوليتير', meta: 'عيار 18 · 2.8 جم', price: '14,900', img: B + '40395988bc31fe64061dae2b8d49ae37' }
+    ].map((r) => Object.assign({}, r, { alt: r.name + ' (صورة توضيحية)' }));
+    return {
+      mainImg: shots[s].img,
+      thumbs: shots.map((t, i) => Object.assign({}, t, {
+        pick: () => this.setState({ shot: i }),
+        style: base + (i === s ? ' border: 2px solid #12100C;' : ' border: 1px solid #ECE5D8;')
+      })),
+      related
+    };
   }
 }
 </script>

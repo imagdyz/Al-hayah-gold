@@ -14,50 +14,54 @@ body{margin:0}
 a{color:#8A6A1F}a:hover{color:#5E4712}
 </style>
 </helmet>
-<div dir="rtl" style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F4F2EE; font-family: 'IBM Plex Sans Arabic', sans-serif; color: #1A1712; font-variant-numeric: tabular-nums">
+<div dir="rtl" style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F6F3EE; font-family: 'IBM Plex Sans Arabic', sans-serif; color: #1A1712; font-variant-numeric: tabular-nums">
 <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 96px; overflow-y: auto; box-sizing: border-box; display: flex; flex-direction: column">
 
-<div style="height: 320px; flex: none; background: #ECE7DE; position: relative; display: flex; align-items: center; justify-content: center">
-<svg width="170" height="170" viewBox="0 0 64 64" fill="none" stroke="#B8913E" stroke-width="1.1" aria-hidden="true"><path d="M12 14c2 18 10 28 20 28s18-10 20-28"></path><path d="M32 42v4"></path><path d="M32 46l-5 6 5 6 5-6z"></path></svg>
-<span style="position: absolute; bottom: 14px; left: 0; right: 0; text-align: center; font-size: 12px; color: #5E584E">[صورة المنتج الحقيقية — تصوير من المحل]</span>
+<div style="height: 360px; flex: none; background: radial-gradient(circle at 50% 46%, #FFFFFF 0%, #F2ECE1 55%, #E2D7C4 100%); position: relative; display: flex; align-items: center; justify-content: center; border-radius: 0 0 32px 32px">
+<img src="{{mainImg}}" alt="سلسلة مبرومة بدلاية عيار 21 (صورة توضيحية)" style="width: 270px; height: 270px; object-fit: contain">
 <div style="position: absolute; top: 16px; left: 16px; right: 16px; display: flex; justify-content: space-between">
-<a href="AppShop.dc.html" aria-label="رجوع" style="width: 44px; height: 44px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A1712" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></a>
-<button type="button" aria-label="أضف للمفضلة" onClick="{{toggleFav}}" style="width: 44px; height: 44px; border-radius: 50%; background: #FFFFFF; border: none; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="22" height="22" viewBox="0 0 24 24" fill="{{favFill}}" stroke="#8A6A1F" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-8-5-8-11a4.5 4.5 0 0 1 8-3 4.5 4.5 0 0 1 8 3c0 6-8 11-8 11z"></path></svg></button>
+<a href="AppShop.dc.html" aria-label="رجوع" style="width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,.9); display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A1712" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></a>
+<button type="button" aria-label="أضف للمفضلة" onClick="{{toggleFav}}" style="width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,.9); border: none; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="22" height="22" viewBox="0 0 24 24" fill="{{favFill}}" stroke="#8A6A1F" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-8-5-8-11a4.5 4.5 0 0 1 8-3 4.5 4.5 0 0 1 8 3c0 6-8 11-8 11z"></path></svg></button>
+</div>
+<div style="position: absolute; bottom: 16px; left: 0; right: 0; display: flex; justify-content: center; gap: 8px">
+<sc-for list="{{dots}}" as="d" hint-placeholder-count="3"><button type="button" aria-label="{{d.label}}" onClick="{{d.pick}}" style="{{d.style}}"></button></sc-for>
 </div>
 </div>
 
 <div style="padding: 20px; display: flex; flex-direction: column; gap: 16px">
-<div style="display: flex; flex-direction: column; gap: 6px">
-<span style="align-self: flex-start; font-size: 12px; font-weight: 700; color: #1F7A4D; background: #E3F2E9; border-radius: 999px; padding: 4px 10px">متوفر في 2 من فروعنا</span>
-<h1 style="margin: 0; font-family: 'El Messiri', serif; font-size: 26px; font-weight: 700">سلسلة مبرومة بدلاية</h1>
-<span style="font-size: 14px; color: #5E584E">عيار 21 · 7.2 جم · كود [SKU]</span>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: #1F7A4D; background: #E3F2E9; border-radius: 999px; padding: 4px 10px"><span style="width: 6px; height: 6px; border-radius: 50%; background: #1F7A4D; display: inline-block"></span>متوفرة في 2 من فروعنا</span>
+<h1 style="margin: 0; font-family: 'El Messiri', serif; font-size: 28px; font-weight: 700">سلسلة مبرومة بدلاية</h1>
+<div style="display: flex; gap: 8px; font-size: 13px"><span style="background: #12100C; color: #E6C77A; border-radius: 999px; padding: 4px 10px; font-weight: 600">عيار 21</span><span style="background: #FFFFFF; border: 1px solid #ECE5D8; border-radius: 999px; padding: 4px 10px">7.2 جم</span><span style="background: #FFFFFF; border: 1px solid #ECE5D8; border-radius: 999px; padding: 4px 10px">45 سم</span></div>
 </div>
 
-<div style="background: #FFFFFF; border-radius: 20px; padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; font-size: 14px">
+<div style="background: #FFFFFF; border: 1px solid #ECE5D8; border-radius: 22px; padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; font-size: 14px">
 <div style="display: flex; justify-content: space-between"><span style="color: #5E584E">قيمة الذهب (7.2 × 5,460)</span><b>39,312</b></div>
 <div style="display: flex; justify-content: space-between"><span style="color: #5E584E">المصنعية</span><b>[المصنعية]</b></div>
-<div style="height: 1px; background: #E4DFD6"></div>
-<div style="display: flex; justify-content: space-between; font-size: 16px"><b>السعر التقديري</b><b style="color: #8A6A1F">≈ 41,800 ج.م</b></div>
-<span style="font-size: 12px; color: #5E584E">السعر النهائي حسب سعر الذهب وقت الشراء</span>
+<div style="height: 1px; background: #ECE5D8"></div>
+<div style="display: flex; justify-content: space-between; align-items: baseline"><b style="font-size: 16px">السعر التقديري</b><b style="font-family: 'El Messiri', serif; font-size: 26px; color: #8A6A1F">≈ 41,800 ج.م</b></div>
+<span style="font-size: 12px; color: #5E584E">بيتحسب بسعر الذهب وقت الحجز</span>
 </div>
 
-<button type="button" onClick="{{toggleWallet}}" style="{{walletStyle}}">
-<span style="display: flex; justify-content: space-between; align-items: center; width: 100%"><b style="font-size: 15px">ادفع من رصيد ذهبك</b><span style="{{switchStyle}}"><span style="{{knobStyle}}"></span></span></span>
-<span style="font-size: 13px; line-height: 1.6; text-align: start">يتخصم 6.300 جم عيار 24 من رصيدك (12.450 جم) بدل قيمة الذهب، وتدفع المصنعية بس.</span>
-</button>
+<a href="Sell.dc.html" style="display: flex; gap: 12px; align-items: center; padding: 14px 16px; border-radius: 20px; background: linear-gradient(120deg, #F1E6CC 0%, #EADBB6 100%); text-decoration: none; color: #1A1712">
+<span style="flex: none; width: 40px; height: 40px; border-radius: 12px; background: #12100C; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E6C77A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h12l-3-3"></path><path d="M17 17H5l3 3"></path></svg></span>
+<span style="display: flex; flex-direction: column; gap: 2px; line-height: 1.5"><b style="font-size: 14px">بدّل ذهبك القديم بيها</b><span style="font-size: 12px; color: #3F3524">هاته معاك، يتوزن قدامك ويتخصم من التمن.</span></span>
+</a>
 
 <div style="display: flex; flex-direction: column; gap: 10px">
 <b style="font-size: 16px">التوفر في الفروع</b>
-<div style="background: #FFFFFF; border-radius: 16px; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center"><span style="display: flex; flex-direction: column"><b style="font-size: 14px">فرع [١] — [المنطقة]</b><span style="font-size: 12px; color: #5E584E">[المسافة] كم</span></span><span style="font-size: 13px; font-weight: 600; color: #1F7A4D">متوفر · 2 قطعة</span></div>
-<div style="background: #FFFFFF; border-radius: 16px; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center"><span style="display: flex; flex-direction: column"><b style="font-size: 14px">فرع [٢] — [المنطقة]</b><span style="font-size: 12px; color: #5E584E">[المسافة] كم</span></span><span style="font-size: 13px; font-weight: 600; color: #1F7A4D">متوفر · قطعة واحدة</span></div>
-<div style="background: #FFFFFF; border-radius: 16px; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center"><span style="display: flex; flex-direction: column"><b style="font-size: 14px">فرع [٣] — [المنطقة]</b><span style="font-size: 12px; color: #5E584E">[المسافة] كم</span></span><span style="font-size: 13px; font-weight: 600; color: #5E584E">نحوّلها لك خلال [مدة]</span></div>
+<div style="background: #FFFFFF; border: 1px solid #ECE5D8; border-radius: 18px; overflow: hidden">
+<div style="padding: 13px 16px; display: flex; justify-content: space-between; align-items: center"><span style="display: flex; flex-direction: column"><b style="font-size: 14px">فرع [١] — [المنطقة]</b><span style="font-size: 12px; color: #5E584E">[المسافة] كم</span></span><span style="font-size: 12px; font-weight: 600; color: #1F7A4D; background: #E3F2E9; border-radius: 999px; padding: 3px 9px">2 قطعة</span></div>
+<div style="padding: 13px 16px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #F0EADF"><span style="display: flex; flex-direction: column"><b style="font-size: 14px">فرع [٢] — [المنطقة]</b><span style="font-size: 12px; color: #5E584E">[المسافة] كم</span></span><span style="font-size: 12px; font-weight: 600; color: #1F7A4D; background: #E3F2E9; border-radius: 999px; padding: 3px 9px">قطعة واحدة</span></div>
+<div style="padding: 13px 16px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #F0EADF"><span style="display: flex; flex-direction: column"><b style="font-size: 14px">فرع [٣] — [المنطقة]</b><span style="font-size: 12px; color: #5E584E">[المسافة] كم</span></span><span style="font-size: 12px; font-weight: 600; color: #5C3D00; background: #FFF1D6; border-radius: 999px; padding: 3px 9px">تحويل خلال [مدة]</span></div>
+</div>
 </div>
 </div>
 </div>
 
-<div style="position: absolute; left: 0; right: 0; bottom: 0; height: 96px; background: #FFFFFF; border-top: 1px solid #E4DFD6; padding: 16px 20px; box-sizing: border-box; display: flex; gap: 10px">
-<a href="tel:" aria-label="كلّم الفرع" style="width: 56px; height: 56px; flex: none; border-radius: 50%; border: 1px solid #D6CFC2; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A1712" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-3 2a11 11 0 0 0 5 5l2-3 5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 6a2 2 0 0 1 2-2z"></path></svg></a>
-<a href="Reserve.dc.html" style="flex: 1; display: flex; align-items: center; justify-content: center; height: 56px; border-radius: 999px; background: #12100C; color: #FFFFFF; text-decoration: none; font-weight: 700; font-size: 17px">احجزها في الفرع</a>
+<div style="position: absolute; left: 0; right: 0; bottom: 0; height: 96px; background: rgba(255,255,255,.9); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border-top: 1px solid #ECE5D8; padding: 16px 20px; box-sizing: border-box; display: flex; gap: 10px">
+<a href="#call" aria-label="كلّم الفرع" style="width: 56px; height: 56px; flex: none; border-radius: 50%; border: 1px solid #D6CFC2; display: flex; align-items: center; justify-content: center; box-sizing: border-box"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A1712" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-3 2a11 11 0 0 0 5 5l2-3 5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 6a2 2 0 0 1 2-2z"></path></svg></a>
+<a href="Reserve.dc.html" style="flex: 1; display: flex; align-items: center; justify-content: center; height: 56px; border-radius: 999px; background: linear-gradient(180deg, #EACD80 0%, #C8A04B 55%, #AE8834 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,.5), 0 10px 22px -10px rgba(168,133,58,.9); color: #12100C; text-decoration: none; font-weight: 700; font-size: 17px">احجزها في الفرع</a>
 </div>
 </div>
 </x-dc>
@@ -65,17 +69,25 @@ a{color:#8A6A1F}a:hover{color:#5E4712}
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = { fav: false, wallet: true };
+    this.state = { fav: false, shot: 0 };
   }
   renderVals() {
-    const w = this.state.wallet;
+    const B = '/_blob/';
+    const shots = [
+      { img: B + 'dbac027a2563d3d060bfab8971cfc70a', label: 'الصورة الأساسية' },
+      { img: B + '6b2d4362523d3a759e7da3ef4b66ef99', label: 'مع الحلق' },
+      { img: B + '335fdd9efadb2a4133ab2f70a26b15ca', label: 'تفصيلة السلسلة' }
+    ];
+    const s = this.state.shot;
     return {
+      mainImg: shots[s].img,
+      dots: shots.map((x, i) => ({
+        label: x.label,
+        pick: () => this.setState({ shot: i }),
+        style: 'height: 8px; border: none; border-radius: 999px; padding: 0; cursor: pointer; ' + (i === s ? 'width: 22px; background: #12100C;' : 'width: 8px; background: #CFC4B1;')
+      })),
       favFill: this.state.fav ? '#C8A04B' : 'none',
-      toggleFav: () => this.setState({ fav: !this.state.fav }),
-      toggleWallet: () => this.setState({ wallet: !w }),
-      walletStyle: 'display: flex; flex-direction: column; gap: 8px; padding: 16px 18px; border-radius: 20px; font: inherit; color: #1A1712; cursor: pointer; text-align: start;' + (w ? ' background: #F1E6CC; border: 2px solid #C8A04B;' : ' background: #FFFFFF; border: 2px solid #E4DFD6;'),
-      switchStyle: 'width: 46px; height: 28px; border-radius: 999px; display: flex; align-items: center; padding: 3px; box-sizing: border-box;' + (w ? ' background: #12100C; justify-content: flex-start;' : ' background: #D6CFC2; justify-content: flex-end;'),
-      knobStyle: 'width: 22px; height: 22px; border-radius: 50%; display: block;' + (w ? ' background: #C8A04B;' : ' background: #FFFFFF;')
+      toggleFav: () => this.setState({ fav: !this.state.fav })
     };
   }
 }

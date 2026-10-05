@@ -67,7 +67,7 @@ a{color:#8A6A1F}a:hover{color:#5E4712}
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = { branch: 0, pay: 'gold', slot: 1 };
+    this.state = { branch: 0, pay: 'deposit', slot: 1 };
   }
   renderVals() {
     const s = this.state;
@@ -75,7 +75,6 @@ class Component extends DCLogic {
     const dot = (on) => 'width: 20px; height: 20px; border-radius: 50%; box-sizing: border-box; flex: none; border: ' + (on ? '6px solid #12100C' : '2px solid #D6CFC2') + ';';
     const chip = 'min-height: 48px; border-radius: 12px; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer;';
     const lines = {
-      gold: ['يتخصم من رصيدك', '6.300 جم عيار 24', 'تدفع المصنعية', '[المصنعية]'],
       deposit: ['عربون دلوقتي', '[قيمة العربون]', 'الباقي في الفرع', '≈ 41,800 ج.م − العربون'],
       branch: ['تدفع في الفرع', '≈ 41,800 ج.م', 'دلوقتي', '0 ج.م']
     }[s.pay];
@@ -84,7 +83,6 @@ class Component extends DCLogic {
         label: b.l, hint: b.h, on: s.branch === i ? 'true' : 'false', pick: () => this.setState({ branch: i }), style: radio(s.branch === i), dot: dot(s.branch === i)
       })),
       pays: [
-        { id: 'gold', label: 'من رصيد ذهبك + المصنعية', hint: 'عندك 12.450 جم، هيتخصم 6.300 جم عيار 24' },
         { id: 'deposit', label: 'عربون والباقي في الفرع', hint: 'ادفع [قيمة العربون] أونلاين دلوقتي' },
         { id: 'branch', label: 'ادفع كامل في الفرع', hint: 'كاش أو كارت وقت الاستلام' }
       ].map((p) => ({ ...p, on: s.pay === p.id ? 'true' : 'false', pick: () => this.setState({ pay: p.id }), style: radio(s.pay === p.id), dot: dot(s.pay === p.id) })),
