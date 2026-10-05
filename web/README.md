@@ -88,6 +88,27 @@ php artisan test
 | GET | `/api/v1/orders` | `Authorization: Bearer <token>` |
 | POST | `/api/v1/orders` | `type`: `bullion` / `reservation` / `sell` |
 
+## الرفع على Hostinger
+
+الرفع بيتعمل من GitHub Actions: **Actions → Deploy to Hostinger → Run workflow**. ده بيبني المشروع ويرفعه بـ SSH، ويشغّل [`deploy/hostinger.sh`](../deploy/hostinger.sh) على السيرفر.
+
+**مرة واحدة قبل أول رفع:** ضيف الـ secrets دي في **Settings → Secrets and variables → Actions**:
+- `SSH_PASSWORD`: باسورد الـ SSH بتاع الاستضافة.
+- `ADMIN_PASSWORD`: باسورد لوحة التحكم (`admin@alhayah.gold`)، وبيتحط في أول رفع.
+
+**شكل الملفات على السيرفر** (جوه `~/domains/<الدومين>/`):
+
+| المسار | فيه إيه | بيحصل له إيه مع كل رفع |
+| --- | --- | --- |
+| `alhayah-gold/` | الكود | بيتبدّل |
+| `alhayah-shared/` | `.env` و `storage/` و `database.sqlite` | بيفضل زي ما هو |
+| `public_html` | رابط لـ `alhayah-gold/public` | أول مرة بس: أي حاجة كانت فيه بتتنقل لـ `public_html.backup-*` |
+
+**أول رفع بيعمل الآتي:**
+- يعمل `.env` للإنتاج (`APP_DEBUG=false`).
+- يحمّل البيانات التوضيحية.
+- يشغّل `OTP_SHOW_CODE=true`، عشان كود الدخول يظهر على الشاشة لحد ما يتربط مزوّد SMS. **لازم يتقفل قبل ما عملاء حقيقيين يستخدموا الموقع.**
+
 ## قبل الإطلاق
 
 - [ ] بيانات الفروع الحقيقية والمخزون وتصوير المنتجات. الصور الحالية 3D توضيحية، من `tools/renders`.

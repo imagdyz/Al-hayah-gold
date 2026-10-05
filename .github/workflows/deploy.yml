@@ -1,0 +1,81 @@
+name: Deploy to Hostinger
+
+# Builds web/ (vendor without dev packages, Vite assets) and installs it on the
+# Hostinger account with deploy/hostinger.sh.
+#
+# Repository secrets (Settings > Secrets and variables > Actions):
+#   SSH_PASSWORD    the hosting SSH password (required)
+#   ADMIN_PASSWORD  admin panel password set on the first deploy (required then)
+# Optional repository variables: SSH_HOST, SSH_PORT, SSH_USER.
+on:
+  workflow_dispatch:
+    inputs:
+      domain:
+        description: Domain on the hosting account (leave empty if it has only one)
+        required: false
+      seed:
+        description: Load the demo data again (it is loaded automatically on the first deploy)
+        type: boolean
+        default: false
+
+concurrency: deploy
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      SSH_HOST: ${{ vars.SSH_HOST || '147.93.99.208' }}
+      SSH_PORT: ${{ vars.SSH_PORT || '65002' }}
+      SSH_USER: ${{ vars.SSH_USER || 'u991773587' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: pdo_sqlite, intl, mbstring
+          coverage: none
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Build
+        working-directory: web
+        run: |
+          composer install --no-dev --optimize-autoloader --no-interaction --no-progress --prefer-dist
+          npm ci --no-audit --no-fund
+          npm run build
+          tar -czf ../release.tgz \
+            --exclude=./node_modules --exclude=./tests --exclude=./.env --exclude=.git \
+            --exclude=./database/database.sqlite --exclude='./storage/logs/*.log' .
+          ls -lh ../release.tgz
+
+      - name: Upload and install
+        env:
+          SSHPASS: ${{ secrets.SSH_PASSWORD }}
+          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+          DOMAIN: ${{ inputs.domain }}
+          SEED: ${{ inputs.seed }}
+        run: |
+          set -o pipefail
+          if [ -z "$SSHPASS" ]; then
+            echo "::error::Add the SSH_PASSWORD repository secret first."
+            exit 1
+          fi
+          sudo apt-get install -y -qq sshpass >/dev/null
+          opts=(-o StrictHostKeyChecking=accept-new -o ConnectTimeout=20)
+          sshpass -e scp "${opts[@]}" -P "$SSH_PORT" release.tgz deploy/hostinger.sh "$SSH_USER@$SSH_HOST:"
+          printf '%s\n' "$ADMIN_PASSWORD" | sshpass -e ssh "${opts[@]}" -p "$SSH_PORT" "$SSH_USER@$SSH_HOST" \
+            "DOMAIN=$(printf '%q' "$DOMAIN") SEED=$SEED bash hostinger.sh" | tee deploy.log
+          grep -o 'https://[^ ]*' deploy.log | tail -1 > url.txt
+
+      - name: Check the site
+        run: |
+          url=$(cat url.txt)
+          for path in / /prices /bullion /jewelry /branches /api/v1/prices; do
+            code=$(curl -sS -o /dev/null -w '%{http_code}' -L "$url$path" || true)
+            echo "$path -> $code"
+            [ "$code" = 200 ] || failed=1
+          done
+          [ -z "${failed:-}" ]

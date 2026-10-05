@@ -38,6 +38,9 @@ return [
 
     'otp' => [
         'driver' => env('OTP_DRIVER', 'log'),
+        // Show the code on the login page outside local too. For a preview
+        // server only, until an SMS provider is wired in.
+        'show_code' => (bool) env('OTP_SHOW_CODE', false),
         'ttl_minutes' => 5,
         'max_attempts' => 5,
         'resend_seconds' => 60,

@@ -29,8 +29,8 @@ class AuthController extends Controller
         $request->session()->put('login', ['phone' => $data['phone'], 'name' => $data['name'] ?? null]);
 
         $status = $code === null ? 'بعتنالك كود من شوية، استنى دقيقة قبل ما تطلب كود جديد.' : 'بعتنالك كود من 6 أرقام.';
-        if ($code && app()->isLocal() && config('gold.otp.driver') === 'log') {
-            $status .= " (وضع التطوير: الكود {$code})";
+        if ($code && config('gold.otp.driver') === 'log' && (app()->isLocal() || config('gold.otp.show_code'))) {
+            $status .= " (نسخة تجريبية: الكود {$code})";
         }
 
         return redirect()->route('login.verify')->with('status', $status);

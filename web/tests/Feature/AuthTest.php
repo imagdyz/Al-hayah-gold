@@ -28,6 +28,17 @@ class AuthTest extends TestCase
         $this->assertSame('منى', User::where('phone', '01012345678')->value('name'));
     }
 
+    public function test_code_is_shown_only_when_the_preview_switch_is_on(): void
+    {
+        // The test environment is not "local", so only the switch can show it.
+        $this->post('/login', ['phone' => '01012345678'])->assertRedirect('/login/verify')
+            ->assertSessionHas('status', fn ($s) => ! str_contains($s, 'الكود'));
+
+        config(['gold.otp.show_code' => true]);
+        $this->post('/login', ['phone' => '01098765432'])->assertRedirect('/login/verify')
+            ->assertSessionHas('status', fn ($s) => preg_match('/الكود \d{6}/u', $s) === 1);
+    }
+
     public function test_invalid_phone_is_rejected(): void
     {
         $this->post('/login', ['phone' => '12345'])->assertSessionHasErrors('phone');
