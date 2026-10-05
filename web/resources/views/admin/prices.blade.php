@@ -1,13 +1,13 @@
 <x-layouts.admin title="الأسعار والهوامش">
     <div class="flex flex-wrap items-end justify-between gap-3">
         <div><h1 class="m-0 font-display text-[2rem] font-bold">الأسعار والهوامش</h1>
-            <p class="m-0 text-muted">المصدر: {{ $source === 'manual' ? 'إدخال يدوي' : 'API خارجي' }} · آخر تحديث {{ optional($updatedAt)->locale('ar')->diffForHumans() }}</p></div>
+            <p class="m-0 text-muted">المصدر: {{ ['manual' => 'إدخال يدوي', 'daleelak' => 'دليلك (تلقائي كل دقيقة)', 'http' => 'API خارجي'][$source] ?? $source }} · آخر تحديث {{ optional($updatedAt)->locale('ar')->diffForHumans() }}</p></div>
         <form method="POST" action="{{ route('admin.prices.halt') }}">@csrf
             <button class="btn {{ $halted ? 'btn-gold' : 'bg-down text-white' }}"><x-icon name="pause" :size="18" />{{ $halted ? 'رجّع الطلبات أونلاين' : 'وقّف الطلبات أونلاين' }}</button>
         </form>
     </div>
     @if ($halted)
-        <div class="rounded-2xl bg-warn-bg px-4 py-3 text-warn">الطلبات أونلاين واقفة دلوقتي. العملاء شايفين الأسعار بس.</div>
+        <div class="rounded-2xl bg-warn-bg px-4 py-3 text-warn">الطلبات أونلاين واقفة دلوقتي. العملاء شايفين الأسعار بس.@if ($haltReason) <b>السبب:</b> {{ $haltReason }}@endif</div>
     @endif
 
     <form method="POST" action="{{ route('admin.prices.update') }}" class="flex flex-col gap-6">

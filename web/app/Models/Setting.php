@@ -22,6 +22,7 @@ class Setting extends Model
         'price_lock_minutes' => '30',
         'deposit_percent' => '10',
         'reservation_hours' => '48',
+        'halt_reason' => '',
     ];
 
     public static function get(string $key): ?string

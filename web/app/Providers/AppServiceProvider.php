@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Contracts\PriceSource;
+use App\PriceSources\DaleelakPriceSource;
 use App\PriceSources\HttpPriceSource;
 use App\PriceSources\ManualPriceSource;
 use App\Services\GoldPricing;
@@ -17,6 +18,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->scoped(GoldPricing::class);
 
         $this->app->bind(PriceSource::class, fn () => match (config('gold.source')) {
+            'daleelak' => new DaleelakPriceSource(config('gold.daleelak')),
             'http' => new HttpPriceSource(config('gold.http')),
             default => new ManualPriceSource,
         });

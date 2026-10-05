@@ -25,6 +25,7 @@ class PriceController extends Controller
                 'reservation_hours' => Setting::int('reservation_hours'),
             ],
             'halted' => $pricing->halted(),
+            'haltReason' => Setting::get('halt_reason'),
             'recent' => GoldPrice::latest('recorded_at')->take(6)->get(),
         ]);
     }
@@ -62,6 +63,7 @@ class PriceController extends Controller
     {
         $halt = ! $pricing->halted();
         Setting::put('trading_halted', $halt);
+        Setting::put('halt_reason', $halt ? 'وقفها الأدمن يدوياً.' : '');
 
         return back()->with('status', $halt ? 'وقفنا الطلبات أونلاين. الأسعار بتظهر للعرض بس.' : 'رجّعنا الطلبات أونلاين.');
     }

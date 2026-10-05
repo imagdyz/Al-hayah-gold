@@ -39,8 +39,17 @@ php artisan test
 - `gold_prices` بيسجّل سعر جرام 24 الأساسي (السعر العالمي بالجنيه) مع الوقت.
 - المصدر بيتحدد بـ `GOLD_PRICE_SOURCE`:
   - `manual`: الأدمن بيدخّل السعر من صفحة الأسعار.
+  - `daleelak`: [دليلك](https://getdaleelak.com/ar/api)، feed مجاني من غير key.
+    - **السعر الأساسي:** متوسط أفضل شراء وأفضل بيع لعيار 24، عشان هامشنا ما يتحسبش فوق هامش محل.
+    - **أصل عيار 24:** بيتحدد بـ `DALEELAK_ASSET_24`.
+    - **قبل التشغيل:** شغّل `php artisan prices:probe`. بيعرض أصول الذهب والسعر اللي هيتاخد، من غير ما يحفظ حاجة.
   - `http`: أي API بيرجّع سعر جرام 24 بالجنيه، زي goldapi.io (`XAU/EGP`، المسار `price_gram_24k`). بتحط الإعدادات في `GOLD_PRICE_URL` و `GOLD_PRICE_TOKEN` و `GOLD_PRICE_PATH`.
   - في وضع `http`، الأمر `php artisan prices:refresh` بيشتغل كل دقيقة من الـ scheduler (`php artisan schedule:work`، أو cron على `schedule:run`).
+
+**حماية المصادر التلقائية** (`App\Services\PriceFeed`):
+- **قفزة كبيرة:** لو السعر الجديد بعيد عن آخر سعر بأكتر من `GOLD_MAX_JUMP_PERCENT` (افتراضي 3%)، ما بيتسجّلش والطلبات أونلاين بتقف.
+- **سعر قديم:** لو مفيش سعر جديد من `GOLD_STALE_MINUTES` دقيقة (افتراضي 15)، `prices:check-stale` بيوقف الطلبات.
+- **السبب:** بيظهر في صفحة الأسعار في لوحة التحكم، ومن هناك الأدمن يرجّع الطلبات.
 
 **الحساب** (`App\Services\GoldPricing`):
 - **الأعيرة:** 21 = الأساسي × 21/24، و 18 = الأساسي × 18/24.

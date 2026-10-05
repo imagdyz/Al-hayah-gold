@@ -104,7 +104,7 @@
         </div>
         <div class="container-site flex flex-wrap justify-between gap-2 border-t border-[#221D16] pb-7 pt-4">
             <span>© {{ date('Y') }} الحياة جولد. جميع الحقوق محفوظة.</span>
-            <span>صور المنتجات توضيحية لحد التصوير من المحل.</span>
+            <span>صور المنتجات توضيحية لحد التصوير من المحل.@if (config('gold.source') === 'daleelak') · مصدر الأسعار: <a href="https://getdaleelak.com" rel="noopener" target="_blank" class="text-muted-dark">دليلك</a>@endif</span>
         </div>
     </footer>
 </body>
