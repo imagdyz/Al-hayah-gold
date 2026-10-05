@@ -6,8 +6,8 @@ use App\Services\PriceFeed;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schedule;
 
-Artisan::command('prices:refresh', function (PriceSource $source, PriceFeed $feed) {
-    $this->info($feed->refresh($source));
+Artisan::command('prices:refresh {--fresh : Once the new price is saved, drop prices from other sources (e.g. the demo history)}', function (PriceSource $source, PriceFeed $feed) {
+    $this->info($feed->refresh($source, (bool) $this->option('fresh')));
 })->purpose('Fetch the latest 24k gold price from the configured source');
 
 Artisan::command('prices:check-stale', function (PriceFeed $feed) {

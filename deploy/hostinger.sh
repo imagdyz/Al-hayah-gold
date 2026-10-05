@@ -76,6 +76,7 @@ if [ ! -f "$SHARED/.env" ]; then
         -e "s|^APP_URL=.*|APP_URL=https://$DOMAIN|" \
         -e 's|^LOG_LEVEL=.*|LOG_LEVEL=warning|' \
         -e 's|^OTP_SHOW_CODE=.*|OTP_SHOW_CODE=true|' \
+        -e 's|^GOLD_PRICE_SOURCE=.*|GOLD_PRICE_SOURCE=daleelak|' \
         "$SHARED/.env"
     echo "DB_DATABASE=$SHARED/database.sqlite" >> "$SHARED/.env"
     chmod 600 "$SHARED/.env"
@@ -102,6 +103,10 @@ if [ "$FIRST" = true ] || [ "${SEED:-false}" = true ]; then
         exit 1
     fi
     SEED_ADMIN_PASSWORD="$ADMIN_PASSWORD" "$PHP" artisan db:seed --force
+    # Swap the demo price history for the live price when a feed is configured.
+    if ! grep -q '^GOLD_PRICE_SOURCE=manual' "$SHARED/.env"; then
+        "$PHP" artisan prices:refresh --fresh || true
+    fi
 fi
 
 "$PHP" artisan storage:link --force >/dev/null 2>&1 || true
@@ -117,6 +122,24 @@ if [ -e "$PUB" ] && [ ! -L "$PUB" ]; then
     echo "Old public_html moved to $BACKUP"
 fi
 ln -sfn "$APP/public" "$PUB"
+
+# The scheduler refreshes prices every minute. Hostinger may not allow crontab
+# over SSH; then the job has to be added in hPanel > Advanced > Cron Jobs.
+CRON="* * * * * cd $APP && $PHP artisan schedule:run >> /dev/null 2>&1"
+if command -v crontab >/dev/null 2>&1 && (crontab -l 2>/dev/null || true) >/tmp/alhayah-cron.$$ 2>/dev/null; then
+    if grep -qF "$APP && " /tmp/alhayah-cron.$$; then
+        echo "Cron job already there."
+    elif { cat /tmp/alhayah-cron.$$; echo "$CRON"; } | crontab - 2>/dev/null; then
+        echo "Cron job added."
+    else
+        echo "CRON: could not add it. Add this in hPanel > Advanced > Cron Jobs:"
+        echo "  $CRON"
+    fi
+    rm -f /tmp/alhayah-cron.$$
+else
+    echo "CRON: add this in hPanel > Advanced > Cron Jobs:"
+    echo "  $CRON"
+fi
 
 rm -rf "$OLD" "$HOME/release.tgz" "$HOME/hostinger.sh"
 echo "Deployed to https://$DOMAIN"

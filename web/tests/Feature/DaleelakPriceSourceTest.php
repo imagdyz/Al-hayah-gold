@@ -95,6 +95,7 @@ class DaleelakPriceSourceTest extends TestCase
 
     public function test_a_big_jump_is_rejected_and_halts_orders(): void
     {
+        GoldPrice::create(['base_24' => 6215, 'source' => 'daleelak', 'recorded_at' => now()]);
         $feed = $this->feed();
         $feed['data']['assets'][0]['directions'] = ['buy' => ['best' => 7000], 'sell' => ['best' => 6990]];
         Http::fake([self::URL => Http::response($feed)]);
@@ -105,6 +106,19 @@ class DaleelakPriceSourceTest extends TestCase
         $this->assertSame($count, GoldPrice::count());
         $this->assertTrue(Setting::bool('trading_halted'));
         $this->assertStringContainsString('daleelak', Setting::get('halt_reason'));
+    }
+
+    public function test_first_reading_replaces_demo_prices_without_tripping_the_jump_check(): void
+    {
+        $feed = $this->feed();
+        $feed['data']['assets'][0]['directions'] = ['buy' => ['best' => 7006], 'sell' => ['best' => 6988.96]];
+        Http::fake([self::URL => Http::response($feed)]);
+
+        $this->artisan('prices:refresh --fresh')->expectsOutputToContain('Saved 24k base price: 6997.48')->assertSuccessful();
+
+        $this->assertFalse(Setting::bool('trading_halted'));
+        $this->assertSame(['daleelak'], GoldPrice::distinct()->pluck('source')->all());
+        $this->getJson('/api/v1/prices')->assertJsonPath('quotes.24.sell', 7020);
     }
 
     public function test_stale_prices_halt_orders_for_automatic_sources_only(): void

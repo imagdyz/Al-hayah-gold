@@ -12,15 +12,20 @@ class PriceFeed
 {
     public function __construct(private GoldPricing $pricing) {}
 
-    /** Returns what happened, for the console. */
-    public function refresh(PriceSource $source): string
+    /**
+     * Returns what happened, for the console. The jump check compares with the
+     * last price from the same source, so switching sources (or replacing the
+     * demo data) is not mistaken for a bad reading. With $fresh, prices from
+     * other sources are dropped once the new one is saved.
+     */
+    public function refresh(PriceSource $source, bool $fresh = false): string
     {
         $base = $source->fetchBase24();
         if ($base === null) {
             return "No new price from the {$source->name()} source.";
         }
 
-        $last = $this->pricing->base();
+        $last = (float) GoldPrice::where('source', $source->name())->latest('recorded_at')->latest('id')->value('base_24');
         $limit = (float) config('gold.max_jump_percent');
         if ($last > 0 && abs($base - $last) / $last * 100 > $limit) {
             $this->halt(sprintf('سعر %s جه %s ج.م وآخر سعر كان %s، والفرق أكبر من %s%%.', $source->name(), number_format($base, 2), number_format($last, 2), $limit));
@@ -30,9 +35,10 @@ class PriceFeed
         }
 
         GoldPrice::create(['base_24' => $base, 'source' => $source->name(), 'recorded_at' => now()]);
+        $dropped = $fresh ? GoldPrice::where('source', '!=', $source->name())->delete() : 0;
         $this->pricing->forget();
 
-        return "Saved 24k base price: {$base} EGP/g";
+        return "Saved 24k base price: {$base} EGP/g".($dropped ? " (dropped {$dropped} older prices from other sources)" : '');
     }
 
     /** Halts online orders when an automatic source has gone quiet. */
