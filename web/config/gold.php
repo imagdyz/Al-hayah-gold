@@ -10,6 +10,7 @@ return [
     // are not stacked on top of a shop's margin.
     'daleelak' => [
         'url' => env('DALEELAK_URL', 'https://getdaleelak.com/api/v1/feed.json'),
+        'category' => env('DALEELAK_CATEGORY', 'metals'),
         'asset_24' => env('DALEELAK_ASSET_24', 'gold-24k'),
         'timeout' => 10,
     ],

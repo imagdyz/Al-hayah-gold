@@ -59,7 +59,7 @@ class DaleelakPriceSource implements PriceSource
         try {
             $response = Http::timeout($this->config['timeout'] ?? 10)
                 ->withHeaders($headers)
-                ->get($this->config['url'], ['category' => 'gold']);
+                ->get($this->config['url'], ['category' => $this->config['category'] ?? 'metals']);
         } catch (\Throwable $e) {
             Log::warning('Daleelak: request failed', ['error' => $e->getMessage()]);
 
@@ -97,13 +97,14 @@ class DaleelakPriceSource implements PriceSource
                 return [
                     'slug' => (string) ($a['slug'] ?? $a['id'] ?? $a['code'] ?? ''),
                     'name' => $this->text($a['name'] ?? $a['title'] ?? ''),
-                    'category' => (string) ($a['category'] ?? ''),
+                    'gold' => $this->isGold($a),
                     'buy' => $buy,
                     'sell' => $sell,
                     'mid' => $prices ? round(array_sum($prices) / count($prices), 2) : null,
                 ];
             })
-            ->filter(fn ($a) => $a['category'] === '' || str_contains(strtolower($a['category']), 'gold'))
+            ->filter(fn ($a) => $a['gold'])
+            ->map(fn ($a) => Arr::except($a, 'gold'))
             ->values()
             ->all();
     }
@@ -126,6 +127,17 @@ class DaleelakPriceSource implements PriceSource
         }
 
         return null;
+    }
+
+    /** The metals category also holds silver and others, so look for gold in the slug, names or category. */
+    private function isGold(array $asset): bool
+    {
+        $haystack = mb_strtolower(json_encode(
+            Arr::only($asset, ['slug', 'id', 'code', 'name', 'title', 'category', 'metal']),
+            JSON_UNESCAPED_UNICODE
+        ));
+
+        return str_contains($haystack, 'gold') || str_contains($haystack, 'ذهب');
     }
 
     /** "best" may be a bare number or an object holding the price. */

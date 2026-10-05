@@ -4,27 +4,73 @@
         "assets": [
             {
                 "slug": "gold-24k",
-                "name": { "ar": "ذهب عيار 24", "en": "Gold 24K" },
-                "category": "gold",
+                "name": {
+                    "ar": "ذهب عيار 24",
+                    "en": "Gold 24K"
+                },
+                "category": "metals",
                 "unit": "gram",
                 "directions": {
-                    "buy": { "best": 6238, "seller": "[بايع مرخّص]" },
-                    "sell": { "best": 6196, "seller": "[بايع مرخّص]" }
+                    "buy": {
+                        "best": 6238,
+                        "seller": "[بايع مرخّص]"
+                    },
+                    "sell": {
+                        "best": 6196,
+                        "seller": "[بايع مرخّص]"
+                    }
                 }
             },
             {
                 "slug": "gold-21k",
-                "name": { "ar": "ذهب عيار 21", "en": "Gold 21K" },
-                "category": "gold",
+                "name": {
+                    "ar": "ذهب عيار 21",
+                    "en": "Gold 21K"
+                },
+                "category": "metals",
                 "unit": "gram",
-                "directions": { "buy": { "best": 5458 }, "sell": { "best": 5421 } }
+                "directions": {
+                    "buy": {
+                        "best": 5458
+                    },
+                    "sell": {
+                        "best": 5421
+                    }
+                }
             },
             {
                 "slug": "gold-pound",
-                "name": { "ar": "الجنيه الذهب", "en": "Gold pound" },
-                "category": "gold",
+                "name": {
+                    "ar": "الجنيه الذهب",
+                    "en": "Gold pound"
+                },
+                "category": "metals",
                 "unit": "piece",
-                "directions": { "buy": { "best": 43670 }, "sell": { "best": 43380 } }
+                "directions": {
+                    "buy": {
+                        "best": 43670
+                    },
+                    "sell": {
+                        "best": 43380
+                    }
+                }
+            },
+            {
+                "slug": "silver-999",
+                "name": {
+                    "ar": "فضة 999",
+                    "en": "Silver 999"
+                },
+                "category": "metals",
+                "unit": "gram",
+                "directions": {
+                    "buy": {
+                        "best": 82
+                    },
+                    "sell": {
+                        "best": 79
+                    }
+                }
             }
         ]
     }

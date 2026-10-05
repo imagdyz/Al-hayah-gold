@@ -32,12 +32,19 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Raw feed (gold)
+      - name: Raw feed (metals)
         run: |
-          curl -sS -D headers.txt "https://getdaleelak.com/api/v1/feed.json?category=gold" -o gold.json || true
+          curl -sS -D headers.txt "https://getdaleelak.com/api/v1/feed.json?category=metals" -o gold.json || true
           cat headers.txt
-          python3 -m json.tool gold.json | head -200 || head -c 3000 gold.json
+          python3 -m json.tool --no-ensure-ascii gold.json | head -400 || head -c 6000 gold.json
           curl -sS "https://getdaleelak.com/api/v1/openapi.json" -o openapi.json || true
+          python3 - <<'PY' || true
+          import json
+          spec = json.load(open("openapi.json"))
+          for path, ops in spec.get("paths", {}).items():
+              print(path, {m: [p.get("name") for p in op.get("parameters", [])] for m, op in ops.items() if isinstance(op, dict)})
+          print(json.dumps(spec.get("components", {}).get("schemas", {}), ensure_ascii=False, indent=1)[:12000])
+          PY
 
       - uses: actions/upload-artifact@v4
         if: always()

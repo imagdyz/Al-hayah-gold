@@ -42,7 +42,7 @@ class DaleelakPriceSourceTest extends TestCase
         Http::fake([self::URL => Http::response($this->feed(), 200, ['ETag' => '"v1"'])]);
 
         $this->assertSame(6217.0, $this->source()->fetchBase24());
-        Http::assertSent(fn ($r) => str_contains($r->url(), 'category=gold'));
+        Http::assertSent(fn ($r) => str_contains($r->url(), 'category=metals'));
     }
 
     public function test_refresh_saves_the_price_and_updates_the_quotes(): void
@@ -127,5 +127,14 @@ class DaleelakPriceSourceTest extends TestCase
 
         $this->artisan('prices:probe')->expectsOutputToContain('24k asset: gold-24k')->assertSuccessful();
         $this->assertSame($count, GoldPrice::count());
+    }
+
+    public function test_silver_in_the_metals_feed_is_ignored(): void
+    {
+        Http::fake([self::URL => Http::response($this->feed())]);
+
+        $slugs = array_column($this->source()->goldAssets(), 'slug');
+
+        $this->assertSame(['gold-24k', 'gold-21k', 'gold-pound'], $slugs);
     }
 }
