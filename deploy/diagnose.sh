@@ -61,5 +61,15 @@ echo "status ", $res->getStatusCode(), "\n";
 if ($res->getStatusCode() >= 500 && isset($res->exception)) { echo get_class($res->exception), ": ", $res->exception->getMessage(), "\n"; }
 ' 2>&1 | head -20
 
+section "Latest prices and order status"
+cd "$APP" 2>/dev/null && "$PHP" -r '
+require "vendor/autoload.php";
+$app = require "bootstrap/app.php";
+$app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
+foreach (App\Models\GoldPrice::latest("recorded_at")->latest("id")->take(5)->get() as $p) { echo $p->recorded_at, "  ", $p->base_24, "  ", $p->source, "\n"; }
+echo "trading_halted: ", var_export(App\Models\Setting::bool("trading_halted"), true), "\n";
+echo "halt_reason: ", App\Models\Setting::get("halt_reason"), "\n";
+' 2>&1 | head -12
+
 section "Crontab"
 crontab -l 2>&1 | head -5
