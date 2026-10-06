@@ -136,6 +136,13 @@ class GoldPricing
 
         $rows = GoldPrice::query()->where('recorded_at', '>=', $from)->orderBy('recorded_at')->get(['base_24', 'recorded_at']);
         $points = [];
+
+        // The price in force when the period starts, so a quiet feed still
+        // draws a flat line instead of an empty one.
+        $before = GoldPrice::query()->where('recorded_at', '<', $from)->latest('recorded_at')->latest('id')->first(['base_24']);
+        if ($before) {
+            $points[] = ['t' => $from->toIso8601String(), 'v' => $this->sell($karat, $before->base_24)];
+        }
         foreach ($rows->values() as $i => $row) {
             if ($i % $step === 0 || $i === $rows->count() - 1) {
                 $points[] = ['t' => $row->recorded_at->toIso8601String(), 'v' => $this->sell($karat, $row->base_24)];

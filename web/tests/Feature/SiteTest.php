@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Branch;
+use App\Models\GoldPrice;
 use App\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -18,6 +19,21 @@ class SiteTest extends TestCase
         foreach (['/', '/prices', '/bullion', '/jewelry', '/jewelry/necklace', '/jewelry/bar10', '/sell', '/branches', '/p/faq', '/p/terms', '/p/privacy', '/login'] as $url) {
             $this->get($url)->assertOk();
         }
+    }
+
+    public function test_pages_still_render_when_no_price_came_in_the_last_day(): void
+    {
+        // What happens on a server whose scheduler is not running yet.
+        GoldPrice::query()->delete();
+        GoldPrice::create(['base_24' => 7002.5, 'source' => 'daleelak', 'recorded_at' => now()->subDays(2)]);
+
+        foreach (['/', '/prices'] as $url) {
+            $this->get($url)->assertOk();
+        }
+        $this->getJson('/api/v1/prices/history?karat=24&period=24h')
+            ->assertOk()
+            ->assertJsonCount(1, 'points')
+            ->assertJsonPath('points.0.v', 7030);
     }
 
     public function test_home_shows_live_prices_and_no_wallet(): void

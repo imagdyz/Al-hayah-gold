@@ -1,6 +1,9 @@
 @props(['values', 'width' => 240, 'height' => 54, 'stroke' => '#A8853A', 'fill' => 'rgba(200,160,75,.12)'])
 @php
     $vals = array_values($values);
+@endphp
+@if (count($vals))
+@php
     $min = min($vals); $max = max($vals); $span = max($max - $min, 1);
     $n = max(count($vals) - 1, 1);
     $pts = [];
@@ -14,3 +17,4 @@
     <path d="{{ $line }} L{{ $width }} {{ $height }} L0 {{ $height }} Z" fill="{{ $fill }}"/>
     <path d="{{ $line }}" fill="none" stroke="{{ $stroke }}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
 </svg>
+@endif
