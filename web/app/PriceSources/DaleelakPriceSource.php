@@ -20,6 +20,11 @@ class DaleelakPriceSource implements PriceSource
 {
     private const ETAG_KEY = 'daleelak:etag';
 
+    private const BASE_KEY = 'daleelak:base';
+
+    /** The last request came back 304 Not Modified. */
+    private bool $notModified = false;
+
     public function __construct(private array $config) {}
 
     public function name(): string
@@ -30,6 +35,15 @@ class DaleelakPriceSource implements PriceSource
     public function fetchBase24(): ?float
     {
         $assets = $this->goldAssets(useEtag: true);
+        if ($assets === null && $this->notModified) {
+            // Nothing changed since the last call: that price still holds.
+            $base = Cache::get(self::BASE_KEY);
+            if ($base === null) {
+                Cache::forget(self::ETAG_KEY);
+            }
+
+            return $base;
+        }
         if ($assets === null) {
             return null;
         }
@@ -40,6 +54,8 @@ class DaleelakPriceSource implements PriceSource
 
             return null;
         }
+
+        Cache::put(self::BASE_KEY, $asset['mid'], now()->addDay());
 
         return $asset['mid'];
     }
@@ -66,7 +82,8 @@ class DaleelakPriceSource implements PriceSource
             return null;
         }
 
-        if ($response->status() === 304) {
+        $this->notModified = $response->status() === 304;
+        if ($this->notModified) {
             return null;
         }
         if ($response->status() === 429) {

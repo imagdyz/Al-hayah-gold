@@ -64,6 +64,7 @@ class PriceController extends Controller
         $halt = ! $pricing->halted();
         Setting::put('trading_halted', $halt);
         Setting::put('halt_reason', $halt ? 'وقفها الأدمن يدوياً.' : '');
+        Setting::put('halt_kind', $halt ? 'admin' : '');
 
         return back()->with('status', $halt ? 'وقفنا الطلبات أونلاين. الأسعار بتظهر للعرض بس.' : 'رجّعنا الطلبات أونلاين.');
     }

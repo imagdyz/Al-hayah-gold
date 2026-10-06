@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Contracts\PriceSource;
 use App\Models\GoldPrice;
 use App\Models\Setting;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 
 /** Saves prices from automatic sources and halts online orders when they look wrong. */
@@ -34,11 +35,18 @@ class PriceFeed
             return "Rejected {$base}: more than {$limit}% away from {$last}. Online orders halted.";
         }
 
+        Setting::put('price_checked_at', now()->toIso8601String());
+        $resumed = $this->resumeAfterStale();
+
+        if (! $fresh && $last > 0 && abs($base - $last) < 0.01) {
+            return "Price unchanged: {$base} EGP/g".$resumed;
+        }
+
         GoldPrice::create(['base_24' => $base, 'source' => $source->name(), 'recorded_at' => now()]);
         $dropped = $fresh ? GoldPrice::where('source', '!=', $source->name())->delete() : 0;
         $this->pricing->forget();
 
-        return "Saved 24k base price: {$base} EGP/g".($dropped ? " (dropped {$dropped} older prices from other sources)" : '');
+        return "Saved 24k base price: {$base} EGP/g".($dropped ? " (dropped {$dropped} older prices from other sources)" : '').$resumed;
     }
 
     /** Halts online orders when an automatic source has gone quiet. */
@@ -48,22 +56,38 @@ class PriceFeed
             return 'Manual prices: nothing to check.';
         }
 
-        $at = $this->pricing->updatedAt();
+        // A check that found the same price still counts as fresh.
+        $checked = Setting::get('price_checked_at');
+        $at = collect([$this->pricing->updatedAt(), $checked ? Carbon::parse($checked) : null])->filter()->max();
         $minutes = (int) config('gold.stale_minutes');
         if ($at && $at->gt(now()->subMinutes($minutes))) {
             return 'Prices are fresh.';
         }
 
         if (! $this->pricing->halted()) {
-            $this->halt("مفيش سعر جديد من {$minutes} دقيقة.");
+            $this->halt("مفيش سعر جديد من {$minutes} دقيقة.", 'stale');
         }
 
         return "No price for {$minutes} minutes. Online orders halted.";
     }
 
-    private function halt(string $reason): void
+    /** $kind "stale" lifts itself once prices come back; anything else waits for an admin. */
+    private function halt(string $reason, string $kind = 'check'): void
     {
         Setting::put('trading_halted', true);
         Setting::put('halt_reason', $reason);
+        Setting::put('halt_kind', $kind);
+    }
+
+    private function resumeAfterStale(): string
+    {
+        if (! $this->pricing->halted() || Setting::get('halt_kind') !== 'stale') {
+            return '';
+        }
+        Setting::put('trading_halted', false);
+        Setting::put('halt_reason', '');
+        Setting::put('halt_kind', '');
+
+        return ' Online orders resumed.';
     }
 }

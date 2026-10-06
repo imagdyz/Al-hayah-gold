@@ -56,13 +56,56 @@ class DaleelakPriceSourceTest extends TestCase
         $this->getJson('/api/v1/prices')->assertJsonPath('quotes.24.sell', 6240)->assertJsonPath('quotes.24.buy', 6190);
     }
 
-    public function test_etag_is_sent_back_and_304_means_nothing_new(): void
+    public function test_etag_is_sent_back_and_304_keeps_the_last_price(): void
     {
         Http::fake([self::URL => Http::sequence()->push($this->feed(), 200, ['ETag' => '"v1"'])->push('', 304)]);
 
-        $this->assertNotNull($this->source()->fetchBase24());
-        $this->assertNull($this->source()->fetchBase24());
+        $this->assertSame(6217.0, $this->source()->fetchBase24());
+        $this->assertSame(6217.0, $this->source()->fetchBase24());
         Http::assertSent(fn ($r) => $r->hasHeader('If-None-Match', '"v1"'));
+    }
+
+    public function test_an_unchanged_price_keeps_orders_open(): void
+    {
+        Http::fake([self::URL => Http::sequence()->push($this->feed(), 200, ['ETag' => '"v1"'])->whenEmpty(Http::response('', 304))]);
+        $this->artisan('prices:refresh')->expectsOutputToContain('Saved')->assertSuccessful();
+        $count = GoldPrice::count();
+
+        // Daleelak keeps answering "not modified" for longer than the stale window.
+        for ($i = 0; $i < 4; $i++) {
+            $this->travel(10)->minutes();
+            $this->artisan('prices:refresh')->expectsOutputToContain('Price unchanged')->assertSuccessful();
+            $this->artisan('prices:check-stale')->expectsOutputToContain('fresh')->assertSuccessful();
+        }
+
+        $this->assertSame($count, GoldPrice::count());
+        $this->assertFalse(Setting::bool('trading_halted'));
+    }
+
+    public function test_a_stale_halt_lifts_itself_when_prices_come_back(): void
+    {
+        GoldPrice::query()->update(['recorded_at' => now()->subHour()]);
+        $this->artisan('prices:check-stale')->assertSuccessful();
+        $this->assertTrue(Setting::bool('trading_halted'));
+
+        $feed = $this->feed();
+        $feed['data']['assets'][0]['directions'] = ['buy' => ['best' => 6220], 'sell' => ['best' => 6200]];
+        Http::fake([self::URL => Http::response($feed)]);
+        $this->artisan('prices:refresh')->expectsOutputToContain('Online orders resumed')->assertSuccessful();
+
+        $this->assertFalse(Setting::bool('trading_halted'));
+        $this->assertSame('', Setting::get('halt_reason'));
+    }
+
+    public function test_an_admin_halt_stays_until_the_admin_lifts_it(): void
+    {
+        Setting::put('trading_halted', true);
+        Setting::put('halt_kind', 'admin');
+        Http::fake([self::URL => Http::response($this->feed())]);
+
+        $this->artisan('prices:refresh')->assertSuccessful();
+
+        $this->assertTrue(Setting::bool('trading_halted'));
     }
 
     public function test_rate_limits_and_errors_do_not_save_or_throw(): void

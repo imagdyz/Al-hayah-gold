@@ -23,6 +23,8 @@ class Setting extends Model
         'deposit_percent' => '10',
         'reservation_hours' => '48',
         'halt_reason' => '',
+        'halt_kind' => '',
+        'price_checked_at' => '',
     ];
 
     public static function get(string $key): ?string
