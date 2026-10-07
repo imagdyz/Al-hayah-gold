@@ -132,4 +132,88 @@ Alpine.data('sellEstimate', (buy, initial) => ({
 }));
 
 window.Alpine = Alpine;
+/* Admin cashier: pieces added by barcode, scrap gold typed in, totals as you type.
+   The server recomputes every total; these are only for the screen. */
+Alpine.data('pos', (cfg) => ({
+    prices: cfg.prices,
+    barcode: '',
+    lookupError: '',
+    busy: false,
+    sales: [],
+    purchases: [],
+    customerName: '',
+    customerPhone: '',
+    settlement: 'cash',
+    notes: '',
+    errors: [],
+    async scan() {
+        const code = this.barcode.trim();
+        if (!code) return;
+        this.lookupError = '';
+        if (this.sales.some((l) => l.barcode === code)) {
+            this.lookupError = 'القطعة دي متضافة في الفاتورة بالفعل.';
+            this.barcode = '';
+            return;
+        }
+        try {
+            const res = await fetch(`${cfg.lookupUrl}?barcode=${encodeURIComponent(code)}`, { headers: { Accept: 'application/json' } });
+            const data = await res.json().catch(() => ({}));
+            if (!res.ok) {
+                this.lookupError = data.message || 'حصلت مشكلة، جرّب تاني.';
+                return;
+            }
+            this.sales.push({ ...data, piece_id: data.id });
+            this.barcode = '';
+        } catch (e) {
+            this.lookupError = 'مفيش اتصال، جرّب تاني.';
+        } finally {
+            this.$refs.barcode?.focus();
+        }
+    },
+    addPurchase() {
+        this.purchases.push({ description: 'ذهب كسر', karat: 21, gross_weight: '', net_weight: '', gram_price: this.prices[21].buy });
+        if (this.sales.length && this.settlement === 'cash') this.settlement = 'exchange';
+    },
+    setKarat(p) { p.gram_price = this.prices[p.karat].buy; },
+    saleTotal(l) { return Math.round((+l.weight || 0) * (+l.gram_price || 0)) + Math.round(+l.making_fee || 0); },
+    purchaseTotal(p) { return Math.round((+p.net_weight || 0) * (+p.gram_price || 0)); },
+    get salesTotal() { return this.sales.reduce((s, l) => s + this.saleTotal(l), 0); },
+    get purchasesTotal() { return this.purchases.reduce((s, p) => s + this.purchaseTotal(p), 0); },
+    get net() { return this.salesTotal - this.purchasesTotal; },
+    get netLabel() { return this.net > 0 ? 'العميل يدفع' : this.net < 0 ? 'المحل يدفع للعميل' : 'مفيش فرق'; },
+    async submit() {
+        if (this.busy) return;
+        this.errors = [];
+        if (!this.sales.length && !this.purchases.length) {
+            this.errors = ['ضيف قطعة للبيع أو ذهب مشترى الأول.'];
+            return;
+        }
+        this.busy = true;
+        const body = {
+            customer_name: this.customerName || null,
+            customer_phone: this.customerPhone || null,
+            settlement: this.settlement,
+            notes: this.notes || null,
+            sales: this.sales.map((l) => ({ piece_id: l.piece_id, gram_price: l.gram_price, making_fee: l.making_fee })),
+            purchases: this.purchases.map((p) => ({ description: p.description, karat: p.karat, gross_weight: p.gross_weight, net_weight: p.net_weight, gram_price: p.gram_price })),
+        };
+        try {
+            const res = await fetch(cfg.storeUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', Accept: 'application/json', 'X-CSRF-TOKEN': cfg.csrf },
+                body: JSON.stringify(body),
+            });
+            const data = await res.json().catch(() => ({}));
+            if (res.ok) {
+                window.location = data.redirect;
+                return;
+            }
+            this.errors = data.errors ? [...new Set(Object.values(data.errors).flat())] : [data.message || 'حصلت مشكلة، جرّب تاني.'];
+        } catch (e) {
+            this.errors = ['مفيش اتصال، والفاتورة ما اتسجلتش. جرّب تاني.'];
+        }
+        this.busy = false;
+    },
+}));
+
 Alpine.start();

@@ -8,11 +8,12 @@ use App\Http\Controllers\Controller;
 use App\Models\Branch;
 use App\Models\Order;
 use App\Models\Product;
+use App\Services\PosReport;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function index(PosReport $report)
     {
         $today = now()->startOfDay();
         $yesterday = $today->copy()->subDay();
@@ -54,6 +55,8 @@ class DashboardController extends Controller
             ->get(['products.name', 'branches.name as branch', 'branch_product.quantity']);
 
         return view('admin.dashboard', [
+            'shop' => $report->summary($today, now()),
+            'stock' => $report->stock(),
             'kpis' => $kpis,
             'daily' => $daily,
             'byBranch' => $byBranch,

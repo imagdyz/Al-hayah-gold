@@ -12,6 +12,20 @@
         <a href="{{ route('admin.prices') }}" class="btn btn-sm btn-outline"><x-icon name="tag" :size="18" />عيار 21 الآن {{ number_format(app(\App\Services\GoldPricing::class)->sell('21')) }}</a>
     </div>
 
+    <section class="flex flex-col gap-3" aria-labelledby="shop-today">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+            <h2 id="shop-today" class="m-0 text-lg font-bold">المحل النهارده</h2>
+            <div class="flex gap-2"><a href="{{ route('admin.reports') }}" class="btn btn-sm btn-outline">التقرير</a><a href="{{ route('admin.pos') }}" class="btn btn-sm btn-gold"><x-icon name="plus" :size="17" />فاتورة جديدة</a></div>
+        </div>
+        <div class="grid gap-4 [grid-template-columns:repeat(auto-fit,minmax(210px,1fr))]">
+            <div class="card-ink flex flex-col gap-1.5 rounded-3xl p-5"><span class="text-sm text-muted-dark">المبيعات</span><b class="text-3xl">{{ number_format($shop['sales']) }} <span class="text-[15px] font-normal text-muted-dark">ج.م</span></b><span class="text-[13px] text-gold-bright">{{ $shop['pieces'] }} قطعة · {{ $shop['invoices'] }} فاتورة</span></div>
+            <div class="card flex flex-col gap-1.5 p-5"><span class="text-sm text-muted">ذهب كسر اتشرى</span><b class="text-3xl">{{ number_format($shop['purchases']) }} <span class="text-[15px] font-normal text-muted">ج.م</span></b><span class="text-[13px] text-muted">{{ rtrim(rtrim(number_format($shop['bought_by_karat']->sum('weight'), 2), '0'), '.') }} جم بعد الخصم</span></div>
+            <div class="card flex flex-col gap-1.5 p-5"><span class="text-sm text-muted">الصافي</span><b class="text-3xl">{{ number_format($shop['net']) }} <span class="text-[15px] font-normal text-muted">ج.م</span></b><span class="text-[13px] text-muted">البيع ناقص الشراء</span></div>
+            <a href="{{ route('admin.pieces.index') }}" class="card flex flex-col gap-1.5 p-5 text-text no-underline"><span class="text-sm text-muted">المخزون</span><b class="text-3xl">{{ $stock['n'] }} <span class="text-[15px] font-normal text-muted">قطعة</span></b><span class="text-[13px] text-muted">{{ rtrim(rtrim(number_format($stock['weight'], 2), '0'), '.') }} جم · {{ number_format($stock['value']) }} ج.م</span></a>
+        </div>
+    </section>
+
+    <h2 class="m-0 text-lg font-bold">طلبات الموقع</h2>
     <div class="grid gap-4 [grid-template-columns:repeat(auto-fit,minmax(210px,1fr))]">
         @php [$t, $c] = $delta(...$kpis['bullion']); @endphp
         <div class="card flex flex-col gap-1.5 p-5"><span class="text-sm text-muted">سبائك اتطلبت النهارده</span><b class="text-3xl">{{ rtrim(rtrim(number_format($kpis['bullion'][0], 1), '0'), '.') }} <span class="text-[15px] font-normal text-muted">جم</span></b><span class="text-[13px] font-semibold {{ $c }}">{{ $t }}</span></div>

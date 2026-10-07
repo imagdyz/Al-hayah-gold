@@ -44,5 +44,18 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/orders/{order}', [Admin\OrderController::class, 'show'])->name('orders.show');
         Route::patch('/orders/{order}', [Admin\OrderController::class, 'update'])->name('orders.update');
         Route::resource('branches', Admin\BranchController::class)->except(['show', 'destroy']);
+
+        Route::get('/pos', [Admin\PosController::class, 'create'])->name('pos');
+        Route::get('/pos/piece', [Admin\PosController::class, 'piece'])->name('pos.piece');
+        Route::post('/pos', [Admin\PosController::class, 'store'])->name('pos.store');
+        Route::get('/invoices', [Admin\InvoiceController::class, 'index'])->name('invoices.index');
+        Route::get('/invoices/{invoice}', [Admin\InvoiceController::class, 'show'])->name('invoices.show');
+        Route::get('/invoices/{invoice}/print', [Admin\InvoiceController::class, 'print'])->name('invoices.print');
+        Route::post('/invoices/{invoice}/void', [Admin\InvoiceController::class, 'void'])->name('invoices.void');
+        Route::get('/pieces/labels', [Admin\PieceController::class, 'labels'])->name('pieces.labels');
+        Route::resource('pieces', Admin\PieceController::class)->except('show');
+        Route::get('/reports', [Admin\ReportController::class, 'index'])->name('reports');
+        Route::get('/shop', [Admin\ShopController::class, 'edit'])->name('shop');
+        Route::put('/shop', [Admin\ShopController::class, 'update'])->name('shop.update');
     });
 });

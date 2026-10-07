@@ -11,15 +11,20 @@
 </head>
 <body class="min-h-screen bg-paper font-sans">
     <div class="flex flex-wrap">
-        <aside class="flex w-full flex-col gap-6 bg-ink p-5 text-on-ink lg:min-h-screen lg:w-[248px] lg:flex-none">
+        <aside class="flex w-full flex-col gap-6 bg-ink p-5 text-on-ink lg:min-h-screen lg:w-[248px] lg:flex-none print:hidden">
             <a href="{{ route('admin.dashboard') }}" class="no-underline"><x-logo :size="36" tone="dark" /></a>
             @php
                 $links = [
                     ['admin.dashboard', 'نظرة عامة', 'chart', 'admin.dashboard'],
-                    ['admin.orders.index', 'الطلبات والحجوزات', 'receipt', 'admin.orders.*'],
+                    ['admin.pos', 'الكاشير', 'swap', 'admin.pos*'],
+                    ['admin.invoices.index', 'الفواتير', 'receipt', 'admin.invoices.*'],
+                    ['admin.pieces.index', 'المخزون', 'box', 'admin.pieces.*'],
+                    ['admin.reports', 'التقارير', 'report', 'admin.reports'],
                     ['admin.prices', 'الأسعار والهوامش', 'tag', 'admin.prices*'],
-                    ['admin.products.index', 'المنتجات والمخزون', 'gem', 'admin.products.*'],
+                    ['admin.orders.index', 'طلبات الموقع', 'calendar', 'admin.orders.*'],
+                    ['admin.products.index', 'منتجات الموقع', 'gem', 'admin.products.*'],
                     ['admin.branches.index', 'الفروع', 'store', 'admin.branches.*'],
+                    ['admin.shop', 'بيانات المحل', 'info', 'admin.shop*'],
                 ];
             @endphp
             <nav aria-label="لوحة التحكم" class="flex flex-wrap gap-1 lg:flex-col">

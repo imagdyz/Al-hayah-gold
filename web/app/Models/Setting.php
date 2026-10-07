@@ -25,6 +25,11 @@ class Setting extends Model
         'halt_reason' => '',
         'halt_kind' => '',
         'price_checked_at' => '',
+        'shop_name' => 'الحياة جولد',
+        'shop_tagline' => 'لتجارة الذهب والمجوهرات',
+        'shop_address' => 'السنبلاوين: المشاية الجديدة',
+        'shop_phone' => '',
+        'invoice_start' => '1',
     ];
 
     public static function get(string $key): ?string

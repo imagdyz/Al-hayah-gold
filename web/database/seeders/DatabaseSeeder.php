@@ -9,6 +9,7 @@ use App\Models\Branch;
 use App\Models\GoldPrice;
 use App\Models\KaratMargin;
 use App\Models\Order;
+use App\Models\Piece;
 use App\Models\Product;
 use App\Models\Setting;
 use App\Models\User;
@@ -93,6 +94,36 @@ class DatabaseSeeder extends Seeder
         }
 
         $this->seedOrders($customer, $branches->all());
+        $this->seedPieces();
+    }
+
+    /** Demo pieces for the shop's inventory and cashier. Real pieces are entered in the admin. */
+    private function seedPieces(): void
+    {
+        $pieces = [
+            ['خاتم سوليتير', Category::Ring, 21, 3.250, 650, 17900],
+            ['خاتم فصوص', Category::Ring, 18, 2.800, 900, 13400],
+            ['دبلة سادة', Category::Band, 21, 4.100, 400, 22500],
+            ['دبلة مشغولة', Category::Band, 18, 3.600, 700, 17100],
+            ['سلسلة كارتير', Category::Necklace, 21, 7.850, 1100, 43100],
+            ['سلسلة فينيسي', Category::Necklace, 18, 5.200, 850, 24600],
+            ['طقم نص', Category::Set, 21, 12.400, 2600, 68500],
+            ['غويشة مخرّمة', Category::Bracelet, 21, 9.300, 1400, 51100],
+            ['انسيال حروف', Category::Bracelet, 18, 4.700, 900, 22300],
+            ['حلق دوائر', Category::Earring, 18, 2.150, 500, 10200],
+            ['سبيكة 5 جم', Category::Bar, 24, 5.000, 350, 31200],
+            ['جنيه ذهب', Category::Coin, 21, 8.000, 620, 43800],
+        ];
+        foreach ($pieces as $i => [$name, $category, $karat, $weight, $making, $cost]) {
+            Piece::updateOrCreate(['barcode' => '2'.str_pad((string) ($i + 1), 7, '0', STR_PAD_LEFT)], [
+                'name' => $name,
+                'category' => $category,
+                'karat' => $karat,
+                'weight_g' => $weight,
+                'making_fee' => $making,
+                'cost' => $cost,
+            ]);
+        }
     }
 
     private function seedPrices(): void
