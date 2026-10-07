@@ -1,7 +1,7 @@
-<x-layouts.admin title="المخزون">
+<x-layouts.admin title="القطع بالكود">
     <div class="flex flex-wrap items-end justify-between gap-3">
-        <div><h1 class="m-0 font-display text-[2rem] font-bold">المخزون</h1><p class="m-0 text-sm text-muted">كل قطعة في المحل بباركود. القيمة محسوبة بسعر البيع النهارده.</p></div>
-        <a href="{{ route('admin.pieces.create') }}" class="btn btn-gold"><x-icon name="plus" :size="18" />قطعة جديدة</a>
+        <div><h1 class="m-0 font-display text-[2rem] font-bold">القطع بالكود</h1><p class="m-0 text-sm text-muted">كل قطعة في المحل بكود التيكت بتاعها، وتابعة لمنتج. القيمة محسوبة بسعر البيع النهارده.</p></div>
+        <a href="{{ route('admin.pieces.create') }}" class="btn btn-gold"><x-icon name="barcode" :size="18" />سجّل قطعة</a>
     </div>
 
     <div class="grid gap-4 [grid-template-columns:repeat(auto-fit,minmax(190px,1fr))]">
@@ -12,7 +12,7 @@
     </div>
 
     <form method="GET" class="card flex flex-wrap items-end gap-3 p-4">
-        <div class="min-w-[200px] flex-1"><label for="q" class="label">باركود أو اسم</label><input id="q" name="q" value="{{ request('q') }}" class="field"></div>
+        <div class="min-w-[200px] flex-1"><label for="q" class="label">امسح الكود أو اكتب اسم المنتج</label><input id="q" name="q" value="{{ request('q') }}" class="field" autocomplete="off"></div>
         <div><label for="status" class="label">الحالة</label><select id="status" name="status" class="field"><option value="all" @selected(! $status)>الكل</option>@foreach (\App\Enums\PieceStatus::cases() as $s)<option value="{{ $s->value }}" @selected($status === $s)>{{ $s->label() }}</option>@endforeach</select></div>
         <div><label for="karat" class="label">العيار</label><select id="karat" name="karat" class="field"><option value="">الكل</option>@foreach ([24, 21, 18] as $k)<option value="{{ $k }}" @selected($karat === $k)>{{ $k }}</option>@endforeach</select></div>
         <div><label for="category" class="label">النوع</label><select id="category" name="category" class="field"><option value="">الكل</option>@foreach (\App\Enums\Category::cases() as $c)<option value="{{ $c->value }}" @selected($category === $c)>{{ $c->label() }}</option>@endforeach</select></div>
@@ -24,14 +24,14 @@
         <section class="card overflow-hidden">
             <div class="flex flex-wrap items-center justify-between gap-3 border-b border-line px-4 py-3">
                 <span class="text-sm text-muted"><b class="text-text" x-text="ids.length"></b> قطعة متعلّم عليها</span>
-                <button class="btn btn-sm btn-outline" :disabled="!ids.length"><x-icon name="printer" :size="17" />اطبع التيكت</button>
+                <button class="btn btn-sm btn-outline" :disabled="!ids.length"><x-icon name="printer" :size="17" />اطبع تيكت بديلة</button>
             </div>
             <div class="overflow-x-auto">
                 <table class="w-full min-w-[860px] border-collapse text-sm">
                     <thead><tr class="bg-paper text-[13px] text-muted">
                         <th scope="col" class="w-10 px-4 py-3"><span class="sr-only">اختار</span></th>
-                        <th scope="col" class="px-4 py-3 text-start font-medium">الباركود</th>
-                        <th scope="col" class="px-4 py-3 text-start font-medium">البيان</th>
+                        <th scope="col" class="px-4 py-3 text-start font-medium">الكود</th>
+                        <th scope="col" class="px-4 py-3 text-start font-medium">المنتج</th>
                         <th scope="col" class="px-4 py-3 text-start font-medium">العيار</th>
                         <th scope="col" class="px-4 py-3 text-start font-medium">الوزن (جم)</th>
                         <th scope="col" class="px-4 py-3 text-start font-medium">المصنعية</th>
@@ -44,7 +44,7 @@
                             <tr class="border-t border-line hover:bg-paper">
                                 <td class="px-4 py-3"><input type="checkbox" value="{{ $piece->id }}" x-model="ids" class="size-[18px] accent-gold-deep" aria-label="اختار {{ $piece->name }}"></td>
                                 <td class="px-4 py-3 font-mono" dir="ltr">{{ $piece->barcode }}</td>
-                                <td class="px-4 py-3"><b>{{ $piece->name }}</b><div class="text-xs text-muted">{{ $piece->category->label() }}</div></td>
+                                <td class="px-4 py-3">@if ($piece->product)<a href="{{ route('admin.products.edit', $piece->product) }}" class="font-bold">{{ $piece->name }}</a>@else<b>{{ $piece->name }}</b>@endif<div class="text-xs text-muted">{{ $piece->category->label() }}</div></td>
                                 <td class="px-4 py-3">{{ $piece->karat }}</td>
                                 <td class="px-4 py-3" dir="ltr">{{ $piece->weight_g }}</td>
                                 <td class="px-4 py-3">{{ number_format($piece->making_fee) }}</td>
@@ -53,7 +53,7 @@
                                 <td class="px-4 py-3">@if ($piece->isInStock())<a href="{{ route('admin.pieces.edit', $piece) }}" class="text-sm font-semibold">تعديل</a>@endif</td>
                             </tr>
                         @empty
-                            <tr><td colspan="9" class="px-4 py-10 text-center text-muted">مفيش قطع. <a href="{{ route('admin.pieces.create') }}">ضيف أول قطعة</a></td></tr>
+                            <tr><td colspan="9" class="px-4 py-10 text-center text-muted">مفيش قطع. <a href="{{ route('admin.pieces.create') }}">سجّل أول قطعة بالكود</a></td></tr>
                         @endforelse
                     </tbody>
                 </table>

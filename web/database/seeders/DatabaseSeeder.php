@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Enums\Category;
 use App\Enums\OrderStatus;
 use App\Enums\OrderType;
+use App\Enums\PieceStatus;
 use App\Models\Branch;
 use App\Models\GoldPrice;
 use App\Models\KaratMargin;
@@ -13,6 +14,8 @@ use App\Models\Piece;
 use App\Models\Product;
 use App\Models\Setting;
 use App\Models\User;
+use App\Services\GoldPricing;
+use App\Services\StockSync;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
@@ -75,6 +78,7 @@ class DatabaseSeeder extends Seeder
             Category::Coin->value => 'جنيه ذهب عيار 21 وزنه 8 جرام، بختم الحياة جولد.',
         ];
 
+        $stocks = [];
         foreach ($items as $i => [$name, $category, $karat, $weight, $making, $image, $stock, $subtitle]) {
             $product = Product::updateOrCreate(['slug' => Str::slug($image)], [
                 'name' => $name,
@@ -90,40 +94,56 @@ class DatabaseSeeder extends Seeder
                 'is_featured' => ! $category->isBullion(),
                 'sort' => $i,
             ]);
-            $product->branches()->sync($branches->mapWithKeys(fn ($b, $j) => [$b->id => ['quantity' => $stock[$j]]])->all());
+            $stocks[$product->id] = $stock;
         }
 
         $this->seedOrders($customer, $branches->all());
-        $this->seedPieces();
+        $this->seedPieces($stocks, $branches->all());
     }
 
-    /** Demo pieces for the shop's inventory and cashier. Real pieces are entered in the admin. */
-    private function seedPieces(): void
+    /**
+     * Tagged demo pieces for every product, enough that what the site shows
+     * per branch (pieces minus open orders) is the stock listed above.
+     *
+     * @param  array<int, list<int>>  $stocks
+     * @param  list<Branch>  $branches
+     */
+    private function seedPieces(array $stocks, array $branches): void
     {
-        $pieces = [
-            ['خاتم سوليتير', Category::Ring, 21, 3.250, 650, 17900],
-            ['خاتم فصوص', Category::Ring, 18, 2.800, 900, 13400],
-            ['دبلة سادة', Category::Band, 21, 4.100, 400, 22500],
-            ['دبلة مشغولة', Category::Band, 18, 3.600, 700, 17100],
-            ['سلسلة كارتير', Category::Necklace, 21, 7.850, 1100, 43100],
-            ['سلسلة فينيسي', Category::Necklace, 18, 5.200, 850, 24600],
-            ['طقم نص', Category::Set, 21, 12.400, 2600, 68500],
-            ['غويشة مخرّمة', Category::Bracelet, 21, 9.300, 1400, 51100],
-            ['انسيال حروف', Category::Bracelet, 18, 4.700, 900, 22300],
-            ['حلق دوائر', Category::Earring, 18, 2.150, 500, 10200],
-            ['سبيكة 5 جم', Category::Bar, 24, 5.000, 350, 31200],
-            ['جنيه ذهب', Category::Coin, 21, 8.000, 620, 43800],
-        ];
-        foreach ($pieces as $i => [$name, $category, $karat, $weight, $making, $cost]) {
-            Piece::updateOrCreate(['barcode' => '2'.str_pad((string) ($i + 1), 7, '0', STR_PAD_LEFT)], [
-                'name' => $name,
-                'category' => $category,
-                'karat' => $karat,
-                'weight_g' => $weight,
-                'making_fee' => $making,
-                'cost' => $cost,
-            ]);
+        if (Piece::exists()) {
+            return;
         }
+
+        $pricing = app(GoldPricing::class);
+        $rows = [];
+        foreach (Product::whereKey(array_keys($stocks))->get() as $product) {
+            $cost = round(((float) $product->weight_g * $pricing->spot((string) $product->karat) + 0.4 * (float) $product->making_fee) / 100) * 100;
+            foreach ($branches as $j => $branch) {
+                $held = (int) Order::query()->where('product_id', $product->id)->where('branch_id', $branch->id)
+                    ->whereIn('status', array_map(fn ($s) => $s->value, OrderStatus::open()))
+                    ->whereIn('type', [OrderType::Bullion->value, OrderType::Reservation->value])->sum('quantity');
+                for ($n = 1; $n <= $stocks[$product->id][$j] + $held; $n++) {
+                    $rows[] = [
+                        'barcode' => sprintf('%s-%d-%02d', $product->sku, $j + 1, $n),
+                        'product_id' => $product->id,
+                        'branch_id' => $branch->id,
+                        'name' => $product->name,
+                        'category' => $product->category->value,
+                        'karat' => $product->karat,
+                        'weight_g' => $product->weight_g,
+                        'making_fee' => $product->making_fee,
+                        'cost' => $cost,
+                        'status' => PieceStatus::InStock->value,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ];
+                }
+            }
+        }
+        foreach (array_chunk($rows, 200) as $chunk) {
+            Piece::insert($chunk);
+        }
+        app(StockSync::class)->products(array_keys($stocks));
     }
 
     private function seedPrices(): void

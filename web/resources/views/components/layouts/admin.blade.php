@@ -18,11 +18,11 @@
                     ['admin.dashboard', 'نظرة عامة', 'chart', 'admin.dashboard'],
                     ['admin.pos', 'الكاشير', 'swap', 'admin.pos*'],
                     ['admin.invoices.index', 'الفواتير', 'receipt', 'admin.invoices.*'],
-                    ['admin.pieces.index', 'المخزون', 'box', 'admin.pieces.*'],
+                    ['admin.products.index', 'المنتجات والمخزون', 'gem', 'admin.products.*'],
+                    ['admin.pieces.index', 'القطع بالكود', 'barcode', 'admin.pieces.*'],
                     ['admin.reports', 'التقارير', 'report', 'admin.reports'],
                     ['admin.prices', 'الأسعار والهوامش', 'tag', 'admin.prices*'],
                     ['admin.orders.index', 'طلبات الموقع', 'calendar', 'admin.orders.*'],
-                    ['admin.products.index', 'منتجات الموقع', 'gem', 'admin.products.*'],
                     ['admin.branches.index', 'الفروع', 'store', 'admin.branches.*'],
                     ['admin.shop', 'بيانات المحل', 'info', 'admin.shop*'],
                 ];

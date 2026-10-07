@@ -32,7 +32,7 @@ class PosController extends Controller
     public function piece(Request $request, GoldPricing $pricing)
     {
         $code = trim((string) $request->query('barcode'));
-        $piece = $code === '' ? null : Piece::query()->where('barcode', $code)->first();
+        $piece = Piece::findByCode($code);
 
         if (! $piece) {
             return response()->json(['message' => "مفيش قطعة بالباركود {$code}."], 404);

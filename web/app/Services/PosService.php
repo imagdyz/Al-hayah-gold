@@ -15,7 +15,7 @@ use Illuminate\Validation\ValidationException;
 /** Issues and voids the shop's invoices. Totals are always recomputed here. */
 class PosService
 {
-    public function __construct(private GoldPricing $pricing) {}
+    public function __construct(private GoldPricing $pricing, private StockSync $stock) {}
 
     /**
      * @param  array{customer_name?: ?string, customer_phone?: ?string, settlement: string, notes?: ?string,
@@ -31,7 +31,7 @@ class PosService
             throw ValidationException::withMessages(['sales' => 'الفاتورة فاضية: ضيف قطعة للبيع أو ذهب مشترى.']);
         }
 
-        return DB::transaction(function () use ($data, $sales, $purchases, $cashier) {
+        $invoice = DB::transaction(function () use ($data, $sales, $purchases, $cashier) {
             $ids = array_map(fn ($s) => (int) $s['piece_id'], $sales);
             if (count($ids) !== count(array_unique($ids))) {
                 throw ValidationException::withMessages(['sales' => 'نفس القطعة متضافة مرتين.']);
@@ -103,6 +103,9 @@ class PosService
 
             return $invoice;
         });
+        $this->stock->products($invoice->sales()->join('pieces', 'pieces.id', '=', 'invoice_lines.piece_id')->pluck('pieces.product_id'));
+
+        return $invoice;
     }
 
     /** Cancels an invoice and puts its pieces back in stock. The record stays. */
@@ -117,6 +120,7 @@ class PosService
             Piece::query()->whereKey($ids)->update(['status' => PieceStatus::InStock->value]);
             $invoice->update(['status' => InvoiceStatus::Voided, 'void_reason' => $reason, 'voided_at' => now()]);
         });
+        $this->stock->products(Piece::query()->whereKey($invoice->sales()->pluck('piece_id'))->pluck('product_id'));
     }
 
     public static function saleTotal(float $weight, float $gramPrice, float $making): float

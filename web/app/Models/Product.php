@@ -7,6 +7,7 @@ use App\Services\GoldPricing;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Storage;
 
 class Product extends Model
@@ -32,6 +33,11 @@ class Product extends Model
     public function getRouteKeyName(): string
     {
         return 'slug';
+    }
+
+    public function pieces(): HasMany
+    {
+        return $this->hasMany(Piece::class);
     }
 
     public function branches(): BelongsToMany

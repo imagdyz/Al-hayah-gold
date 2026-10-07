@@ -75,16 +75,27 @@ class AdminTest extends TestCase
         $this->assertSame($before, $q());
     }
 
-    public function test_admin_creates_a_product_with_stock(): void
+    public function test_site_stock_comes_from_tagged_pieces(): void
     {
         $branch = Branch::first();
         $this->actingAs($this->admin())->post('/admin/products', [
             'name' => 'خاتم تجربة', 'category' => 'ring', 'karat' => 18, 'weight_g' => 2, 'making_fee' => 500,
-            'is_published' => 1, 'stock' => [$branch->id => 3],
+            'is_published' => 1, 'stock' => [$branch->id => 9],
         ])->assertRedirect();
 
         $p = Product::where('name', 'خاتم تجربة')->first();
         $this->assertSame(2 * 4680 + 500, $p->price());
-        $this->assertSame(3, (int) $p->branches()->first()->pivot->quantity);
+        $q = fn () => (int) DB::table('branch_product')->where('product_id', $p->id)->where('branch_id', $branch->id)->value('quantity');
+        $this->assertSame(0, $q(), 'a typed stock number is ignored');
+
+        foreach (['T-1', 'T-2', 'T-3'] as $code) {
+            $this->post('/admin/pieces', ['barcode' => $code, 'product_id' => $p->id, 'branch_id' => $branch->id, 'weight_g' => 2, 'making_fee' => 500])->assertRedirect();
+        }
+        $this->assertSame(3, $q());
+
+        // An open online order holds one of them.
+        app(OrderService::class)->placeReservation(User::where('is_admin', false)->first(), $p->fresh(), $branch, now()->addDay()->setTime(12, 0), 'branch');
+        $this->post('/admin/pieces', ['barcode' => 'T-4', 'product_id' => $p->id, 'branch_id' => $branch->id, 'weight_g' => 2, 'making_fee' => 500])->assertRedirect();
+        $this->assertSame(3, $q());
     }
 }

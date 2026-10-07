@@ -6,6 +6,7 @@ use App\Enums\Category;
 use App\Http\Controllers\Controller;
 use App\Models\Branch;
 use App\Models\Product;
+use App\Services\StockSync;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
@@ -15,7 +16,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $cat = Category::tryFrom((string) $request->query('category'));
-        $products = Product::with('branches')
+        $products = Product::withCount(['pieces as in_stock' => fn ($q) => $q->where('status', 'in_stock')])
             ->when($cat, fn ($q) => $q->where('category', $cat->value))
             ->when($request->query('q'), fn ($q, $s) => $q->where(fn ($w) => $w->where('name', 'like', "%{$s}%")->orWhere('sku', 'like', "%{$s}%")))
             ->orderBy('sort')->orderBy('id')->paginate(30)->withQueryString();
@@ -32,25 +33,28 @@ class ProductController extends Controller
         return view('admin.products.form', ['product' => new Product(['karat' => 21, 'is_published' => true]), 'branches' => Branch::active()->get()]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request, StockSync $stock)
     {
         $product = Product::create($this->validated($request));
-        $this->syncStock($request, $product);
+        $stock->product($product);
 
-        return redirect()->route('admin.products.edit', $product)->with('status', 'المنتج اتضاف.');
+        return redirect()->route('admin.products.edit', $product)->with('status', 'المنتج اتضاف. سجّل قطعه بالكود عشان يبقى ليه مخزون.');
     }
 
     public function edit(Product $product)
     {
-        $product->load('branches');
+        $product->load(['branches', 'pieces' => fn ($q) => $q->with('branch')->orderBy('status')->latest('id')]);
 
         return view('admin.products.form', ['product' => $product, 'branches' => Branch::active()->get()]);
     }
 
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Product $product, StockSync $stock)
     {
         $product->update($this->validated($request, $product));
-        $this->syncStock($request, $product);
+        $product->pieces()->where('status', 'in_stock')->update([
+            'name' => $product->name, 'category' => $product->category->value, 'karat' => $product->karat,
+        ]);
+        $stock->product($product);
 
         return back()->with('status', 'المنتج اتحفظ.');
     }
@@ -77,8 +81,6 @@ class ProductController extends Controller
             'is_published' => ['boolean'],
             'is_featured' => ['boolean'],
             'sort' => ['nullable', 'integer', 'min:0'],
-            'stock' => ['array'],
-            'stock.*' => ['nullable', 'integer', 'min:0', 'max:10000'],
         ]);
 
         if ($request->hasFile('image')) {
@@ -93,16 +95,7 @@ class ProductController extends Controller
             $data['slug'] = Str::slug(Str::ascii($data['name'])) ?: 'p';
             $data['slug'] .= '-'.Str::lower(Str::random(5));
         }
-        unset($data['stock']);
 
         return $data;
-    }
-
-    private function syncStock(Request $request, Product $product): void
-    {
-        $stock = collect($request->input('stock', []))
-            ->filter(fn ($q, $branch) => Branch::whereKey($branch)->exists())
-            ->mapWithKeys(fn ($q, $branch) => [(int) $branch => ['quantity' => (int) $q]]);
-        $product->branches()->sync($stock->all());
     }
 }
