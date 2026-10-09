@@ -46,6 +46,9 @@ RewriteRule ^ /index.html [L]
 </IfModule>
 ErrorDocument 404 /index.html
 HTACCESS
+    chmod 755 "$OFF"
+    chmod 644 "$OFF/index.html" "$OFF/.htaccess"
+    ls -la "$OFF"
     ln -sfn "$OFF" "$PUB"
     echo "public_html -> $(readlink "$PUB")"
 
@@ -57,8 +60,10 @@ HTACCESS
                 echo "CRON: could not remove it. Delete it in hPanel > Advanced > Cron Jobs."
             fi
         else
-            echo "No cron job for the site."
+            echo "No cron job for the site in crontab."
         fi
+    else
+        echo "CRON: no crontab over SSH. Delete the job in hPanel > Advanced > Cron Jobs."
     fi
     ;;
 on)

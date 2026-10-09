@@ -43,5 +43,5 @@ jobs:
           for path in / /prices /admin /api/v1/prices; do
             out=$(curl -sS -o body.txt -w '%{http_code} %{size_download}' --max-time 30 "https://$DOMAIN$path?nocache=$RANDOM" || true)
             echo "$path -> status/bytes $out"
-            head -c 200 body.txt | sed 's/<[^>]*>/ /g' | tr -s ' \n'; echo
+            sed 's/<[^>]*>/ /g' body.txt | tr -s ' \n' | head -c 300; echo
           done
