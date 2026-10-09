@@ -1,0 +1,47 @@
+name: Site on or off
+
+# Takes the site off the web (an empty page for every URL) or puts it back,
+# with deploy/site-switch.sh. Nothing on the server is deleted.
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: off = empty page for everyone, on = the site again
+        type: choice
+        options: ['off', 'on']
+        required: true
+      domain:
+        description: Domain
+        required: true
+        default: golden-slt.com
+
+concurrency: deploy
+
+jobs:
+  switch:
+    runs-on: ubuntu-latest
+    env:
+      SSH_HOST: ${{ vars.SSH_HOST || '147.93.99.208' }}
+      SSH_PORT: ${{ vars.SSH_PORT || '65002' }}
+      SSH_USER: ${{ vars.SSH_USER || 'u991773587' }}
+      DOMAIN: ${{ inputs.domain }}
+      MODE: ${{ inputs.mode }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: On the server
+        env:
+          SSHPASS: ${{ secrets.SSH_PASSWORD }}
+        run: |
+          sudo apt-get install -y -qq sshpass >/dev/null
+          sshpass -e ssh -o StrictHostKeyChecking=accept-new -o ConnectTimeout=20 -p "$SSH_PORT" "$SSH_USER@$SSH_HOST" \
+            "DOMAIN=$(printf '%q' "$DOMAIN") MODE=$(printf '%q' "$MODE") bash -s" < deploy/site-switch.sh
+
+      - name: From outside
+        run: |
+          sleep 5
+          for path in / /prices /admin /api/v1/prices; do
+            out=$(curl -sS -o body.txt -w '%{http_code} %{size_download}' --max-time 30 "https://$DOMAIN$path?nocache=$RANDOM" || true)
+            echo "$path -> status/bytes $out"
+            head -c 200 body.txt | sed 's/<[^>]*>/ /g' | tr -s ' \n'; echo
+          done
